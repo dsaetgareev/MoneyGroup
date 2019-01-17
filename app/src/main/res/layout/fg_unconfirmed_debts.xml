@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_for_unconfirmed_item"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll_unc_button_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        >
+        <Button
+            android:id="@+id/bt_unc_to_arhive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="В архив"
+            android:layout_marginRight="@dimen/google_1x"
+            />
+        <Button
+            android:id="@+id/bt_unc_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Удалить"
+            android:layout_marginLeft="@dimen/google_1x"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

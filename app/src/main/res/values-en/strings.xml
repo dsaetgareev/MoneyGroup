@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">MoneyGroup</string>
+    <string name="into_in_profil">Login to profile</string>
+    <string name="login_text">Login</string>
+    <string name="password_text">Password</string>
+    <string name="login_button">Enter</string>
+    <string name="registration_button">Registration</string>
+    <string name="forgot_button">Forgot password</string>
+    <string name="send_email_button">Send email</string>
+    <string name="email_code">Confirmation code</string>
+    <string name="control_question">Your security question</string>
+
+
+    <string-array name="planets_array">
+        <item>Send email</item>
+        <item>Security Question</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_new_password">Enter a new password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="save">Save</string>
+    <string name="password_description">The password must contain only letters of the Latin alphabet,
+        as imaginary one upper case letter, one lower case letter, one number and at least 6 characters.</string>
+    
+    <string name="registration_title">Registration</string>
+    <string name="enter_number_titel">Enter the number</string>
+    <string name="tv_skip">Skip</string>
+    <string name="agreement_title">Agreement of the parties</string>
+    <string name="agreement_text">Consent to the processing of personal data - gives the right to the processing of passport data, addresses, dates of birth and even the last name and patronymic of each citizen, who specifically protects the law. All persons who for one reason or another receive, process, transmit or store such information are operators and must obtain consent for any actions with the information received. A sample agreement on the processing of personal data and the requirements for its registration can be found in a special material PPT.ru.</string>
+    <string name="tv_accept">Accept</string>
+    <string name="tv_back">Back</string>
+    <string name="change_password">Change password</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="language">Language</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="welcome_go">Дальше</string>
+    <string name="add_new_unconfirmed_debts">Добавить</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_ready">Готово</string>
+    <string name="owes_me">Должны мне</string>
+    <string name="should_i">Должен я</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_phone">Ввдите номер телефона</string>
+    <string name="summ">Сумма</string>
+    <string name="note_for_yourself">Заметка для себя</string>
+    <string name="Comment">Комментарий</string>
+    <string name="currency">Валюта</string>
+    <string name="enter_summ">Введите сумму</string>
+    <string name="Contacts">Контакты</string>
+
+    <string-array name="language_array">
+        <item>ru</item>
+        <item>en</item>
+    </string-array>
+</resources>

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">MoneyGroup</string>
+    <string name="into_in_profil">Вход в профиль</string>
+    <string name="login_text">Login</string>
+    <string name="password_text">Password</string>
+    <string name="login_button">Войти</string>
+    <string name="registration_button">Зарегистрироваться</string>
+    <string name="forgot_button">Забыли пароль</string>
+    <string name="send_email_button">Отправить письмо</string>
+    <string name="email_code">Код подтверждения</string>
+    <string name="control_question">Ваш контрольный вопрос</string>
+
+
+    <string-array name="planets_array">
+        <item>Отправить письмо на email</item>
+        <item>Контрольный вопрос</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_new_password">Введите новый пароль</string>
+    <string name="confirm_password">Повторите пароль</string>
+    <string name="save">Сохранить</string>
+    <string name="password_description">Пароль должен содержать только буквы латинского алфавита,
+        как мнимум одну букву верхнего регистра, одну букву нижнего регистра, одну цифру и не менее 6 символов.</string>
+
+    <string name="registration_title">Регистрация</string>
+    <string name="enter_number_titel">Введите номер</string>
+    <string name="tv_skip">Пропустить</string>
+    <string name="agreement_title">Соглашение сторон</string>
+    <string name="agreement_text">Согласие на обработку персональных данных — дает право на обработку паспортных данных, адреса, даты рождения и даже фамилия имя и отчество каждого гражданина, которые особо охраняет законодательство. Все лица, которые по тем или иным причинам получают, обрабатывают, передают или хранят такие сведения, являются операторами и обязательно должны получить согласие на любые действия с полученной информацией. Образец соглашения на обработку персональных данных а также требования к его оформлению вы сможете найти в специальном материале PPT.ru.</string>
+    <string name="tv_accept">Принять</string>
+    <string name="tv_back">Назад</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="welcome_title">Здравствуйте</string>
+    <string name="language">Языки</string>
+    <string name="btn_confirm">Подтвердить</string>
+    <string name="welcome_go">Дальше</string>
+    <string name="add_new_unconfirmed_debts">Добавить</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_ready">Готово</string>
+    <string name="owes_me">Должны мне</string>
+    <string name="should_i">Должен я</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_phone">Ввдите номер телефона</string>
+    <string name="summ">Сумма</string>
+    <string name="note_for_yourself">Заметка для себя</string>
+    <string name="Comment">Комментарий</string>
+    <string name="currency">Валюта</string>
+    <string name="enter_summ">Введите сумму</string>
+    <string name="Contacts">Контакты</string>
+
+    <string-array name="language_array">
+        <item>ru</item>
+        <item>en</item>
+    </string-array>
+</resources>

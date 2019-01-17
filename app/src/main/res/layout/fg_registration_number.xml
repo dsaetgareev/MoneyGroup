@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <TextView
+        android:id="@+id/tv_enter_number_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_number_titel"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/et_number_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_enter_number_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:hint="+79171234567"
+        android:inputType="phone"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/bt_confirm_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_number_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_confirm"
+        />
+
+    <EditText
+        android:id="@+id/et_confirm_number_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_confirm_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:hint="12345"
+        android:inputType="text"
+        android:layout_marginTop="@dimen/google_1x"
+        />
+
+    <Button
+        android:id="@+id/bt_ok_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_confirm_number_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:text="ok"
+        android:layout_marginTop="@dimen/google_1x"
+        />
+
+    <TextView
+        android:id="@+id/tv_next_rg_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_skip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/fg_tv_password_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+
+</RelativeLayout>

@@ -1,13 +1,17 @@
 package moneygroup.devufa.ru.moneygroup.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +20,10 @@ import java.util.Collection;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.ButtonBox;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.UnconfirmedFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.service.PersonService;
 
 public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.UnconfirmedViewHolder> {
 
@@ -26,7 +32,9 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
     private List<Person> personList = new ArrayList<>();
     private List<Person> changingList = new ArrayList<>();
     private AppCompatActivity activity;
-    private ButtonBox buttonBox;
+    private LinearLayout linearLayout;
+    private Button toArchive;
+    private Button delete;
 
     public UnconfirmedAdapter() {
 
@@ -44,6 +52,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
             super(itemView);
             name = itemView.findViewById(R.id.tv_name_title);
             summ = itemView.findViewById(R.id.tv_summ);
+            initButtonBox();
             if (layout == R.layout.list_item_debt_edit) {
                 checkBox = itemView.findViewById(R.id.cb_item_debt_edit);
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -60,7 +69,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
                                 Toast.makeText(activity, person.getName() + String.valueOf(changingList.size()), Toast.LENGTH_SHORT).show();
                             }
                         }
-                        buttonBox.showVisibleBox();
+                        showButtonBux();
                     }
                 });
             }
@@ -107,6 +116,31 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
         notifyDataSetChanged();
     }
 
+    public void initButtonBox() {
+        linearLayout = activity.findViewById(R.id.ll_unc_button_box);
+        toArchive = activity.findViewById(R.id.bt_unc_to_arhive);
+        delete = activity.findViewById(R.id.bt_unc_delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Person person : changingList) {
+                    PersonService.get(activity).deletePerson(person);
+                }
+                Class home = HomeActivity.class;
+                Intent intent = new Intent(activity, home);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+    public void showButtonBux() {
+        if (changingList.size() > 0) {
+            linearLayout.setVisibility(View.VISIBLE);
+        } else {
+            linearLayout.setVisibility(View.INVISIBLE);
+        }
+    }
+
     public int getLayout() {
         return layout;
     }
@@ -129,6 +163,5 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
-        buttonBox = new ButtonBox(activity, changingList);
     }
 }

@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.fragment.registrations;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 
 public class RegistrationAgreement extends Fragment {
 
@@ -24,6 +26,15 @@ public class RegistrationAgreement extends Fragment {
         View view = inflater.inflate(R.layout.fg_registration_agreement, container, false);
         acceptAgreement = view.findViewById(R.id.tv_agreement_accept);
         backAgreement = view.findViewById(R.id.tv_agreement_back);
+
+        acceptAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Class home = HomeActivity.class;
+                Intent intent = new Intent(getActivity(), home);
+                startActivity(intent);
+            }
+        });
 
         backAgreement.setOnClickListener(new View.OnClickListener() {
             @Override

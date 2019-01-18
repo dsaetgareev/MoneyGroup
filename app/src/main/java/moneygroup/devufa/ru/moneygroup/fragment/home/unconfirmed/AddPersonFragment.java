@@ -23,6 +23,7 @@ import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.ContactsActivity;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 
@@ -248,7 +249,10 @@ public class AddPersonFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PersonService.get(getActivity()).addPerson(person);
+                PersonService.get(getActivity()).updatePerson(person);
+                Class home = HomeActivity.class;
+                Intent intent = new Intent(getActivity(), home);
+                getActivity().startActivity(intent);
             }
         });
     }

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    >
 
     <RadioGroup
         android:id="@+id/rg_add_person"
@@ -76,8 +82,9 @@
                 android:id="@+id/iv_get_contacts_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_name"
+                android:src="@drawable/ic_action_contacts"
                 android:contentDescription="@string/Contacts"
+                android:layout_margin="@dimen/google_1x"
                 />
 
         </LinearLayout>
@@ -176,6 +183,7 @@
                 android:inputType="text|textMultiLine"
                 android:background="@drawable/back"
                 android:layout_margin="@dimen/google_1x"
+                android:imeOptions="actionNext"
                 />
         </LinearLayout>
 
@@ -200,6 +208,7 @@
                 android:inputType="text|textMultiLine"
                 android:background="@drawable/back"
                 android:layout_margin="@dimen/google_1x"
+                android:imeOptions="actionNext"
                 />
         </LinearLayout>
 
@@ -215,4 +224,15 @@
         android:layout_marginTop="@dimen/google_1x"
         />
 
+    <Button
+        android:id="@+id/bt_ap_send_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_ap_save_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/send_request"
+        android:layout_marginTop="@dimen/google_1x"
+        />
+
 </RelativeLayout>
+</ScrollView>

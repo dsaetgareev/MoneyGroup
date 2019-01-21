@@ -80,7 +80,7 @@ public class ContactsActivity extends AppCompatActivity {
                                 new String[]{id},
                                 null
                         );
-                        while (phoneCursor.moveToNext()) {
+                        while (phoneCursor != null && phoneCursor.moveToNext()) {
                             String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             androidContact.setContactNumber(phoneNumber);
                         }

@@ -36,6 +36,7 @@ public class AddPersonFragment extends Fragment {
     private Person person;
 
     private RadioButton isOwesMe;
+    private RadioButton isShouldI;
     private EditText etName;
     private ImageView getContacts;
     private EditText etPhone;
@@ -192,12 +193,21 @@ public class AddPersonFragment extends Fragment {
 
     public void initIsOwesMe(View view) {
         isOwesMe = view.findViewById(R.id.rb_add_person_owes_me);
+        isShouldI = view.findViewById(R.id.rb_add_person_should_i);
         isOwesMe.setChecked(person.isOwesMe());
+        isShouldI.setChecked(!person.isOwesMe());
 
         isOwesMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 person.setOwesMe(isOwesMe.isChecked());
+            }
+        });
+
+        isShouldI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                person.setOwesMe(false);
             }
         });
     }
@@ -252,6 +262,7 @@ public class AddPersonFragment extends Fragment {
                 PersonService.get(getActivity()).updatePerson(person);
                 Class home = HomeActivity.class;
                 Intent intent = new Intent(getActivity(), home);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(intent);
             }
         });

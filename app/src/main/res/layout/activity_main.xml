@@ -58,7 +58,7 @@
                 android:id="@+id/et_phone_number"
                 android:layout_width="249dp"
                 android:layout_height="wrap_content"
-                android:hint="phone"
+                android:hint="@string/phone_number"
                 android:inputType="phone" />
 
         </LinearLayout>
@@ -81,7 +81,7 @@
                 android:id="@+id/et_password_number"
                 android:layout_width="249dp"
                 android:layout_height="wrap_content"
-                android:hint="password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
         </LinearLayout>
 

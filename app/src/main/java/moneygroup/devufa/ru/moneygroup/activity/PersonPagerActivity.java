@@ -23,6 +23,7 @@ public class PersonPagerActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private List<Person> personList;
+    private Person person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +31,13 @@ public class PersonPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_person_pager);
 
         viewPager = findViewById(R.id.activity_person_pager_view_pager);
-        UUID personId = (UUID) getIntent().getSerializableExtra(EXTRA_PERSON_ID);
+        final UUID personId = (UUID) getIntent().getSerializableExtra(EXTRA_PERSON_ID);
         personList = PersonService.get(getApplicationContext()).getPersonList();
         FragmentManager manager = getSupportFragmentManager();
         viewPager.setAdapter(new FragmentStatePagerAdapter(manager) {
             @Override
             public Fragment getItem(int i) {
-                Person person = personList.get(i);
+                person = PersonService.get(PersonPagerActivity.this).getPersonById(personId);
                 return AddPersonFragment.newInstance(person.getId());
             }
 
@@ -56,7 +57,16 @@ public class PersonPagerActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context, UUID personId) {
         Intent intent = new Intent(context, PersonPagerActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(EXTRA_PERSON_ID, personId);
         return intent;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (person != null && (person.getName() == null || person.getName().isEmpty())) {
+            PersonService.get(PersonPagerActivity.this).deletePerson(person);
+        }
     }
 }

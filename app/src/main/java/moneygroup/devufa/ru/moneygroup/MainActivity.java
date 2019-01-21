@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Context context = MainActivity.this;
                 Class home = HomeActivity.class;
                 Intent intent = new Intent(context, home);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

@@ -38,7 +38,7 @@ public class NewPassword extends AppCompatActivity {
         confirmValid = findViewById(R.id.iv_confirm_valid);
 
         confirmPassword = findViewById(R.id.et_confirm_password);
-        blockedEditText(confirmPassword, true);
+//        blockedEditText(confirmPassword, true);
         newPassword = findViewById(R.id.et_new_password);
 
         btnSavePassword = findViewById(R.id.bt_save_password);
@@ -67,10 +67,10 @@ public class NewPassword extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (validatePassword(newPassword.getText().toString())) {
-                    blockedEditText(confirmPassword, false);
+//                    blockedEditText(confirmPassword, false);
                     validateConfirm(s, confirmPassword);
                 } else {
-                    blockedEditText(confirmPassword, true);
+//                    blockedEditText(confirmPassword, true);
                 }
 
             }

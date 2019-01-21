@@ -16,7 +16,7 @@ public class Person {
 
     private String summ;
 
-    private boolean isOwesMe;
+    private boolean isOwesMe = true;
 
     private String currency;
 

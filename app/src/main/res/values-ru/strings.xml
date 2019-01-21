@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">MoneyGroup</string>
     <string name="into_in_profil">Вход в профиль</string>
-    <string name="login_text">Login</string>
-    <string name="password_text">Password</string>
+    <string name="login_text">Логин</string>
+    <string name="password_text">Пароль</string>
     <string name="login_button">Войти</string>
     <string name="registration_button">Зарегистрироваться</string>
     <string name="forgot_button">Забыли пароль</string>
@@ -49,6 +49,11 @@
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>
+    <string name="phone_number">+79171234567</string>
+    <string name="password">Пароль</string>
+    <string name="tv_change_password">Сменить пароль</string>
+    <string name="enter_confirmation_code">Введите код подтверждения</string>
+    <string name="send_request">Отправить запрос</string>
 
     <string-array name="language_array">
         <item>ru</item>

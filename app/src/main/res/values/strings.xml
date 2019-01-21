@@ -49,6 +49,11 @@
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>
+    <string name="phone_number">+79171234567</string>
+    <string name="password">Пароль</string>
+    <string name="tv_change_password">Сменить пароль</string>
+    <string name="enter_confirmation_code">Введите код подтверждения</string>
+    <string name="send_request">Отправить запрос</string>
 
 
     <string-array name="language_array">

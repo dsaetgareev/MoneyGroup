@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.adapters;
+package moneygroup.devufa.ru.moneygroup.adapters.contacts;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.activity.PersonPagerActivity;
+import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;

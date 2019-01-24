@@ -22,7 +22,7 @@ import android.widget.Spinner;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.activity.ContactsActivity;
+import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.ContactsActivity;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;

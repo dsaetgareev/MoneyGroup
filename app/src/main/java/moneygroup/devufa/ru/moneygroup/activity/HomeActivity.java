@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.adapters.HomePageAdapter;
+import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
 
 public class HomeActivity extends AppCompatActivity {
 

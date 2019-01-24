@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.adapters;
+package moneygroup.devufa.ru.moneygroup.adapters.home;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.UnconfirmedFragment;
 
 public class HomePageAdapter extends FragmentPagerAdapter {
@@ -29,6 +30,9 @@ public class HomePageAdapter extends FragmentPagerAdapter {
         switch (i) {
             case 0:
                 return UnconfirmedFragment.newInstance(i + 1);
+
+            case 1:
+                return OwesmeFragment.newInstance(i + 1);
 
             default: return new Fragment();
         }

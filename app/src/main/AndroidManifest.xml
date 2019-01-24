@@ -28,8 +28,9 @@
         <activity android:name=".activity.Registration" />
         <activity android:name=".activity.Welcome" />
         <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.PersonPagerActivity" />
-        <activity android:name=".activity.ContactsActivity"></activity>
+        <activity android:name=".activity.unconfirmed.PersonPagerActivity" />
+        <activity android:name=".activity.unconfirmed.ContactsActivity" />
+        <activity android:name=".activity.owesme.OwesmePersonActivity"></activity>
     </application>
 
 </manifest>

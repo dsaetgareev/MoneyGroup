@@ -54,6 +54,11 @@
     <string name="tv_change_password">Сменить пароль</string>
     <string name="enter_confirmation_code">Введите код подтверждения</string>
     <string name="send_request">Отправить запрос</string>
+    <string name="tv_name">Имя</string>
+    <string name="tel">Тел.</string>
+    <string name="tv_omp_title">Должен мне</string>
+    <string name="btn_to_archiv">В архив</string>
+    <string name="btn_to_delete">Удалить</string>
 
     <string-array name="language_array">
         <item>ru</item>

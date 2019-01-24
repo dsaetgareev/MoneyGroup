@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.activity;
+package moneygroup.devufa.ru.moneygroup.activity.unconfirmed;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.adapters.ContactAdapter;
+import moneygroup.devufa.ru.moneygroup.adapters.contacts.ContactAdapter;
 import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 
 public class ContactsActivity extends AppCompatActivity {

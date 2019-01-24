@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.activity;
+package moneygroup.devufa.ru.moneygroup.activity.unconfirmed;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/google_1x"
+    >
+
+    <TextView
+        android:id="@+id/tv_om_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        />
+
+    <TextView
+        android:id="@+id/tv_om_summ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/tv_om_icon"
+        android:layout_marginRight="@dimen/google_1x"
+        android:text="2500" />
+
+    <TextView
+        android:id="@+id/tv_om_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text=">"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_below="@+id/tv_om_summ"
+        />
+
+</RelativeLayout>

@@ -59,6 +59,11 @@
     <string name="tv_omp_title">Должен мне</string>
     <string name="btn_to_archiv">В архив</string>
     <string name="btn_to_delete">Удалить</string>
+    <string name="i_owe_title">Должен я</string>
+    <string name="tv_chain_title">Поздравляем. Вы в цепочке!</string>
+    <string name="rejection">Отказ</string>
+    <string name="agree">Согласен</string>
+    <string name="after_write_off_title">После списания</string>
 
 
     <string-array name="language_array">

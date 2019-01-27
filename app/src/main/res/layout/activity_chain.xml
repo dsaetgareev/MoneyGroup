@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/google_1x"
+    >
+
+    <TextView
+        android:id="@+id/tv_ch_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_chain_title"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/google_1x"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_bef_write_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_ch_title"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_ch_om_bef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/back"
+            >
+            <TextView
+                android:id="@+id/tv_ch_om_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_omp_title"
+                android:textColor="@color/oweMe"
+                />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="#7b7b7b" />
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_bef_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="@string/tv_name"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_name"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_bef_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_tel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="@string/tel"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+79178643123"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_bef_summ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_summ_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="@string/summ"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_summ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15000"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_bef_cur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_summ_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="@string/currency"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_bef_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUR"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_ch_io_bef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/back"
+            >
+
+            <TextView
+                android:id="@+id/tv_ch_io_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/i_owe_title"
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="#7b7b7b" />
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_bef_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="@string/tv_name"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_name"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_bef_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_tel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/tel"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+79178643123"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_bef_summ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_summ_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/summ"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_summ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15000"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_bef_cur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_summ_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/currency"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_bef_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUR"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ch_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:text="Цепь долгов совпала из 17 учатников мы можем списать у всех участников по:"
+        android:layout_below="@+id/ll_bef_write_off"
+        />
+    <TextView
+        android:id="@+id/tv_ch_desc_cur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:paddingStart="@dimen/google_1x"
+        android:paddingEnd="@dimen/google_1x"
+        android:text="RUR"
+        android:layout_below="@+id/tv_ch_desc"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/back"
+        />
+
+    <TextView
+        android:id="@+id/tv_ch_desc_summ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:paddingStart="@dimen/google_1x"
+        android:paddingEnd="@dimen/google_1x"
+        android:text="3200"
+        android:layout_below="@+id/tv_ch_desc"
+        android:layout_toStartOf="@id/tv_ch_desc_cur"
+        android:background="@drawable/back"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="#7b7b7b"
+        android:layout_below="@+id/tv_ch_desc_cur"/>
+
+    <TextView
+        android:id="@+id/tv_ch_af_write_off_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/after_write_off_title"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_below="@+id/tv_ch_desc_cur"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_af_write_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_ch_af_write_off_title"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_ch_om_af"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/back"
+            >
+
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_af_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/tv_name"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_name"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_af_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_tel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/tel"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+79178643123"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_af_summ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_summ_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/summ"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_summ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15000"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_om_af_cur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_summ_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/currency"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_om_af_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUR"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_ch_io_af"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/back"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_af_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/tv_name"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_name"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_af_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_tel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/tel"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+79178643123"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_af_summ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_summ_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/summ"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_summ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15000"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ch_io_af_cur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/google_1x"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_summ_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/google_1x"
+                    android:text="@string/currency"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_ch_io_af_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUR"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ch_desc_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/google_1x"
+        android:text="Подтвердили на списание 11 участников.
+После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг."
+        android:layout_below="@+id/ll_af_write_off"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_ch_btn_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tv_ch_desc_response"
+        >
+
+        <Button
+            android:id="@+id/btn_ch_rejection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rejection"
+            android:layout_gravity="bottom"
+            />
+
+        <Button
+            android:id="@+id/btn_ch_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/agree"
+            android:layout_gravity="bottom"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

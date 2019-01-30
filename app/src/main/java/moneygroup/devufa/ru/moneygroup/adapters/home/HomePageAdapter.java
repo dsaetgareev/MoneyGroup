@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import moneygroup.devufa.ru.moneygroup.fragment.home.iowe.IOweFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
+import moneygroup.devufa.ru.moneygroup.fragment.home.settings.SettingsFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.UnconfirmedFragment;
 
 public class HomePageAdapter extends FragmentPagerAdapter {
@@ -37,6 +38,9 @@ public class HomePageAdapter extends FragmentPagerAdapter {
 
             case 2:
                 return IOweFragment.newInstance(i + 2);
+
+            case 3:
+                return SettingsFragment.newInstance(i + 3);
 
             default: return new Fragment();
         }

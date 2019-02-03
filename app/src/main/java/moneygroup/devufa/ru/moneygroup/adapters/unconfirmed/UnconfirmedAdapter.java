@@ -22,6 +22,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.service.ArchiveService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 
 public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.UnconfirmedViewHolder> {
@@ -140,6 +141,16 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
     public void initButtonBox() {
         linearLayout = activity.findViewById(R.id.ll_unc_button_box);
         toArchive = activity.findViewById(R.id.bt_unc_to_arhive);
+        toArchive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Person person : changingList) {
+                    ArchiveService.get(activity).addPerson(person);
+                    PersonService.get(activity).deletePerson(person);
+                }
+                toHomeActivity();
+            }
+        });
         delete = activity.findViewById(R.id.bt_unc_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,10 +158,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
                 for (Person person : changingList) {
                     PersonService.get(activity).deletePerson(person);
                 }
-                Class home = HomeActivity.class;
-                Intent intent = new Intent(activity, home);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                activity.startActivity(intent);
+                toHomeActivity();
             }
         });
     }
@@ -161,6 +169,13 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
         } else {
             linearLayout.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void toHomeActivity() {
+        Class home = HomeActivity.class;
+        Intent intent = new Intent(activity, home);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(intent);
     }
 
     public int getLayout() {

@@ -73,23 +73,20 @@
             android:orientation="horizontal"
             android:layout_margin="@dimen/google_1x"
             >
-            <TextView
+            <Button
+                android:id="@+id/bt_set_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Сброс пароля"
+                android:text="Установить"
                 android:textAlignment="center"
                 android:layout_weight="1"
                 />
 
-            <EditText
-                android:id="@+id/et_set_control_question"
+            <Spinner
+                android:id="@+id/planets_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:layout_weight="3"
-                android:background="@drawable/back"
-                android:hint="контрольный вопрос"
-                android:textAlignment="center"
                 />
 
         </LinearLayout>

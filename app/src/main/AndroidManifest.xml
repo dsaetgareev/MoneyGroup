@@ -32,7 +32,8 @@
         <activity android:name=".activity.unconfirmed.ContactsActivity" />
         <activity android:name=".activity.owesme.OwesmePersonActivity" />
         <activity android:name=".activity.iowe.IOweActivity" />
-        <activity android:name=".activity.ChainActivity"></activity>
+        <activity android:name=".activity.ChainActivity" />
+        <activity android:name=".activity.archive.ArchiveActivity"></activity>
     </application>
 
 </manifest>

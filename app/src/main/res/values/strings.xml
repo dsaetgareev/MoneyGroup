@@ -16,6 +16,17 @@
         <item>Контрольный вопрос</item>
     </string-array>
 
+    <string-array name="set_email_question">
+        <item>Установить email</item>
+        <item>Контрольный вопрос</item>
+    </string-array>
+
+    <string-array name="choice_question">
+        <item>Девичья фамилия матери</item>
+        <item>Кличка питомца</item>
+        <item>Твой родной город</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_new_password">Введите новый пароль</string>

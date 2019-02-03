@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import moneygroup.devufa.ru.moneygroup.dao.PersonDao.PersonTable;
+import moneygroup.devufa.ru.moneygroup.dao.PersonDao.ArchiveTable;
 
 
 public class PersonBaseHelper extends SQLiteOpenHelper {
@@ -28,6 +29,18 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
                 PersonTable.Cols.NOTE + ", " +
                 PersonTable.Cols.COMMENT + ", " +
                 PersonTable.Cols.IS_OWES_ME +
+                ")"
+        );
+        db.execSQL("create table " + ArchiveTable.NAME + "(" +
+                "_id integer primary key autoincrement, " +
+                ArchiveTable.Cols.UUID + ", " +
+                ArchiveTable.Cols.NAME + ", " +
+                ArchiveTable.Cols.NUMBER + ", " +
+                ArchiveTable.Cols.SUMM + ", " +
+                ArchiveTable.Cols.CURRENCY + ", " +
+                ArchiveTable.Cols.NOTE + ", " +
+                ArchiveTable.Cols.COMMENT + ", " +
+                ArchiveTable.Cols.IS_OWES_ME +
                 ")"
         );
 

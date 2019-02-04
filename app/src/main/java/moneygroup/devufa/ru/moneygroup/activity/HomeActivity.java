@@ -1,5 +1,7 @@
 package moneygroup.devufa.ru.moneygroup.activity;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -13,8 +15,8 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     int[] imageResId = {
-            R.drawable.flag_albania, R.drawable.flag_russian_federation, R.drawable.flag_united_states_of_america,
-            R.drawable.flag_afghanistan
+            R.drawable.plus, R.drawable.up, R.drawable.down,
+            R.drawable.setting
     };
 
     @Override
@@ -33,8 +35,13 @@ public class HomeActivity extends AppCompatActivity {
     public void tabLayoutInit() {
         tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        for (int i = 0; i < imageResId.length; i++) {
-            tabLayout.getTabAt(i).setIcon(imageResId[i]);
-        }
+        tabLayout.getTabAt(0).setIcon(imageResId[0]);
+//        tabLayout.getTabAt(0).getIcon().setColorFilter();
+        tabLayout.getTabAt(1).setIcon(imageResId[1]);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).setIcon(imageResId[2]);
+        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).setIcon(imageResId[3]);
+        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
     }
 }

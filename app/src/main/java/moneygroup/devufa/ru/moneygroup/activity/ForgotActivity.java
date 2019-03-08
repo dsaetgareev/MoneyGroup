@@ -7,20 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.fragment.registrations.ChangePasswordFromEmail;
 import moneygroup.devufa.ru.moneygroup.fragment.registrations.ChangePasswordFromQuestion;
+import moneygroup.devufa.ru.moneygroup.model.BasicCode;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 
 public class ForgotActivity extends AppCompatActivity {
 
+    private EditText etTelNumber;
     private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
+        final Bundle args = new Bundle();
+
+        etTelNumber = findViewById(R.id.et_forgot_phone_number);
 
         spinner = (Spinner) findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -35,10 +42,14 @@ public class ForgotActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
                 if (position == 0) {
                     ChangePasswordFromEmail fragment = new ChangePasswordFromEmail();
+                    args.putString("number", etTelNumber.getText().toString());
+                    fragment.setArguments(args);
                     fragmentTransaction.replace(R.id.change_password_container, fragment)
                             .commit();
                 } else {
                     ChangePasswordFromQuestion fromQuestion = new ChangePasswordFromQuestion();
+                    args.putString("number", etTelNumber.getText().toString());
+                    fromQuestion.setArguments(args);
                     fragmentTransaction.replace(R.id.change_password_container, fromQuestion)
                             .commit();
                 }
@@ -49,5 +60,9 @@ public class ForgotActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public String getNumber() {
+        return etTelNumber.getText().toString();
     }
 }

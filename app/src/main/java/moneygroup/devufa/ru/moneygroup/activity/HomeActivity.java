@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
+import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private BasicCode basicCode;
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -23,13 +26,14 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        basicCode = (BasicCode) getIntent().getSerializableExtra("basicCode");
         viewPagerInit();
         tabLayoutInit();
     }
 
     public void viewPagerInit() {
         viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), HomeActivity.this));
+        viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), HomeActivity.this, basicCode));
     }
 
     public void tabLayoutInit() {
@@ -43,5 +47,10 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(3).setIcon(imageResId[3]);
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import moneygroup.devufa.ru.moneygroup.dao.PersonBaseHelper;
-import moneygroup.devufa.ru.moneygroup.dao.PersonCursorWrapper;
-import moneygroup.devufa.ru.moneygroup.dao.PersonDao.PersonTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonBaseHelper;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonCursorWrapper;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.PersonTable;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 
 public class PersonService {
@@ -113,5 +114,11 @@ public class PersonService {
 
     public void setPersonList(List<Person> personList) {
         this.personList = personList;
+    }
+
+    public void deleteAllTables() {
+        database.delete(PersonTable.NAME, null, null);
+        database.delete(PersonDao.ArchiveTable.NAME, null, null);
+        database.delete(PersonDao.CodeTable.NAME, null, null);
     }
 }

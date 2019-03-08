@@ -27,12 +27,38 @@
         android:textSize="20sp"
         />
 
+    <LinearLayout
+        android:id="@+id/ll_ch_number"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title_text_view"
+        >
+
+        <TextView
+            android:id="@+id/tv_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_text"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp"
+            />
+
+
+        <EditText
+            android:id="@+id/et_forgot_phone_number"
+            android:layout_width="249dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:inputType="phone" />
+    </LinearLayout>
+
 
     <Spinner
         android:id="@+id/planets_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_title_text_view"
+        android:layout_below="@id/ll_ch_number"
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         />

@@ -16,10 +16,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.model.BasicCode;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrationPassword extends Fragment {
+
+    private String code;
+    private String number;
+    private BasicCode basicCode;
+    private CodeService codeService;
 
     private EditText newPassword;
     private EditText confirmPassword;
@@ -30,6 +45,16 @@ public class RegistrationPassword extends Fragment {
     private ImageView numberValid;
     private ImageView confirmValid;
     private TextView back;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        codeService = CodeService.get(getActivity());
+        if (getArguments() != null) {
+            code = getArguments().getString("code");
+            number = getArguments().getString("number");
+        }
+    }
 
     @Nullable
     @Override
@@ -51,11 +76,28 @@ public class RegistrationPassword extends Fragment {
         btnSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                RegistrationAgreement fragment = new RegistrationAgreement();
-                transaction.replace(R.id.registration_container, fragment)
-                        .commit();
+                final String password = newPassword.getText().toString();
+                Call<ResponseBody> call = RegistrationService.getApiService().savePassword(number,code, password);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            RegistrationService.saveBasicCode(number, password, getActivity());
+                            Toast.makeText(getContext(), "Пароль сохранен", Toast.LENGTH_SHORT).show();
+                            FragmentManager manager = getFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            RegistrationAgreement fragment = new RegistrationAgreement();
+                            transaction.replace(R.id.registration_container, fragment)
+                                    .commit();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getContext(), "Пароль не сохранен", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 

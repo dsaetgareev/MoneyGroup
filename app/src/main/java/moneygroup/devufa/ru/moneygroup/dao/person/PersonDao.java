@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.dao;
+package moneygroup.devufa.ru.moneygroup.dao.person;
 
 public class PersonDao {
 
@@ -30,6 +30,15 @@ public class PersonDao {
             public static final String NOTE = "note";
             public static final String COMMENT = "comment";
             public static final String IS_OWES_ME = "is_owes_me";
+        }
+    }
+
+    public static final class CodeTable {
+        public static final String NAME = "code";
+
+        public static final class Cols {
+            public static final String NUMBER = "number";
+            public static final String CODE = "code";
         }
     }
 }

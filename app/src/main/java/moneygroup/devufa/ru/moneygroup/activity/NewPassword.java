@@ -14,8 +14,19 @@ import android.widget.ImageView;
 
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewPassword extends AppCompatActivity {
+
+    private String choice;
+    private String code;
+    private String number;
+    private String answer;
+
 
     private EditText newPassword;
     private EditText confirmPassword;
@@ -31,6 +42,8 @@ public class NewPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_password);
 
+        choice = getIntent().getStringExtra("choice");
+
         lowerCase = findViewById(R.id.iv_lower_case_valid);
         upperCase = findViewById(R.id.iv_upper_case_valid);
         lengthValid = findViewById(R.id.iv_length_valid);
@@ -38,7 +51,6 @@ public class NewPassword extends AppCompatActivity {
         confirmValid = findViewById(R.id.iv_confirm_valid);
 
         confirmPassword = findViewById(R.id.et_confirm_password);
-//        blockedEditText(confirmPassword, true);
         newPassword = findViewById(R.id.et_new_password);
 
         btnSavePassword = findViewById(R.id.bt_save_password);
@@ -46,10 +58,47 @@ public class NewPassword extends AppCompatActivity {
         btnSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
-                Class mainActivity = MainActivity.class;
-                Intent intent = new Intent(context, mainActivity);
-                startActivity(intent);
+                final String password = newPassword.getText().toString();
+                number = getIntent().getStringExtra("number");
+
+                switch (choice) {
+                    case "email":
+                        code = getIntent().getStringExtra("code");
+                        Call<ResponseBody> callEmail = RegistrationService.getApiService().savePassword(number,code, password);
+                        callEmail.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    toMainActivity(number, code, password);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
+                        break;
+
+                    case "question":
+
+                        answer = getIntent().getStringExtra("answer");
+                        Call<ResponseBody> callQuestion = RegistrationService.getApiService().changePasswordByQuestion(number, answer, password);
+                        callQuestion.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    toMainActivity(number, code, password);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
+                        break;
+                }
             }
         });
 
@@ -139,6 +188,14 @@ public class NewPassword extends AppCompatActivity {
 
     public boolean validatePattern(String password, String pattern) {
         return password.matches(pattern);
+    }
+
+    public void toMainActivity(String number, String code, String password) {
+        RegistrationService.saveBasicCode(number, password, NewPassword.this);
+        Context context = getApplicationContext();
+        Class mainActivity = MainActivity.class;
+        Intent intent = new Intent(context, mainActivity);
+        startActivity(intent);
     }
 
 }

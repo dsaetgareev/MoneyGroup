@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -25,7 +26,16 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.ContactsActivity;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
+import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
+import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddPersonFragment extends Fragment {
 
@@ -45,6 +55,7 @@ public class AddPersonFragment extends Fragment {
     private EditText etNote;
     private EditText comment;
     private Button saveButton;
+    private Button sendButton;
 
     public static AddPersonFragment newInstance(UUID personId) {
         Bundle args = new Bundle();
@@ -80,6 +91,7 @@ public class AddPersonFragment extends Fragment {
         initEtNote(view);
         initComment(view);
         initSaveButton(view);
+        initSendButton(view);
     }
 
     @Override
@@ -264,6 +276,32 @@ public class AddPersonFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), home);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(intent);
+            }
+        });
+    }
+
+    private void initSendButton(View view) {
+        sendButton = view.findViewById(R.id.bt_ap_send_request);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code = CodeService.get(getActivity()).getCode();
+                DebtConverter debtConverter = new DebtConverter(getActivity());
+                DebtDTO debtDTO1 = debtConverter.convertToDebtDTO(person);
+                Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO1);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

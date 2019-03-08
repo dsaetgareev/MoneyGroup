@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import moneygroup.devufa.ru.moneygroup.dao.PersonBaseHelper;
-import moneygroup.devufa.ru.moneygroup.dao.PersonCursorWrapper;
-import moneygroup.devufa.ru.moneygroup.dao.PersonDao.ArchiveTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonBaseHelper;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonCursorWrapper;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.ArchiveTable;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 
 public class ArchiveService {

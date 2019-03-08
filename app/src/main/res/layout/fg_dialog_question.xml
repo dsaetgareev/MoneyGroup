@@ -15,7 +15,7 @@
 
 
     <EditText
-        android:id="@+id/set_question"
+        android:id="@+id/et_set_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
@@ -35,7 +35,7 @@
         android:text="Напишите ответ" />
 
     <EditText
-        android:id="@+id/answer_question"
+        android:id="@+id/et_answer_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"

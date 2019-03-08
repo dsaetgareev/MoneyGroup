@@ -1,11 +1,11 @@
-package moneygroup.devufa.ru.moneygroup.dao;
+package moneygroup.devufa.ru.moneygroup.dao.person;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import java.util.UUID;
 
-import moneygroup.devufa.ru.moneygroup.dao.PersonDao.PersonTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.PersonTable;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 
 public class PersonCursorWrapper extends CursorWrapper {

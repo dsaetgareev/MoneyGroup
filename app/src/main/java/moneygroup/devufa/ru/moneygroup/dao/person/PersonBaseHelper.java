@@ -1,11 +1,12 @@
-package moneygroup.devufa.ru.moneygroup.dao;
+package moneygroup.devufa.ru.moneygroup.dao.person;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import moneygroup.devufa.ru.moneygroup.dao.PersonDao.PersonTable;
-import moneygroup.devufa.ru.moneygroup.dao.PersonDao.ArchiveTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.PersonTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.ArchiveTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.CodeTable;
 
 
 public class PersonBaseHelper extends SQLiteOpenHelper {
@@ -41,6 +42,13 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
                 ArchiveTable.Cols.NOTE + ", " +
                 ArchiveTable.Cols.COMMENT + ", " +
                 ArchiveTable.Cols.IS_OWES_ME +
+                ")"
+        );
+
+        db.execSQL("create table " + CodeTable.NAME + "(" +
+                "_id integer primary key autoincrement, " +
+                CodeTable.Cols.NUMBER + ", " +
+                CodeTable.Cols.CODE +
                 ")"
         );
 

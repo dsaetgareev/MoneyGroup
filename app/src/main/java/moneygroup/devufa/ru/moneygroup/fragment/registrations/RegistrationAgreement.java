@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 
 public class RegistrationAgreement extends Fragment {
 
@@ -30,8 +32,8 @@ public class RegistrationAgreement extends Fragment {
         acceptAgreement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Class home = HomeActivity.class;
-                Intent intent = new Intent(getActivity(), home);
+                Class main = MainActivity.class;
+                Intent intent = new Intent(getActivity(), main);
                 startActivity(intent);
             }
         });

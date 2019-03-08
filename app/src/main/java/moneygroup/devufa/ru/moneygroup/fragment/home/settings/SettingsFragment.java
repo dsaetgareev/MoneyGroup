@@ -21,15 +21,20 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.archive.ArchiveActivity;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.MailDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.QuestionDialog;
+import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.model.Settings;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 
 public class SettingsFragment extends Fragment {
 
-    public static final String ARG_PAGE = "ARG_PAGE";
+    public static final String ARG_BASIC_COE = "basicCode";
+    private BasicCode basicCode;
 
     private int page;
     private Settings settings;
@@ -42,15 +47,16 @@ public class SettingsFragment extends Fragment {
     private Button choiceButton;
     private Spinner spinner;
     private Button archiveSee;
+    private Button btExit;
 
     private CheckBox autoWriteOffCb;
     private CheckBox newDebtCb;
     private CheckBox chainCb;
     private CheckBox diffCurCb;
 
-    public static SettingsFragment newInstance(int page) {
+    public static SettingsFragment newInstance(BasicCode basicCode) {
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, page);
+        args.putSerializable(ARG_BASIC_COE, basicCode);
         SettingsFragment fragment = new SettingsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -60,7 +66,7 @@ public class SettingsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            page = getArguments().getInt(ARG_PAGE);
+            basicCode = (BasicCode) getArguments().getSerializable(ARG_BASIC_COE);
         }
         settings = new Settings(
                 "+79171234567",
@@ -84,6 +90,7 @@ public class SettingsFragment extends Fragment {
         initChoiceButton(view);
         initSpinner(view);
         initArchiveSee(view);
+        initExit(view);
         initAutoWriteOffCb(view);
         initNewDebtCb(view);
         initChainCb(view);
@@ -143,7 +150,9 @@ public class SettingsFragment extends Fragment {
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Class forgotClass = ForgotActivity.class;
+                Intent intent = new Intent(getActivity(), forgotClass);
+                startActivity(intent);
             }
         });
     }
@@ -202,6 +211,19 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+    }
+
+    private void initExit(View view) {
+        btExit = view.findViewById(R.id.bt_set_exit);
+        btExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new CodeService(getActivity()).deleteCode(basicCode);
+                Class mainActivity = MainActivity.class;
+                Intent intent = new Intent(getActivity(), mainActivity);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initAutoWriteOffCb(View view) {

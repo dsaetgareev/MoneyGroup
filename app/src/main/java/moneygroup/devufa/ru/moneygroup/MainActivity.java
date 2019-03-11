@@ -18,6 +18,7 @@ import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,6 +26,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ProgressBarMoney progressBarMoney;
 
     private String number = "";
     private String password = "";
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBarMoney = new ProgressBarMoney(MainActivity.this);
         codeService = CodeService.get(getApplicationContext());
         if (!codeService.getCodeList().isEmpty()) {
             basicCode = codeService.getCodeList().get(0);

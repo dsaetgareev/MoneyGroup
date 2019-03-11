@@ -15,8 +15,11 @@ import moneygroup.devufa.ru.moneygroup.fragment.registrations.ChangePasswordFrom
 import moneygroup.devufa.ru.moneygroup.fragment.registrations.ChangePasswordFromQuestion;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 
 public class ForgotActivity extends AppCompatActivity {
+
+    private ProgressBarMoney progressBarMoney;
 
     private EditText etTelNumber;
     private Spinner spinner;
@@ -26,6 +29,7 @@ public class ForgotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
         final Bundle args = new Bundle();
+        progressBarMoney = new ProgressBarMoney(ForgotActivity.this);
 
         etTelNumber = findViewById(R.id.et_forgot_phone_number);
 
@@ -64,5 +68,9 @@ public class ForgotActivity extends AppCompatActivity {
 
     public String getNumber() {
         return etTelNumber.getText().toString();
+    }
+
+    public ProgressBarMoney getProgressBarMoney() {
+        return progressBarMoney;
     }
 }

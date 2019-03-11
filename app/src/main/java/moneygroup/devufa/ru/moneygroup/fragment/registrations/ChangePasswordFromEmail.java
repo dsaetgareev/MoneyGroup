@@ -17,6 +17,7 @@ import java.io.IOException;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.NewPassword;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,6 +25,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChangePasswordFromEmail extends Fragment{
+
+    private ProgressBarMoney progressBarMoney;
 
     private String number;
     String resp = "";
@@ -44,6 +47,7 @@ public class ChangePasswordFromEmail extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.change_password_from_email, container,false);
+        progressBarMoney = ((ForgotActivity) getActivity()).getProgressBarMoney();
         etPassword = view.findViewById(R.id.et_password_from_email);
         initSendEmail(view);
         btnOk = view.findViewById(R.id.btn_send_code_email);
@@ -74,9 +78,11 @@ public class ChangePasswordFromEmail extends Fragment{
             public void onClick(View v) {
                 number = ((ForgotActivity) getActivity()).getNumber();
                 Call<ResponseBody> call = RegistrationService.getApiService().getCodeByEmail(number);
+                progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             try {
                                 resp = response.body().string();

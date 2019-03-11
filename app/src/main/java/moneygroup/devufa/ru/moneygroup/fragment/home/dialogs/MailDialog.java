@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -22,9 +23,12 @@ import retrofit2.Response;
 
 public class MailDialog extends DialogFragment {
 
+    private ProgressBarMoney progressBarMoney;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        progressBarMoney = new ProgressBarMoney(getActivity());
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -37,11 +41,13 @@ public class MailDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         EditText email = view.findViewById(R.id.et_dg_email);
                         Call<ResponseBody> call = RegistrationService.getApiService().setEmail(service.getCode(), email.getText().toString());
+                        progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
-
+                                    Toast.makeText(getActivity(), "Email сохранен", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

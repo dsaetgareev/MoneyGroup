@@ -10,9 +10,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -21,11 +23,13 @@ import retrofit2.Response;
 
 public class QuestionDialog extends DialogFragment {
 
+    private ProgressBarMoney progressBarMoney;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+        progressBarMoney = new ProgressBarMoney(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final CodeService service = CodeService.get(getContext());
 
@@ -39,11 +43,13 @@ public class QuestionDialog extends DialogFragment {
                         EditText etQuestion = view.findViewById(R.id.et_set_question);
                         EditText etAnswer = view.findViewById(R.id.et_answer_question);
                         Call<ResponseBody> call = RegistrationService.getApiService().setQuestion(service.getCode(), etQuestion.getText().toString(), etAnswer.getText().toString());
+                        progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            public void onResponse(Call<ResponseBody> call,Response<ResponseBody> response) {
+                                progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
-
+                                    Toast.makeText(getActivity(), "Вопрос и ответ сохранены", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

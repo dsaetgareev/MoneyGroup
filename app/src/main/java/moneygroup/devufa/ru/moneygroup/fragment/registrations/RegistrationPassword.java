@@ -21,8 +21,10 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +32,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegistrationPassword extends Fragment {
+
+    private ProgressBarMoney progressBarMoney;
 
     private String code;
     private String number;
@@ -60,6 +64,7 @@ public class RegistrationPassword extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_registration_password, container, false);
+        progressBarMoney = ((Registration)getActivity()).getProgressBarMoney();
         lowerCase = view.findViewById(R.id.fg_iv_lower_case_valid);
         upperCase = view.findViewById(R.id.fg_iv_upper_case_valid);
         lengthValid = view.findViewById(R.id.fg_iv_length_valid);
@@ -78,9 +83,11 @@ public class RegistrationPassword extends Fragment {
             public void onClick(View v) {
                 final String password = newPassword.getText().toString();
                 Call<ResponseBody> call = RegistrationService.getApiService().savePassword(number,code, password);
+                progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             RegistrationService.saveBasicCode(number, password, getActivity());
                             Toast.makeText(getContext(), "Пароль сохранен", Toast.LENGTH_SHORT).show();
@@ -89,6 +96,8 @@ public class RegistrationPassword extends Fragment {
                             RegistrationAgreement fragment = new RegistrationAgreement();
                             transaction.replace(R.id.registration_container, fragment)
                                     .commit();
+                        } else {
+                            Toast.makeText(getContext(), "Пароль не сохранен", Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -11,9 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -21,6 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewPassword extends AppCompatActivity {
+
+    private ProgressBarMoney progressBarMoney;
 
     private String choice;
     private String code;
@@ -41,6 +45,8 @@ public class NewPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_password);
+
+        progressBarMoney = new ProgressBarMoney(NewPassword.this);
 
         choice = getIntent().getStringExtra("choice");
 
@@ -65,17 +71,21 @@ public class NewPassword extends AppCompatActivity {
                     case "email":
                         code = getIntent().getStringExtra("code");
                         Call<ResponseBody> callEmail = RegistrationService.getApiService().savePassword(number,code, password);
+                        progressBarMoney.show();
                         callEmail.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
                                     toMainActivity(number, code, password);
+                                } else {
+                                    Toast.makeText(NewPassword.this, "Не удалось изменить пароль", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                                progressBarMoney.dismiss();
                             }
                         });
                         break;
@@ -84,11 +94,16 @@ public class NewPassword extends AppCompatActivity {
 
                         answer = getIntent().getStringExtra("answer");
                         Call<ResponseBody> callQuestion = RegistrationService.getApiService().changePasswordByQuestion(number, answer, password);
+                        progressBarMoney.show();
                         callQuestion.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if (response.isSuccessful()) {
+                                    progressBarMoney.dismiss();
                                     toMainActivity(number, code, password);
+                                } else {
+                                    progressBarMoney.dismiss();
+                                    Toast.makeText(NewPassword.this, "Не удалось изменить пароль", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -197,5 +212,4 @@ public class NewPassword extends AppCompatActivity {
         Intent intent = new Intent(context, mainActivity);
         startActivity(intent);
     }
-
 }

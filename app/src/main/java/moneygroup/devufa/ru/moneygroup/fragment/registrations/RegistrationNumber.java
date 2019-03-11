@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.fragment.registrations;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +19,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -34,6 +35,8 @@ public class RegistrationNumber extends Fragment {
 
     private String number;
     private String code;
+
+    private ProgressBarMoney progressBarMoney;
 
     private EditText etEnterNumber;
     private Button confirmButton;
@@ -48,6 +51,7 @@ public class RegistrationNumber extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_registration_number, container, false);
+        progressBarMoney = ((Registration)getActivity()).getProgressBarMoney();
 
         service = new RegistrationService();
         initEnterNumber(view);
@@ -109,11 +113,21 @@ public class RegistrationNumber extends Fragment {
             public void onClick(View v) {
                 number = etEnterNumber.getText().toString();
                 Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number);
-
+                progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (response.isSuccessful()) {
+                            progressBarMoney.dismiss();
+                        } else {
+                            progressBarMoney.dismiss();
+                            Toast.makeText(getActivity(), "Не удалось установить соединение", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
@@ -154,10 +168,11 @@ public class RegistrationNumber extends Fragment {
             public void onClick(View v) {
                 code = etCode.getText().toString();
                 Call<ResponseBody> call = RegistrationService.getApiService().confirmCode(number, code);
+                progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                        progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             PersonService.get(getActivity()).deleteAllTables();
                             Bundle args = new Bundle();

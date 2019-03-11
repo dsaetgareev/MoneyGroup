@@ -16,7 +16,9 @@ import android.widget.TextView;
 import java.io.IOException;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.NewPassword;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,6 +26,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChangePasswordFromQuestion extends Fragment {
+
+    private ProgressBarMoney progressBarMoney;
 
     private String number;
     private String question;
@@ -44,12 +48,15 @@ public class ChangePasswordFromQuestion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.change_password_from_question, container, false);
+        progressBarMoney = ((ForgotActivity) getActivity()).getProgressBarMoney();
         tvControlQuestion = view.findViewById(R.id.tv_control_question);
         etFromQuestion = view.findViewById(R.id.et_password_from_question);
         Call<ResponseBody> call = RegistrationService.getApiService().getQestion(number);
+        progressBarMoney.show();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressBarMoney.dismiss();
                 if (response.isSuccessful()) {
                     try {
                         question = response.body().string();

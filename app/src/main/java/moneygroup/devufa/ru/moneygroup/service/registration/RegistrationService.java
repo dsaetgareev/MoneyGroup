@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationService {
 
-    private static final String BASE_URL = "http://100.94.31.240:8080/";
+    private static final String BASE_URL = "http://100.94.17.98:8080/";
     public static final String REGISTRATION_NUMBER_URL = "person/registerRequest/";
     public static final String VERIFY_CODE_URL = "person/verifyCode";
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoneyGroup</string>
+    <string name="app_name">Moneybook</string>
     <string name="into_in_profil">Вход в профиль</string>
     <string name="login_text">Login</string>
     <string name="password_text">Password</string>
@@ -45,7 +45,7 @@
     <string name="change_password">Сменить пароль</string>
     <string name="welcome_title">Здравствуйте</string>
     <string name="language">Языки</string>
-    <string name="btn_confirm">Подтвердить</string>
+    <string name="btn_confirm">Получить код</string>
     <string name="welcome_go">Дальше</string>
     <string name="add_new_unconfirmed_debts">Добавить</string>
     <string name="menu_edit">Редактировать</string>

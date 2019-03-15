@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.service.registration.api;
 
+import moneygroup.devufa.ru.moneygroup.model.dto.QuestionDto;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -35,7 +36,7 @@ public interface ApiService {
                                    @Query("answer") String answer);
 
     @POST("person/anonymous/getQuestion")
-    Call<ResponseBody> getQestion(@Query("telephoneNumber") String telephoneNumber);
+    Call<QuestionDto> getQestion(@Query("telephoneNumber") String telephoneNumber);
 
     @POST("person/anonymous/changePasswordByQuestion")
     Call<ResponseBody> changePasswordByQuestion( @Query("telephoneNumber") String telephoneNumber,

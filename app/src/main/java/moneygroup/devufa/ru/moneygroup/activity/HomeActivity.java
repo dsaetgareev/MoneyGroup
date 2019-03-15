@@ -4,16 +4,35 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
+import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
+import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
+import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
     private BasicCode basicCode;
+    private List<Person> personList;
+    private CodeService codeService;
+    private DebtConverter converter;
+    private HomePageAdapter pageAdapter;
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -26,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        codeService = new CodeService(HomeActivity.this);
+        converter = new DebtConverter(HomeActivity.this);
+        personList = new ArrayList<>();
         basicCode = (BasicCode) getIntent().getSerializableExtra("basicCode");
         tabLayout = findViewById(R.id.sliding_tabs);
         viewPagerInit();
@@ -34,7 +56,12 @@ public class HomeActivity extends AppCompatActivity {
 
     public void viewPagerInit() {
         viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), HomeActivity.this, basicCode));
+        adapterInit();
+    }
+
+    public void adapterInit() {
+        pageAdapter = new HomePageAdapter(getSupportFragmentManager(), HomeActivity.this, basicCode);
+        viewPager.setAdapter(pageAdapter);
     }
 
     public void tabLayoutInit() {
@@ -57,9 +84,11 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 1:
                         tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        getDebtDtoList(DebtType.LOAN);
                         break;
                     case 2:
                         tab.getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        getDebtDtoList(DebtType.DEBT);
                         break;
                     case 3:
                         tab.getIcon().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
@@ -82,5 +111,32 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public HomePageAdapter getPageAdapter() {
+        return pageAdapter;
+    }
+
+    public List<DebtDTO> getDebtDtoList(DebtType type) {
+        List<DebtDTO> debtDTOList = new ArrayList<>();
+        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), type.toString(), Status.WAITING_FOR_REGISTRATION);
+        call.enqueue(new Callback<List<DebtDTO>>() {
+            @Override
+            public void onResponse(Call<List<DebtDTO>> call, Response<List<DebtDTO>> response) {
+                if (response.isSuccessful()) {
+                    personList = converter.convertToPersonList(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DebtDTO>> call, Throwable t) {
+
+            }
+        });
+        return debtDTOList;
     }
 }

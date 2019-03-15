@@ -2,10 +2,12 @@ package moneygroup.devufa.ru.moneygroup.adapters.home;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import moneygroup.devufa.ru.moneygroup.fragment.home.iowe.IOweFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
@@ -13,7 +15,7 @@ import moneygroup.devufa.ru.moneygroup.fragment.home.settings.SettingsFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.UnconfirmedFragment;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 
-public class HomePageAdapter extends FragmentPagerAdapter {
+public class HomePageAdapter extends FragmentStatePagerAdapter {
 
     private final int PAGE_COUNT = 4;
 
@@ -49,6 +51,17 @@ public class HomePageAdapter extends FragmentPagerAdapter {
 
             default: return new Fragment();
         }
+    }
+
+
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        if (object instanceof OwesmeFragment) {
+            ((OwesmeFragment) object).adapterInit();
+            notifyDataSetChanged();
+        }
+        return super.getItemPosition(object);
     }
 
     @Nullable

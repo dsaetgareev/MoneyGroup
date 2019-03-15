@@ -12,12 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.NewPassword;
+import moneygroup.devufa.ru.moneygroup.model.dto.QuestionDto;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
@@ -31,6 +33,8 @@ public class ChangePasswordFromQuestion extends Fragment {
 
     private String number;
     private String question;
+    private String answer;
+    private QuestionDto questionDto;
 
     private TextView tvControlQuestion;
     private EditText etFromQuestion;
@@ -51,24 +55,22 @@ public class ChangePasswordFromQuestion extends Fragment {
         progressBarMoney = ((ForgotActivity) getActivity()).getProgressBarMoney();
         tvControlQuestion = view.findViewById(R.id.tv_control_question);
         etFromQuestion = view.findViewById(R.id.et_password_from_question);
-        Call<ResponseBody> call = RegistrationService.getApiService().getQestion(number);
+        Call<QuestionDto> call = RegistrationService.getApiService().getQestion(number);
         progressBarMoney.show();
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<QuestionDto>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<QuestionDto> call, Response<QuestionDto> response) {
                 progressBarMoney.dismiss();
                 if (response.isSuccessful()) {
-                    try {
-                        question = response.body().string();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    questionDto = response.body();
+                    question = questionDto.getQuestion();
+                    answer = questionDto.getAnswer();
                     tvControlQuestion.setText(question);
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<QuestionDto> call, Throwable t) {
 
             }
         });
@@ -77,13 +79,18 @@ public class ChangePasswordFromQuestion extends Fragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getActivity();
-                Class newPassword = NewPassword.class;
-                Intent intent = new Intent(context, newPassword);
-                intent.putExtra("number", number);
-                intent.putExtra("answer", etFromQuestion.getText().toString());
-                intent.putExtra("choice", "question");
-                startActivity(intent);
+                String textFromEt = etFromQuestion.getText().toString();
+                if (answer != null && !"".equals(textFromEt) && answer.equals(textFromEt)) {
+                    Context context = getActivity();
+                    Class newPassword = NewPassword.class;
+                    Intent intent = new Intent(context, newPassword);
+                    intent.putExtra("number", number);
+                    intent.putExtra("answer", etFromQuestion.getText().toString());
+                    intent.putExtra("choice", "question");
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Ответ на вопрос не верный", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

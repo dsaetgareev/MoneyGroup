@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -54,7 +55,7 @@ public class ChangePasswordFromEmail extends Fragment{
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etPassword.getText().toString().equals(resp)) {
+                if (resp != null && etPassword.getText().toString().equals(resp)) {
                     Context context = getActivity();
                     Class newPassword = NewPassword.class;
                     Intent intent = new Intent(context, newPassword);
@@ -62,6 +63,8 @@ public class ChangePasswordFromEmail extends Fragment{
                     intent.putExtra("choice", "email");
                     intent.putExtra("number", number);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Введеный код не верный", Toast.LENGTH_SHORT).show();
                 }
 
             }

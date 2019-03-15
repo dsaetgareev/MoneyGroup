@@ -11,12 +11,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.iowe.IOweAdapter;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
+import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
+import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IOweFragment extends Fragment {
 
@@ -25,7 +36,7 @@ public class IOweFragment extends Fragment {
     private int page;
     private RecyclerView recyclerView;
     private IOweAdapter iOweAdapter;
-    private List<Person> personList;
+    private List<Person> personList = new ArrayList<>();
 
     public static IOweFragment newInstance(int page) {
         Bundle atgs = new Bundle();
@@ -47,7 +58,6 @@ public class IOweFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_iowe_debts, container, false);
-
         recyclerView = view.findViewById(R.id.rv_for_iowe_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterInit();
@@ -56,7 +66,7 @@ public class IOweFragment extends Fragment {
     }
 
     private void adapterInit() {
-        personList = PersonService.get(getActivity()).getPersonList();
+        personList = ((HomeActivity) getActivity()).getPersonList();
         iOweAdapter = new IOweAdapter();
         iOweAdapter.setActivity((AppCompatActivity) getActivity());
         iOweAdapter.setPersonList(personList);

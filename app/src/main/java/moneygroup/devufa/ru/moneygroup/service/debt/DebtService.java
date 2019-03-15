@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DebtService {
 
-    private static final String BASE_URL = "http://100.94.17.98:8080/";
+    private static final String BASE_URL = "http://192.168.1.213:8080/";
 
     private static Retrofit getRetrofitInstance() {
         return new Retrofit.Builder()

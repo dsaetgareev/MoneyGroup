@@ -57,11 +57,7 @@ public class HomePageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getItemPosition(@NonNull Object object) {
-        if (object instanceof OwesmeFragment) {
-            ((OwesmeFragment) object).adapterInit();
-            notifyDataSetChanged();
-        }
-        return super.getItemPosition(object);
+        return POSITION_NONE;
     }
 
     @Nullable

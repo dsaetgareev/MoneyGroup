@@ -1,6 +1,7 @@
 package moneygroup.devufa.ru.moneygroup.fragment.home.dialogs;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,14 +25,16 @@ import retrofit2.Response;
 public class QuestionDialog extends DialogFragment {
 
     private ProgressBarMoney progressBarMoney;
+    Context context;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         progressBarMoney = new ProgressBarMoney(getActivity());
+        context = getActivity();
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final CodeService service = CodeService.get(getContext());
+        final CodeService service = CodeService.get(context);
 
         final View view = inflater.inflate(R.layout.fg_dialog_question, null);
 
@@ -49,7 +52,7 @@ public class QuestionDialog extends DialogFragment {
                             public void onResponse(Call<ResponseBody> call,Response<ResponseBody> response) {
                                 progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "Вопрос и ответ сохранены", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Вопрос и ответ сохранены", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

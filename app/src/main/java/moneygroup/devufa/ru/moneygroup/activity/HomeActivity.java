@@ -84,11 +84,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 1:
                         tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
-                        getDebtDtoList(DebtType.LOAN);
                         break;
                     case 2:
                         tab.getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                        getDebtDtoList(DebtType.DEBT);
                         break;
                     case 3:
                         tab.getIcon().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
@@ -119,24 +117,5 @@ public class HomeActivity extends AppCompatActivity {
 
     public HomePageAdapter getPageAdapter() {
         return pageAdapter;
-    }
-
-    public List<DebtDTO> getDebtDtoList(DebtType type) {
-        List<DebtDTO> debtDTOList = new ArrayList<>();
-        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), type.toString(), Status.WAITING_FOR_REGISTRATION);
-        call.enqueue(new Callback<List<DebtDTO>>() {
-            @Override
-            public void onResponse(Call<List<DebtDTO>> call, Response<List<DebtDTO>> response) {
-                if (response.isSuccessful()) {
-                    personList = converter.convertToPersonList(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<DebtDTO>> call, Throwable t) {
-
-            }
-        });
-        return debtDTOList;
     }
 }

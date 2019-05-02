@@ -37,7 +37,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
                 @Override
                 public void onClick(View v) {
                     Context context = getActivity();
-                    Intent intent = OwesmePersonActivity.newIntent(context, person.getId());
+                    Intent intent = OwesmePersonActivity.newIntent(context, person);
                     activity.startActivity(intent);
                 }
             });

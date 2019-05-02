@@ -23,6 +23,7 @@ import java.io.IOException;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
+import moneygroup.devufa.ru.moneygroup.model.dto.PersonDTO;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
@@ -82,7 +83,10 @@ public class RegistrationPassword extends Fragment {
             @Override
             public void onClick(View v) {
                 final String password = newPassword.getText().toString();
-                Call<ResponseBody> call = RegistrationService.getApiService().savePassword(number,code, password);
+                PersonDTO personDTO = new PersonDTO();
+                personDTO.setNumber(number);
+                personDTO.setPassword(password);
+                Call<ResponseBody> call = RegistrationService.getApiService().registerPassword(personDTO, code);
                 progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

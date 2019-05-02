@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.constants.ServiceConstants;
 import moneygroup.devufa.ru.moneygroup.service.registration.api.ApiService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,17 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationService {
 
-    private static final String BASE_URL = "http://192.168.1.213:8080/";
-    public static final String REGISTRATION_NUMBER_URL = "person/registerRequest/";
-    public static final String VERIFY_CODE_URL = "person/verifyCode";
-
+    private static final String BASE_URL = ServiceConstants.BASE_URL;
 
     private static Retrofit getRetrofitInstance() {
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

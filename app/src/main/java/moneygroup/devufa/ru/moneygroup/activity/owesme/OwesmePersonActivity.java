@@ -27,10 +27,10 @@ public class OwesmePersonActivity extends AppCompatActivity {
     private TextView btRemove;
 
 
-    public static Intent newIntent(Context context, UUID personId) {
+    public static Intent newIntent(Context context, Person person) {
         Intent intent = new Intent(context, OwesmePersonActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(EXTRA_PERSON_ID, personId);
+        intent.putExtra(EXTRA_PERSON_ID, person);
         return intent;
     }
 
@@ -39,8 +39,7 @@ public class OwesmePersonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owesme);
 
-        final UUID personId = (UUID) getIntent().getSerializableExtra(EXTRA_PERSON_ID);
-        person = PersonService.get(OwesmePersonActivity.this).getPersonById(personId);
+        person = (Person) getIntent().getSerializableExtra(EXTRA_PERSON_ID);
 
         tvName = findViewById(R.id.tv_omp_name);
         tvPhone = findViewById(R.id.tv_omp_phone);

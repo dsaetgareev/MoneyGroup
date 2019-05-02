@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="moneygroup.devufa.ru.moneygroup">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,11 +16,7 @@
         android:roundIcon="@mipmap/logo8_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".service.firebase.NotificationsService"
-            android:enabled="true"
-            android:exported="true"></service>
-
+        <activity android:name=".activity.NotificationsActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,11 +37,19 @@
         <activity android:name=".activity.iowe.IOweActivity" />
         <activity android:name=".activity.ChainActivity" />
         <activity android:name=".activity.archive.ArchiveActivity" />
-        <service android:name=".service.firebase.NotificationsService">
+
+        <service
+            android:name=".service.firebase.NotificationsService"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/logo11" />
     </application>
 
 </manifest>

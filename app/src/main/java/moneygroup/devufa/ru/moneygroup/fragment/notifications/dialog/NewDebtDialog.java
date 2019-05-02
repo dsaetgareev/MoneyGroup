@@ -1,8 +1,9 @@
-package moneygroup.devufa.ru.moneygroup.fragment.home.dialogs;
+package moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,11 +12,15 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
@@ -23,10 +28,36 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MailDialog extends DialogFragment {
+public class NewDebtDialog extends DialogFragment {
 
     private ProgressBarMoney progressBarMoney;
-    Context context;
+    private Context context;
+
+    private String debtId;
+    private String debtTelephoneNumber;
+    private String debtCurrentCount;
+
+    private TextView textView;
+
+    public static NewDebtDialog newInstance(Map<String, String> args) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id", args.get("id"));
+        bundle.putString("telephoneNumber", args.get("telephoneNumber"));
+        bundle.putString("currentCount", args.get("currentCount"));
+        NewDebtDialog debtDialog = new NewDebtDialog();
+        debtDialog.setArguments(bundle);
+        return debtDialog;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            debtId = getArguments().getString("id");
+            debtTelephoneNumber = getArguments().getString("telephoneNumber");
+            debtCurrentCount = getArguments().getString("currentCount");
+        }
+    }
 
     @NonNull
     @Override
@@ -36,7 +67,9 @@ public class MailDialog extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.fg_dialog_mail, null);
+        final View view = inflater.inflate(R.layout.fg_dialog_debt, null);
+        textView = view.findViewById(R.id.tv_debt_dialog);
+        textView.setText(createText());
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 // Add action buttons
@@ -44,7 +77,7 @@ public class MailDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         EditText email = view.findViewById(R.id.et_dg_email);
-                        Call<ResponseBody> call = RegistrationService.getApiService().setEmail(service.getCode(), email.getText().toString());
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
@@ -60,13 +93,30 @@ public class MailDialog extends DialogFragment {
 
                             }
                         });
+                        toHomeActivity();
                     }
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MailDialog.this.getDialog().cancel();
+                        NewDebtDialog.this.getDialog().cancel();
+                        toHomeActivity();
                     }
                 });
         return builder.create();
+    }
+
+    public void showDialog() {
+        super.show(getFragmentManager(), "newDebtDialog");
+    }
+
+    private String createText() {
+        return String.format("Подтвердите долг в размере %s кредитору %s", debtCurrentCount, debtTelephoneNumber);
+    }
+
+    private void toHomeActivity() {
+        Class home = HomeActivity.class;
+        Intent intent = new Intent(context, home);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
     }
 }

@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
 
@@ -18,12 +23,15 @@ import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -156,11 +164,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToHomeActivity() {
+        sendToken();
         Context context = MainActivity.this;
         Class home = HomeActivity.class;
         Intent intent = new Intent(context, home);
         intent.putExtra("basicCode", basicCode);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    private void sendToken() {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( MainActivity.this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+                Log.e("newToken",newToken);
+                Call<ResponseBody> call = NotificationsApiService.getApiService().setToken(codeService.getCode(), newToken);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Log.d(TAG, "Send token");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
     }
 }

@@ -32,6 +32,7 @@ import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +45,7 @@ public class AddPersonFragment extends Fragment {
     private View view;
 
     private Person person;
+    private ProgressBarMoney progressBarMoney;
 
     private RadioButton isOwesMe;
     private RadioButton isShouldI;
@@ -76,6 +78,7 @@ public class AddPersonFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_person, container, false);
+        progressBarMoney = new ProgressBarMoney(getActivity());
         this.view = view;
         initView(view);
         return view;
@@ -271,11 +274,7 @@ public class AddPersonFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PersonService.get(getActivity()).updatePerson(person);
-                Class home = HomeActivity.class;
-                Intent intent = new Intent(getActivity(), home);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                getActivity().startActivity(intent);
+                backAndUpdate();
             }
         });
     }
@@ -287,12 +286,15 @@ public class AddPersonFragment extends Fragment {
             public void onClick(View v) {
                 String code = CodeService.get(getActivity()).getCode();
                 DebtConverter debtConverter = new DebtConverter(getActivity());
-                DebtDTO debtDTO1 = debtConverter.convertToDebtDTO(person);
-                Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO1);
+                DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
+                Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO);
+                progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
+                            backAndUpdate();
                             Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -304,5 +306,13 @@ public class AddPersonFragment extends Fragment {
                 });
             }
         });
+    }
+
+    private void backAndUpdate() {
+        PersonService.get(getActivity()).updatePerson(person);
+        Class home = HomeActivity.class;
+        Intent intent = new Intent(getActivity(), home);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        getActivity().startActivity(intent);
     }
 }

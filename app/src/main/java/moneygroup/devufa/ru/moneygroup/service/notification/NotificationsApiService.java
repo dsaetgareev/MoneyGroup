@@ -1,11 +1,11 @@
-package moneygroup.devufa.ru.moneygroup.service.debt;
+package moneygroup.devufa.ru.moneygroup.service.notification;
 
 import moneygroup.devufa.ru.moneygroup.service.constants.ServiceConstants;
-import moneygroup.devufa.ru.moneygroup.service.debt.api.ApiDebt;
+import moneygroup.devufa.ru.moneygroup.service.notification.api.NotificationApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DebtService {
+public class NotificationsApiService {
 
     private static final String BASE_URL = ServiceConstants.BASE_URL;
 
@@ -16,7 +16,7 @@ public class DebtService {
                 .build();
     }
 
-    public static ApiDebt getApiService() {
-        return getRetrofitInstance().create(ApiDebt.class);
+    public static NotificationApi getApiService() {
+        return getRetrofitInstance().create(NotificationApi.class);
     }
 }

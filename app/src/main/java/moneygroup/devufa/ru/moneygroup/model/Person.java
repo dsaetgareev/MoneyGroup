@@ -1,8 +1,9 @@
 package moneygroup.devufa.ru.moneygroup.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Person {
+public class Person implements Serializable {
 
     private UUID id;
 

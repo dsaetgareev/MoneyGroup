@@ -19,6 +19,16 @@ import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
 import moneygroup.devufa.ru.moneygroup.adapters.owesme.OwesmeAdapter;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
+import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OwesmeFragment extends Fragment {
 
@@ -29,6 +39,9 @@ public class OwesmeFragment extends Fragment {
     private RecyclerView recyclerView;
     private OwesmeAdapter owesmeAdapter;
     private List<Person> personList = new ArrayList<>();
+    private DebtConverter converter;
+    private CodeService codeService;
+    private ProgressBarMoney progressBarMoney;
 
     public static OwesmeFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -50,11 +63,13 @@ public class OwesmeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_owesme_debts, container, false);
+        progressBarMoney = new ProgressBarMoney(getActivity());
         recyclerView = view.findViewById(R.id.rv_for_owesme_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         pageAdapter = ((HomeActivity) getActivity()).getPageAdapter();
+        converter = new DebtConverter(getActivity());
+        codeService = new CodeService(getActivity());
         adapterInit();
-        recyclerView.setAdapter(owesmeAdapter);
         return view;
     }
 
@@ -64,9 +79,31 @@ public class OwesmeFragment extends Fragment {
     }
 
     public void adapterInit() {
-        personList = ((HomeActivity) getActivity()).getPersonList();
-        owesmeAdapter = new OwesmeAdapter();
-        owesmeAdapter.setActivity((AppCompatActivity)getActivity());
-        owesmeAdapter.setPersonList(personList);
+        getDebtDtoList(DebtType.LOAN);
+    }
+
+    public void getDebtDtoList(DebtType type) {
+        List<Status> statuses = new ArrayList<>();
+        statuses.add(Status.NEW);
+        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), type.toString(), statuses);
+        progressBarMoney.show();
+        call.enqueue(new Callback<List<DebtDTO>>() {
+            @Override
+            public void onResponse(Call<List<DebtDTO>> call, Response<List<DebtDTO>> response) {
+                progressBarMoney.dismiss();
+                if (response.isSuccessful()) {
+                    personList = converter.convertToPersonList(response.body());
+                    owesmeAdapter = new OwesmeAdapter();
+                    owesmeAdapter.setActivity((AppCompatActivity)getActivity());
+                    owesmeAdapter.setPersonList(personList);
+                    recyclerView.setAdapter(owesmeAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DebtDTO>> call, Throwable t) {
+
+            }
+        });
     }
 }

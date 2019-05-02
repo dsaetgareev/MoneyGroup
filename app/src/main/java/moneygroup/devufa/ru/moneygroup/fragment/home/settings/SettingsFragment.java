@@ -174,7 +174,7 @@ public class SettingsFragment extends Fragment {
                     choiceButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            MailDialog dialog = new MailDialog();
+                                MailDialog dialog = new MailDialog();
                             dialog.show(getFragmentManager(), "mailDialog");
                         }
                     });

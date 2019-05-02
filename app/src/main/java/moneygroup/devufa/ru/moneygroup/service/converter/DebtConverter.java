@@ -32,7 +32,13 @@ public class DebtConverter {
             init();
         }
         DebtDTO debtDTO = new DebtDTO();
-
+        if (person.isOwesMe()) {
+            debtDTO.setInitiator(number);
+            debtDTO.setReceiver(person.getNumber());
+        } else {
+            debtDTO.setInitiator(person.getNumber());
+            debtDTO.setReceiver(number);
+        }
         debtDTO.setInitiator(number);
         debtDTO.setReceiver(person.getNumber());
         debtDTO.setCount(Double.valueOf(person.getSumm()));
@@ -45,9 +51,17 @@ public class DebtConverter {
     }
 
     public Person convertToPerson(DebtDTO debtDTO) {
+        if (number == null) {
+            init();
+        }
         Person person = new Person();
-        person.setNumber(debtDTO.getReceiver());
-        person.setName(debtDTO.getReceiver());
+        if (debtDTO.getInitiator().equals(number)) {
+            person.setNumber(debtDTO.getReceiver());
+            person.setName(debtDTO.getReceiver());
+        } else {
+            person.setNumber(debtDTO.getInitiator());
+            person.setName(debtDTO.getInitiator());
+        }
         person.setSumm(String.valueOf(debtDTO.getCount()));
         person.setCurrency(debtDTO.getCurrency());
         if (debtDTO.getDebtType().equals(DebtType.DEBT)) {

@@ -15,9 +15,12 @@ import retrofit2.http.Query;
 
 public interface ApiDebt {
 
-    @POST("debt/dto")
+    @POST("debt/")
     Call<ResponseBody> sendDebt(@Header("Authorization") String authorization, @Body DebtDTO debtDTO1);
 
     @GET("debt/list/{type}")
-    Call<List<DebtDTO>> getDebtList(@Header("Authorization") String authorization, @Path("type") String type, @Query("status") Status status);
+    Call<List<DebtDTO>> getDebtList(@Header("Authorization") String authorization, @Path("type") String type, @Query("status") List<Status> statuses);
+
+    @POST("debt/accept/{id}")
+    Call<ResponseBody> acceptDebt(@Header("Authorization") String authorization, @Path("id") String id, @Query("isAccepted") boolean isAccepted);
 }

@@ -4,7 +4,7 @@ public enum Status {
     //Новый
     NEW,
     //Ожидат регистрации
-    WAITING_FOR_REGISTRATION,
+    NOT_REGISTERED,
     //Ожидает подтверждения
     WAITING_FOR_ACCEPTING,
     //Ожидает оплаты

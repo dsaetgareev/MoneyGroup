@@ -3,6 +3,7 @@ package moneygroup.devufa.ru.moneygroup.model.dto;
 import java.io.Serializable;
 
 import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
 public class DebtDTO implements Serializable {
 
@@ -20,10 +21,18 @@ public class DebtDTO implements Serializable {
 
     private DebtType debtType;
 
+    private Status status;
+
+    private double minCountInCycle;
+
+    private String prevInCycle;
+
+    private String nextInCycle;
+
     public DebtDTO() {
     }
 
-    public DebtDTO(String initiator, String receiver, double count, String currency, String comment, String note, DebtType debtType) {
+    public DebtDTO(String initiator, String receiver, double count, String currency, String comment, String note, DebtType debtType, Status status, double minCountInCycle, String prevInCycle, String nextInCycle) {
         this.initiator = initiator;
         this.receiver = receiver;
         this.count = count;
@@ -31,6 +40,10 @@ public class DebtDTO implements Serializable {
         this.comment = comment;
         this.note = note;
         this.debtType = debtType;
+        this.status = status;
+        this.minCountInCycle = minCountInCycle;
+        this.prevInCycle = prevInCycle;
+        this.nextInCycle = nextInCycle;
     }
 
     public String getInitiator() {
@@ -87,5 +100,37 @@ public class DebtDTO implements Serializable {
 
     public void setDebtType(DebtType debtType) {
         this.debtType = debtType;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public double getMinCountInCycle() {
+        return minCountInCycle;
+    }
+
+    public void setMinCountInCycle(double minCountInCycle) {
+        this.minCountInCycle = minCountInCycle;
+    }
+
+    public String getPrevInCycle() {
+        return prevInCycle;
+    }
+
+    public void setPrevInCycle(String prevInCycle) {
+        this.prevInCycle = prevInCycle;
+    }
+
+    public String getNextInCycle() {
+        return nextInCycle;
+    }
+
+    public void setNextInCycle(String nextInCycle) {
+        this.nextInCycle = nextInCycle;
     }
 }

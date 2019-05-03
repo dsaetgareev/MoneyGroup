@@ -5,14 +5,12 @@ public enum Status {
     NEW,
     //Ожидат регистрации
     NOT_REGISTERED,
-    //Ожидает подтверждения
-    WAITING_FOR_ACCEPTING,
-    //Ожидает оплаты
-    WAITING_FOR_PAYMENT,
     //Отказано
     DECLINED,
     //Подтвержден
     ACCEPTED,
+    IN_CYCLE_NEW,
+    IN_CYCLE_ACCEPTED,
     //Закрыт
-    CLOSED
+    CLOSED;
 }

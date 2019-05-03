@@ -1,7 +1,10 @@
 package moneygroup.devufa.ru.moneygroup.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
+
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
 public class Person implements Serializable {
 
@@ -24,6 +27,14 @@ public class Person implements Serializable {
     private String note;
 
     private String comment;
+
+    private Status status;
+
+    private double minCountInCycle;
+
+    private String prevInCycle;
+
+    private String nextInCycle;
 
     public Person() {
         id = UUID.randomUUID();
@@ -120,40 +131,61 @@ public class Person implements Serializable {
         this.comment = comment;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public double getMinCountInCycle() {
+        return minCountInCycle;
+    }
+
+    public void setMinCountInCycle(double minCountInCycle) {
+        this.minCountInCycle = minCountInCycle;
+    }
+
+    public String getPrevInCycle() {
+        return prevInCycle;
+    }
+
+    public void setPrevInCycle(String prevInCycle) {
+        this.prevInCycle = prevInCycle;
+    }
+
+    public String getNextInCycle() {
+        return nextInCycle;
+    }
+
+    public void setNextInCycle(String nextInCycle) {
+        this.nextInCycle = nextInCycle;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Person person = (Person) o;
-
-        if (isOwesMe != person.isOwesMe) return false;
-        if (id != null ? !id.equals(person.id) : person.id != null) return false;
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
-        if (countryCode != null ? !countryCode.equals(person.countryCode) : person.countryCode != null)
-            return false;
-        if (number != null ? !number.equals(person.number) : person.number != null) return false;
-        if (password != null ? !password.equals(person.password) : person.password != null)
-            return false;
-        if (summ != null ? !summ.equals(person.summ) : person.summ != null) return false;
-        if (currency != null ? !currency.equals(person.currency) : person.currency != null)
-            return false;
-        if (note != null ? !note.equals(person.note) : person.note != null) return false;
-        return comment != null ? comment.equals(person.comment) : person.comment == null;
+        return isOwesMe() == person.isOwesMe() &&
+                Double.compare(person.getMinCountInCycle(), getMinCountInCycle()) == 0 &&
+                Objects.equals(getId(), person.getId()) &&
+                Objects.equals(getName(), person.getName()) &&
+                Objects.equals(getCountryCode(), person.getCountryCode()) &&
+                Objects.equals(getNumber(), person.getNumber()) &&
+                Objects.equals(getPassword(), person.getPassword()) &&
+                Objects.equals(getSumm(), person.getSumm()) &&
+                Objects.equals(getCurrency(), person.getCurrency()) &&
+                Objects.equals(getNote(), person.getNote()) &&
+                Objects.equals(getComment(), person.getComment()) &&
+                getStatus() == person.getStatus() &&
+                Objects.equals(getPrevInCycle(), person.getPrevInCycle()) &&
+                Objects.equals(getNextInCycle(), person.getNextInCycle());
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (countryCode != null ? countryCode.hashCode() : 0);
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (summ != null ? summ.hashCode() : 0);
-        result = 31 * result + (isOwesMe ? 1 : 0);
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        result = 31 * result + (note != null ? note.hashCode() : 0);
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        return result;
+        return Objects.hash(getId(), getName(), getCountryCode(), getNumber(), getPassword(), getSumm(), isOwesMe(), getCurrency(), getNote(), getComment(), getStatus(), getMinCountInCycle(), getPrevInCycle(), getNextInCycle());
     }
 }

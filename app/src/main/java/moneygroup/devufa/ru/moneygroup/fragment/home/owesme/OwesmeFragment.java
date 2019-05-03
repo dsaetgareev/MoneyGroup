@@ -85,6 +85,10 @@ public class OwesmeFragment extends Fragment {
     public void getDebtDtoList(DebtType type) {
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.NEW);
+        statuses.add(Status.NOT_REGISTERED);
+        statuses.add(Status.ACCEPTED);
+        statuses.add(Status.IN_CYCLE_NEW);
+        statuses.add(Status.IN_CYCLE_ACCEPTED);
         Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), type.toString(), statuses);
         progressBarMoney.show();
         call.enqueue(new Callback<List<DebtDTO>>() {

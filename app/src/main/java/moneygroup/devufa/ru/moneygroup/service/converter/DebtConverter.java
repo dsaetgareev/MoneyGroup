@@ -69,6 +69,10 @@ public class DebtConverter {
         }
         person.setComment(debtDTO.getComment());
         person.setNote(debtDTO.getNote());
+        person.setStatus(debtDTO.getStatus());
+        person.setMinCountInCycle(debtDTO.getMinCountInCycle());
+        person.setPrevInCycle(debtDTO.getPrevInCycle());
+        person.setNextInCycle(debtDTO.getNextInCycle());
         return person;
     }
 

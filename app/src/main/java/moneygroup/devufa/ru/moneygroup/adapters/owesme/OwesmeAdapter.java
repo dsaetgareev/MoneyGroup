@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.owesme.OwesmePersonActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
 public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeViewHolder> {
 
@@ -27,11 +29,13 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
         private TextView name;
         private TextView summ;
         private Person person;
+        private ImageView chianImg;
 
         public OwesmeViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.tv_om_name_title);
             summ = itemView.findViewById(R.id.tv_om_summ);
+            chianImg = itemView.findViewById(R.id.iv_om_chain);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,6 +52,11 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
             summ.setText(person.getSumm());
             if (person.isOwesMe()) {
                 summ.setTextColor(R.style.OweMe);
+            }
+            if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
+                chianImg.setVisibility(View.VISIBLE);
+            } else {
+                chianImg.setVisibility(View.INVISIBLE);
             }
             this.person = person;
         }

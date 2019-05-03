@@ -12,6 +12,17 @@
         android:text="name"
         />
 
+    <ImageView
+        android:id="@+id/iv_om_chain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_toEndOf="@+id/tv_om_name_title"
+        android:src="@mipmap/logo11"
+        android:layout_weight="1"
+        android:background="@drawable/back"
+        />
+
     <TextView
         android:id="@+id/tv_om_summ"
         android:layout_width="wrap_content"

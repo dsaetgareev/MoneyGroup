@@ -23,4 +23,7 @@ public interface ApiDebt {
 
     @POST("debt/accept/{id}")
     Call<ResponseBody> acceptDebt(@Header("Authorization") String authorization, @Path("id") String id, @Query("isAccepted") boolean isAccepted);
+
+    @GET("debt/get/{id}")
+    Call<DebtDTO> getDebtById(@Header("Authorization") String authorization, @Path("id") String id);
 }

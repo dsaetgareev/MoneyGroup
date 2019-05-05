@@ -7,6 +7,8 @@ import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
 public class DebtDTO implements Serializable {
 
+    private String id;
+
     private String initiator;
 
     private String receiver;
@@ -44,6 +46,14 @@ public class DebtDTO implements Serializable {
         this.minCountInCycle = minCountInCycle;
         this.prevInCycle = prevInCycle;
         this.nextInCycle = nextInCycle;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getInitiator() {

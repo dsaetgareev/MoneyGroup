@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
@@ -55,6 +56,7 @@ public class DebtConverter {
             init();
         }
         Person person = new Person();
+        person.setId(UUID.fromString(debtDTO.getId()));
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());
             person.setName(debtDTO.getReceiver());

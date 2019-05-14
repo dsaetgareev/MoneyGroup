@@ -1,5 +1,7 @@
 package moneygroup.devufa.ru.moneygroup.service.registration.api;
 
+import org.json.JSONObject;
+
 import moneygroup.devufa.ru.moneygroup.model.dto.PersonDTO;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +32,10 @@ public interface ApiService {
     @POST("person/anonymous/login")
     Call<ResponseBody> login(@Query("telephoneNumber") String telephoneNumber,
                              @Query("password") String password);
+
+    @POST("person/anonymous/loginJson")
+    Call<ResponseBody> loginJson(@Query("telephoneNumber") String telephoneNumber,
+                               @Query("password") String password);
 
     @POST("person/setEmail")
     Call<ResponseBody> setEmail(@Header("Authorization") String authorization,

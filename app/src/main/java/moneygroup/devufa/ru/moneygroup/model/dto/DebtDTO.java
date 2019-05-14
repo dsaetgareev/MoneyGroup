@@ -25,27 +25,9 @@ public class DebtDTO implements Serializable {
 
     private Status status;
 
-    private double minCountInCycle;
-
-    private String prevInCycle;
-
-    private String nextInCycle;
+    private boolean relief;
 
     public DebtDTO() {
-    }
-
-    public DebtDTO(String initiator, String receiver, double count, String currency, String comment, String note, DebtType debtType, Status status, double minCountInCycle, String prevInCycle, String nextInCycle) {
-        this.initiator = initiator;
-        this.receiver = receiver;
-        this.count = count;
-        this.currency = currency;
-        this.comment = comment;
-        this.note = note;
-        this.debtType = debtType;
-        this.status = status;
-        this.minCountInCycle = minCountInCycle;
-        this.prevInCycle = prevInCycle;
-        this.nextInCycle = nextInCycle;
     }
 
     public String getId() {
@@ -120,27 +102,11 @@ public class DebtDTO implements Serializable {
         this.status = status;
     }
 
-    public double getMinCountInCycle() {
-        return minCountInCycle;
+    public boolean isRelief() {
+        return relief;
     }
 
-    public void setMinCountInCycle(double minCountInCycle) {
-        this.minCountInCycle = minCountInCycle;
-    }
-
-    public String getPrevInCycle() {
-        return prevInCycle;
-    }
-
-    public void setPrevInCycle(String prevInCycle) {
-        this.prevInCycle = prevInCycle;
-    }
-
-    public String getNextInCycle() {
-        return nextInCycle;
-    }
-
-    public void setNextInCycle(String nextInCycle) {
-        this.nextInCycle = nextInCycle;
+    public void setRelief(boolean relief) {
+        this.relief = relief;
     }
 }

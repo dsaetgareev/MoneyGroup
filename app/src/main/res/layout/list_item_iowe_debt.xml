@@ -10,6 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
+        android:layout_centerVertical="true"
+        />
+
+    <ImageView
+        android:id="@+id/iv_io_chain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_toEndOf="@+id/tv_io_name_title"
+        android:src="@mipmap/logo11"
+        android:layout_weight="1"
         />
 
     <TextView
@@ -18,7 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_toStartOf="@id/tv_io_icon"
         android:layout_marginRight="@dimen/google_1x"
-        android:text="2500" />
+        android:text="2500"
+        android:layout_centerVertical="true"
+        />
 
     <TextView
         android:id="@+id/tv_io_icon"
@@ -26,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text=">"
+        android:layout_centerVertical="true"
         />
 
     <TextView

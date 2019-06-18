@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
@@ -29,15 +30,26 @@ import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.MailDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.QuestionDialog;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.model.Settings;
+import moneygroup.devufa.ru.moneygroup.model.dto.SettingDto;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import moneygroup.devufa.ru.moneygroup.service.registration.api.ApiService;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SettingsFragment extends Fragment {
 
     public static final String ARG_BASIC_COE = "basicCode";
     private BasicCode basicCode;
+    private ProgressBarMoney progressBarMoney;
 
     private int page;
     private Settings settings;
+    private SettingDto settingDto;
+    private View view;
 
     private ImageView avatar;
     private EditText name;
@@ -54,6 +66,10 @@ public class SettingsFragment extends Fragment {
     private CheckBox chainCb;
     private CheckBox diffCurCb;
 
+    private Button saveButton;
+
+    private CodeService codeService;
+
     public static SettingsFragment newInstance(BasicCode basicCode) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_BASIC_COE, basicCode);
@@ -65,12 +81,9 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            basicCode = (BasicCode) getArguments().getSerializable(ARG_BASIC_COE);
-        }
         settings = new Settings(
                 "+79171234567",
-                "Руслан",
+                "Name",
                 "Бой",
                 true,
                 true,
@@ -82,20 +95,12 @@ public class SettingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fg_settings, container, false);
-        initAvatar(view);
-        initName(view);
-        initNumber(view);
-        initChangePass(view);
-        initChoiceButton(view);
-        initSpinner(view);
-        initArchiveSee(view);
-        initExit(view);
-        initAutoWriteOffCb(view);
-        initNewDebtCb(view);
-        initChainCb(view);
-        initDiffCurCb(view);
-
+        final View view = inflater.inflate(R.layout.fg_settings, container, false);
+        this.view = view;
+        progressBarMoney = new ProgressBarMoney(getActivity());
+        codeService = new CodeService(getActivity());
+        basicCode = codeService.getBasicCode();
+        init();
         return view;
     }
 
@@ -266,6 +271,86 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 settings.setDiffCur(isChecked);
+            }
+        });
+    }
+
+    private void initSaveButton(View view) {
+        saveButton = view.findViewById(R.id.bt_set_save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingDto settingDto = new SettingDto();
+                settingDto.setName(settings.getName());
+                settingDto.setAutoCancel(settings.isAutoWriteOff());
+                settingDto.setNewDebtNotification(settings.isNewDebt());
+                settingDto.setNewCycleNotification(settings.isChainNotif());
+                Call<ResponseBody> call = RegistrationService.getApiService().saveSetting(basicCode.getCode(), settingDto);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getActivity(), "OK", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && basicCode != null) {
+            init();
+        }
+    }
+
+    private void init() {
+        Call<SettingDto> call = RegistrationService.getApiService().getSetting(basicCode.getCode());
+        progressBarMoney.show();
+        call.enqueue(new Callback<SettingDto>() {
+            @Override
+            public void onResponse(Call<SettingDto> call, Response<SettingDto> response) {
+                progressBarMoney.dismiss();
+                if (response.isSuccessful()) {
+
+                    settingDto = response.body();
+                    settings.setName(settingDto.getName());
+                    settings.setNumber(basicCode.getNumber());
+                    settings.setAutoWriteOff(settingDto.isAutoCancel());
+                    settings.setNewDebt(settingDto.isNewDebtNotification());
+                    settings.setChainNotif(settingDto.isNewCycleNotification());
+
+                    initAvatar(view);
+                    initName(view);
+                    initNumber(view);
+                    initChangePass(view);
+                    initChoiceButton(view);
+                    initSpinner(view);
+                    initArchiveSee(view);
+                    initExit(view);
+                    initAutoWriteOffCb(view);
+                    initNewDebtCb(view);
+                    initChainCb(view);
+                    initDiffCurCb(view);
+                    initSaveButton(view);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SettingDto> call, Throwable throwable) {
+
             }
         });
     }

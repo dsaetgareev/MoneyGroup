@@ -36,6 +36,7 @@ public class NewDebtDialog extends DialogFragment {
     private String debtId;
     private String debtTelephoneNumber;
     private String debtCurrentCount;
+    private String type;
 
     private TextView textView;
 
@@ -44,6 +45,7 @@ public class NewDebtDialog extends DialogFragment {
         bundle.putString("id", args.get("id"));
         bundle.putString("telephoneNumber", args.get("telephoneNumber"));
         bundle.putString("currentCount", args.get("currentCount"));
+        bundle.putString("type", args.get("type"));
         NewDebtDialog debtDialog = new NewDebtDialog();
         debtDialog.setArguments(bundle);
         return debtDialog;
@@ -56,6 +58,7 @@ public class NewDebtDialog extends DialogFragment {
             debtId = getArguments().getString("id");
             debtTelephoneNumber = getArguments().getString("telephoneNumber");
             debtCurrentCount = getArguments().getString("currentCount");
+            type = getArguments().getString("type");
         }
     }
 
@@ -76,7 +79,6 @@ public class NewDebtDialog extends DialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        EditText email = view.findViewById(R.id.et_dg_email);
                         Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
@@ -110,7 +112,13 @@ public class NewDebtDialog extends DialogFragment {
     }
 
     private String createText() {
-        return String.format("Подтвердите долг в размере %s кредитору %s", debtCurrentCount, debtTelephoneNumber);
+        String text = "";
+        if ("NEW_DEBT".equals(type)) {
+            text = String.format(getString(R.string.new_debt_notif), debtCurrentCount, debtTelephoneNumber);
+        } else {
+            text = String.format(getString(R.string.new_loan_norif), debtCurrentCount, debtTelephoneNumber);
+        }
+        return text;
     }
 
     private void toHomeActivity() {

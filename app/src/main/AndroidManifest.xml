@@ -15,29 +15,46 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo8_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait"
+        >
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ForgotActivity" />
+        <activity android:name=".activity.ForgotActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.NewPassword"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.Registration" />
-        <activity android:name=".activity.Welcome" />
-        <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.unconfirmed.PersonPagerActivity" />
-        <activity android:name=".activity.unconfirmed.ContactsActivity" />
-        <activity android:name=".activity.owesme.OwesmePersonActivity" />
-        <activity android:name=".activity.iowe.IOweActivity" />
-        <activity android:name=".activity.ChainActivity" />
-        <activity android:name=".activity.cycle.CycleActivity" />
-        <activity android:name=".activity.NotificationsActivity" />
-        <activity android:name=".activity.archive.ArchiveActivity" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.Registration"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.Welcome"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.unconfirmed.PersonPagerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.unconfirmed.ContactsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.owesme.OwesmePersonActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.iowe.IOweActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.cycle.CycleActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NotificationsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.archive.ArchiveActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".service.firebase.NotificationsService"

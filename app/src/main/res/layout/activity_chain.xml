@@ -59,14 +59,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/google_1x"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
 
                 <TextView
                     android:id="@+id/tv_ch_om_bef_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
             </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/google_1x"
-                    android:text="@string/tel"
+                    android:text="@string/tv_tel"
                     />
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:id="@+id/tv_ch_om_bef_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RUR"
+                    android:text="EUR"
                     />
             </LinearLayout>
 
@@ -179,14 +179,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/google_1x"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
 
                 <TextView
                     android:id="@+id/tv_ch_io_bef_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
             </LinearLayout>
 
@@ -203,7 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/google_1x"
-                    android:text="@string/tel"
+                    android:text="@string/tv_tel"
                     />
 
                 <TextView
@@ -282,7 +282,7 @@
         android:layout_margin="@dimen/google_1x"
         android:paddingStart="@dimen/google_1x"
         android:paddingEnd="@dimen/google_1x"
-        android:text="RUR"
+        android:text="EUR"
         android:layout_below="@+id/tv_ch_desc"
         android:layout_alignParentRight="true"
         android:background="@drawable/back"
@@ -349,14 +349,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/google_1x"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
 
                 <TextView
                     android:id="@+id/tv_ch_om_af_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
             </LinearLayout>
 
@@ -373,7 +373,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/google_1x"
-                    android:text="@string/tel"
+                    android:text="@string/tv_tel"
                     />
 
                 <TextView
@@ -457,14 +457,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/google_1x"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
 
                 <TextView
                     android:id="@+id/tv_ch_io_af_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_name"
+                    android:text="@string/name"
                     />
             </LinearLayout>
 
@@ -481,7 +481,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/google_1x"
-                    android:text="@string/tel"
+                    android:text="@string/tv_tel"
                     />
 
                 <TextView

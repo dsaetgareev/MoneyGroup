@@ -62,7 +62,7 @@
                     android:id="@+id/tv_ap_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Имя"
+                    android:text="@string/name"
                     android:layout_margin="@dimen/google_1x"
                     />
 
@@ -99,7 +99,7 @@
                 android:id="@+id/tv_ap_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Тел."
+                android:text="@string/tv_tel"
                 android:layout_margin="@dimen/google_1x"
                 />
 

@@ -1,13 +1,17 @@
 package moneygroup.devufa.ru.moneygroup.model.dto;
 
-import java.io.Serializable;
-
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
-import moneygroup.devufa.ru.moneygroup.model.enums.Status;
-
-public class DebtDTO implements Serializable {
-
+public class MessageDto {
     private String id;
+
+    private String debtId;
+
+    private String type;
+
+    private String title;
+
+    private String body;
+
+    private String locale;
 
     private String initiator;
 
@@ -23,14 +27,11 @@ public class DebtDTO implements Serializable {
 
     private String note;
 
-    private DebtType debtType;
+    private String debtType;
 
-    private Status status;
+    private String status;
 
-    private boolean relief;
-
-    public DebtDTO() {
-    }
+    private boolean read;
 
     public String getId() {
         return id;
@@ -38,6 +39,46 @@ public class DebtDTO implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDebtId() {
+        return debtId;
+    }
+
+    public void setDebtId(String debtId) {
+        this.debtId = debtId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 
     public String getInitiator() {
@@ -96,27 +137,27 @@ public class DebtDTO implements Serializable {
         this.note = note;
     }
 
-    public DebtType getDebtType() {
+    public String getDebtType() {
         return debtType;
     }
 
-    public void setDebtType(DebtType debtType) {
+    public void setDebtType(String debtType) {
         this.debtType = debtType;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public boolean isRelief() {
-        return relief;
+    public boolean isRead() {
+        return read;
     }
 
-    public void setRelief(boolean relief) {
-        this.relief = relief;
+    public void setRead(boolean read) {
+        this.read = read;
     }
 }

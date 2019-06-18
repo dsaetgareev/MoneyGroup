@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.adapters.cycle;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,8 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.CycleViewHol
         }
 
         public void bind(CycleDTO cycleDTO) {
-            String text = "Цепочка из " + cycleDTO.getCountElement() + " элементов собрана. " + cycleDTO.getMinCount() + "RUR";
+            @SuppressLint("StringFormatMatches")
+            String text = String.format(getActivity().getString(R.string.cycleText), cycleDTO.getCountElement(), cycleDTO.getMinCount());
             cycleText.setText(text);
             this.cycleDTO = cycleDTO;
         }

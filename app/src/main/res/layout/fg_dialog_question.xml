@@ -11,7 +11,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:text="Задайте контрольный вопрос" />
+        android:text="@string/Ask_a_security_question" />
 
 
     <EditText
@@ -32,7 +32,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:text="Напишите ответ" />
+        android:text="@string/write_the_answer" />
 
     <EditText
         android:id="@+id/et_answer_question"

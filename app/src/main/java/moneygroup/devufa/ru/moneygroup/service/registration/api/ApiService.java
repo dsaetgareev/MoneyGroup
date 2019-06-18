@@ -3,6 +3,7 @@ package moneygroup.devufa.ru.moneygroup.service.registration.api;
 import org.json.JSONObject;
 
 import moneygroup.devufa.ru.moneygroup.model.dto.PersonDTO;
+import moneygroup.devufa.ru.moneygroup.model.dto.SettingDto;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,7 +16,8 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @POST("person/anonymous/registerRequest/")
-    Call<ResponseBody> sendNumber(@Query("telephoneNumber") String telephoneNumber);
+    Call<ResponseBody> sendNumber(@Query("telephoneNumber") String telephoneNumber,
+                                  @Query("locale") String locale);
 
     @POST("person/anonymous/{code}")
     Call<ResponseBody> registerPassword(@Body PersonDTO personDTO, @Path("code") String code);
@@ -60,4 +62,10 @@ public interface ApiService {
 
     @GET("person/anonymous/changePassword")
     Call<ResponseBody> getCodeByEmail(@Query("telephoneNumber") String telephoneNumber);
+
+    @POST("person/saveSetting")
+    Call<ResponseBody> saveSetting(@Header("Authorization") String authorization, @Body SettingDto settingDto);
+
+    @GET("person/getSetting")
+    Call<SettingDto> getSetting(@Header("Authorization") String authorization);
 }

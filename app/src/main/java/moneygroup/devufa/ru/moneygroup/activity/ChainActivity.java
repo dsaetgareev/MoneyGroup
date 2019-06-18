@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,12 +49,14 @@ public class ChainActivity extends AppCompatActivity {
     private TextView tvChResponse;
 
     private Button btnAgree;
+    private Button btnReject;
 
     private Person person;
     private CycleDTO cycleDTO;
     private CodeService codeService;
     private DebtDTO prevDebtDTO;
     private DebtDTO nextDebtDTO;
+    private DebtDTO debtDTO;
 
     public static Intent newIntent(Context context, Person person, CycleDTO cycleDTO) {
         Intent intent = new Intent(context, ChainActivity.class);
@@ -70,9 +73,13 @@ public class ChainActivity extends AppCompatActivity {
         person = (Person) getIntent().getSerializableExtra("person");
         cycleDTO = (CycleDTO) getIntent().getSerializableExtra("cycle");
         codeService = new CodeService(ChainActivity.this);
-        String descText = String.format("Цепь долгов совпала из %s учатников мы можем списать у всех участников по:", cycleDTO.getCountElement());
-        String descResponse = String.format("Подтвердили на списание %s участников.\n" +
-                "После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг.", cycleDTO.getAcceptedPerson());
+
+        @SuppressLint("StringFormatMatches")
+        String descText = String.format(getString(R.string.descText), cycleDTO.getCountElement());
+
+        @SuppressLint("StringFormatMatches")
+        String descResponse = String.format(getString(R.string.descResponse), cycleDTO.getAcceptedPerson());
+
         tvChDesc = findViewById(R.id.tv_ch_desc);
         tvChDesc.setText(descText);
         tvChResponse = findViewById(R.id.tv_ch_desc_response);
@@ -81,6 +88,7 @@ public class ChainActivity extends AppCompatActivity {
         tvSumm.setText(String.valueOf(cycleDTO.getMinCount()));
         init(cycleDTO.getId().toString(), person.getId().toString());
         initBtnAgree();
+        initBtnReject();
     }
 
     private void init(String cycleId, String debtId) {
@@ -90,11 +98,15 @@ public class ChainActivity extends AppCompatActivity {
             public void onResponse(Call<List<DebtDTO>> call, Response<List<DebtDTO>> response) {
                 if (response.isSuccessful()) {
                     List<DebtDTO> debtDTOS = response.body();
+
                     prevDebtDTO = debtDTOS.get(0);
-                    nextDebtDTO = debtDTOS.get(1);
+                    debtDTO = debtDTOS.get(1);
+                    nextDebtDTO = debtDTOS.get(2);
+
 
                     String om = codeService.getNumber().equals(prevDebtDTO.getInitiator()) ? prevDebtDTO.getReceiver() : prevDebtDTO.getInitiator();
                     double nextSumm = person.isOwesMe() ? Double.valueOf(person.getSumm()) : nextDebtDTO.getCount();
+                    double nextDiffSumm = person.isOwesMe() ? debtDTO.getTotalCount() : nextDebtDTO.getTotalCount();
                     String nextCurrency = person.isOwesMe() ? person.getCurrency() : nextDebtDTO.getCurrency();
 
                     tvOmBefName = findViewById(R.id.tv_ch_om_bef_name);
@@ -111,12 +123,13 @@ public class ChainActivity extends AppCompatActivity {
                     tvOmAfTel = findViewById(R.id.tv_ch_om_af_tel);
                     tvOmAfTel.setText(om);
                     tvOmAfSumm = findViewById(R.id.tv_ch_om_af_summ);
-                    tvOmAfSumm.setText(String.valueOf(nextSumm - cycleDTO.getMinCount()));
+                    tvOmAfSumm.setText(String.valueOf(nextDiffSumm));
                     tvOmAfCur = findViewById(R.id.tv_ch_om_af_cur);
                     tvOmAfCur.setText(nextCurrency);
 
                     String io = codeService.getNumber().equals(nextDebtDTO.getInitiator()) ? nextDebtDTO.getReceiver() : nextDebtDTO.getInitiator();
                     double prevSumm = person.isOwesMe() ? prevDebtDTO.getCount() : Double.valueOf(person.getSumm());
+                    double prevDiffSumm = person.isOwesMe() ? prevDebtDTO.getTotalCount() : debtDTO.getTotalCount();
                     String prevCurrency = person.isOwesMe() ? prevDebtDTO.getCurrency() : person.getCurrency();
 
                     tvIoBefName = findViewById(R.id.tv_ch_io_bef_name);
@@ -133,7 +146,7 @@ public class ChainActivity extends AppCompatActivity {
                     tvIoAfTel = findViewById(R.id.tv_ch_io_af_tel);
                     tvIoAfTel.setText(io);
                     tvIoAfSumm = findViewById(R.id.tv_ch_io_af_summ);
-                    tvIoAfSumm.setText(String.valueOf(prevSumm - cycleDTO.getMinCount()));
+                    tvIoAfSumm.setText(String.valueOf(prevDiffSumm));
                     tvIoAfCur = findViewById(R.id.tv_ch_io_af_cur);
                     tvIoAfCur.setText(prevCurrency);
                 }
@@ -156,7 +169,11 @@ public class ChainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-
+                            Class home = HomeActivity.class;
+                            Context context = ChainActivity.this;
+                            Intent intent = new Intent(context, home);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            context.startActivity(intent);
                         }
                     }
 
@@ -165,7 +182,43 @@ public class ChainActivity extends AppCompatActivity {
 
                     }
                 });
+                toHomeActivity();
             }
         });
+    }
+
+    private void initBtnReject() {
+        btnReject = findViewById(R.id.btn_ch_rejection);
+        btnReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call<ResponseBody> call = DebtService.getApiService().acceptRelief(codeService.getCode(), person.getId().toString(), false, cycleDTO.getId().toString());
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Class home = HomeActivity.class;
+                            Context context = ChainActivity.this;
+                            Intent intent = new Intent(context, home);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            context.startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+                toHomeActivity();
+            }
+        });
+    }
+
+    private void toHomeActivity() {
+        Class home = HomeActivity.class;
+        Intent intent = new Intent(getApplicationContext(), home);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        getApplicationContext().startActivity(intent);
     }
 }

@@ -57,6 +57,9 @@ public class NotificationsService extends FirebaseMessagingService {
             intent.putExtra("id", debtMap.get("id"));
             intent.putExtra("telephoneNumber", debtMap.get("telephoneNumber"));
             intent.putExtra("currentCount", debtMap.get("currentCount"));
+            intent.putExtra("type", debtMap.get("type"));
+            intent.putExtra("title", remoteMessage.getNotification().getTitle());
+            intent.putExtra("body", remoteMessage.getNotification().getBody());
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, PendingIntent.FLAG_ONE_SHOT);
         } else {

@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import moneygroup.devufa.ru.moneygroup.fragment.home.iowe.IOweFragment;
+import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.settings.SettingsFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed.UnconfirmedFragment;
@@ -17,7 +18,7 @@ import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 
 public class HomePageAdapter extends FragmentStatePagerAdapter {
 
-    private final int PAGE_COUNT = 4;
+    private final int PAGE_COUNT = 5;
 
     private BasicCode basicCode;
 
@@ -47,6 +48,9 @@ public class HomePageAdapter extends FragmentStatePagerAdapter {
                 return IOweFragment.newInstance(i + 2);
 
             case 3:
+                return MessagesFragment.newInstance();
+
+            case 4:
                 return SettingsFragment.newInstance(basicCode);
 
             default: return new Fragment();
@@ -65,4 +69,6 @@ public class HomePageAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return null;
     }
+
+
 }

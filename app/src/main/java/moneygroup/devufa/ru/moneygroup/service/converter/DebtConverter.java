@@ -66,7 +66,7 @@ public class DebtConverter {
         }
         person.setSumm(String.valueOf(debtDTO.getCount()));
         person.setCurrency(debtDTO.getCurrency());
-        if (debtDTO.getDebtType().equals(DebtType.DEBT)) {
+        if (debtDTO.getDebtType().equals(DebtType.DEBT) && debtDTO.getInitiator().equals(number) || debtDTO.getDebtType().equals(DebtType.LOAN) && debtDTO.getReceiver().equals(number)) {
             person.setOwesMe(false);
         }
         person.setComment(debtDTO.getComment());

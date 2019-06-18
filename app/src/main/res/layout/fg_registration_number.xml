@@ -20,9 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_enter_number_rg_fr"
         android:layout_centerHorizontal="true"
-        android:hint="+79171234567"
+        android:hint="79171234567"
         android:inputType="phone"
         android:layout_marginTop="10dp"
+        android:maxLength="15"
+        android:lines="1"
         />
 
     <Button

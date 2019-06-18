@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,18 +12,10 @@ import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
-import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.model.Person;
-import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
-import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
-import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     int[] imageResId = {
-            R.drawable.plus, R.drawable.up, R.drawable.down,
+            R.drawable.plus, R.drawable.up, R.drawable.down, R.mipmap.message,
             R.drawable.setting
     };
 
@@ -72,8 +63,12 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(2).setIcon(imageResId[2]);
         tabLayout.getTabAt(2).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+
         tabLayout.getTabAt(3).setIcon(imageResId[3]);
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+
+        tabLayout.getTabAt(4).setIcon(imageResId[4]);
+        tabLayout.getTabAt(4).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -89,6 +84,9 @@ public class HomeActivity extends AppCompatActivity {
                         tab.getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
                         break;
                     case 3:
+                        tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        break;
+                    case 4:
                         tab.getIcon().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
                         break;
                 }

@@ -54,8 +54,7 @@
     <string name="tv_change_password">Сменить пароль</string>
     <string name="enter_confirmation_code">Введите код подтверждения</string>
     <string name="send_request">Отправить запрос</string>
-    <string name="tv_name">Имя</string>
-    <string name="tel">Тел.</string>
+    <string name="tv_tel">Тел.</string>
     <string name="tv_omp_title">Должен мне</string>
     <string name="btn_to_archiv">В архив</string>
     <string name="btn_to_delete">Удалить</string>
@@ -64,6 +63,23 @@
     <string name="rejection">Отказ</string>
     <string name="agree">Согласен</string>
     <string name="after_write_off_title">После списания</string>
+    <string name="Ask_a_security_question">Задайте контрольный вопрос</string>
+    <string name="write_the_answer">Напишите ответ</string>
+    <string name="name">Имя</string>
+    <string name="install">Установить</string>
+    <string name="view_archive">Просмотреть архив</string>
+    <string name="exit">Выйти</string>
+    <string name="notifications">Push уведомления</string>
+    <string name="auro_cancel">Автоматически списывать долг если цепочка собралась</string>
+    <string name="not_new_debt">Уведомление о новом долге</string>
+    <string name="not_new_cycle">Присылать сообщение о собранной цепочке долгов</string>
+    <string name="multi_valute">Разновалютная цепь долгов</string>
+    <string name="descText">Цепь долгов совпала из %s учатников мы можем списать у всех участников по:</string>
+    <string name="descResponse">Подтвердили на списание %s участников.  После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг.</string>
+    <string name="cycleText">Цепочка из %s элементов собрана. %s USD</string>
+    <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
+    <string name="new_loan_norif">Подтвердите долг в размере %s дебитору %s</string>
+
 
     <string-array name="language_array">
         <item>ru</item>

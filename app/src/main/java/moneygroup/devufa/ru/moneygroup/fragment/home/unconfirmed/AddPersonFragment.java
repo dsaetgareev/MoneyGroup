@@ -281,6 +281,9 @@ public class AddPersonFragment extends Fragment {
 
     private void initSendButton(View view) {
         sendButton = view.findViewById(R.id.bt_ap_send_request);
+        if ("".equals(etPhone.getText().toString())) {
+            sendButton.setVisibility(View.INVISIBLE);
+        }
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

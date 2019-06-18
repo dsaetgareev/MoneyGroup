@@ -3,12 +3,15 @@ package moneygroup.devufa.ru.moneygroup.fragment.registrations;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -112,16 +115,12 @@ public class RegistrationNumber extends Fragment {
             @Override
             public void onClick(View v) {
                 number = etEnterNumber.getText().toString();
-                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number);
+                String locale = getResources().getConfiguration().locale.toString();
+                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale);
                 progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         if (response.isSuccessful()) {
                             progressBarMoney.dismiss();
                         } else {

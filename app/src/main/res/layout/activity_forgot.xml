@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    tools:context=".activity.ForgotActivity">
+    android:id="@+id/sc_forgot"
+    >
 
-    <ImageView
-        android:id="@+id/iv_forgot_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/logo11"
-        android:layout_centerHorizontal="true"
-        />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:id="@+id/rl_forgot"
+        tools:context=".activity.ForgotActivity">
 
-    <TextView
-        android:id="@+id/login_title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_forgot_logo"
-        android:text="@string/change_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        />
-
-    <LinearLayout
-        android:id="@+id/ll_ch_number"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_title_text_view"
-        >
-
-        <TextView
-            android:id="@+id/tv_login_text"
+        <ImageView
+            android:id="@+id/iv_forgot_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_text"
-            android:layout_marginRight="10dp"
-            android:textSize="20sp"
-            />
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/logo11" />
 
-
-        <EditText
-            android:id="@+id/et_forgot_phone_number"
-            android:layout_width="249dp"
+        <TextView
+            android:id="@+id/login_title_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/phone_number"
-            android:inputType="phone" />
-    </LinearLayout>
+            android:layout_below="@id/iv_forgot_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/change_password"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_ch_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_title_text_view"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_login_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/login_text"
+                android:textSize="20sp" />
 
 
-    <Spinner
-        android:id="@+id/planets_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_ch_number"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        />
+            <EditText
+                android:id="@+id/et_forgot_phone_number"
+                android:layout_width="249dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:inputType="phone" />
+        </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/change_password_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/planets_spinner"
-        android:layout_margin="30dp"
-        android:layout_centerInParent="true"
-        >
 
-    </FrameLayout>
+        <Spinner
+            android:id="@+id/planets_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_ch_number"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="40dp" />
 
-</RelativeLayout>
+        <FrameLayout
+            android:id="@+id/change_password_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/planets_spinner"
+            android:layout_centerInParent="true"
+            android:layout_margin="30dp">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+</ScrollView>

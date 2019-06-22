@@ -27,6 +27,7 @@ import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,6 +65,7 @@ public class OwesmeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_owesme_debts, container, false);
+        KeyboardUtil.setClick(view, getActivity());
         progressBarMoney = new ProgressBarMoney(getActivity());
         recyclerView = view.findViewById(R.id.rv_for_owesme_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

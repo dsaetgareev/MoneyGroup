@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
@@ -88,7 +89,15 @@ public class OwesmePersonActivity extends AppCompatActivity {
 
                     }
                 });
+                toHomeActivity();
             }
         });
+    }
+
+    private void toHomeActivity() {
+        Class home = HomeActivity.class;
+        Intent intent = new Intent(getApplicationContext(), home);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        getApplicationContext().startActivity(intent);
     }
 }

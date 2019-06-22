@@ -32,6 +32,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
 
         private TextView name;
         private TextView summ;
+        private TextView currency;
         private CheckBox checkBox;
         private Person person;
 
@@ -39,6 +40,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             super(itemView);
             name = itemView.findViewById(R.id.tv_name_title);
             summ = itemView.findViewById(R.id.tv_summ);
+            currency = itemView.findViewById(R.id.tv_currency);
             checkBox = itemView.findViewById(R.id.cb_item_debt_edit);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -72,6 +74,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         public void bind(Person person) {
             name.setText(person.getName());
             summ.setText(person.getSumm());
+            currency.setText(person.getCurrency());
             if (person.isOwesMe()) {
                 summ.setTextColor(R.style.OweMe);
             }

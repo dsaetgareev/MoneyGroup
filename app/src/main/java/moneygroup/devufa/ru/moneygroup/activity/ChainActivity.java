@@ -17,6 +17,7 @@ import moneygroup.devufa.ru.moneygroup.model.dto.CycleDTO;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +71,8 @@ public class ChainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chain);
+        final View view = findViewById(R.id.rl_chain);
+        KeyboardUtil.setClick(view, ChainActivity.this);
         person = (Person) getIntent().getSerializableExtra("person");
         cycleDTO = (CycleDTO) getIntent().getSerializableExtra("cycle");
         codeService = new CodeService(ChainActivity.this);
@@ -100,55 +103,47 @@ public class ChainActivity extends AppCompatActivity {
                     List<DebtDTO> debtDTOS = response.body();
 
                     prevDebtDTO = debtDTOS.get(0);
-                    debtDTO = debtDTOS.get(1);
-                    nextDebtDTO = debtDTOS.get(2);
+                    nextDebtDTO = debtDTOS.get(1);
 
-
-                    String om = codeService.getNumber().equals(prevDebtDTO.getInitiator()) ? prevDebtDTO.getReceiver() : prevDebtDTO.getInitiator();
-                    double nextSumm = person.isOwesMe() ? Double.valueOf(person.getSumm()) : nextDebtDTO.getCount();
-                    double nextDiffSumm = person.isOwesMe() ? debtDTO.getTotalCount() : nextDebtDTO.getTotalCount();
-                    String nextCurrency = person.isOwesMe() ? person.getCurrency() : nextDebtDTO.getCurrency();
+                    String om = codeService.getNumber().equals(prevDebtDTO.getInitiator()) ?
+                            prevDebtDTO.getReceiver() : prevDebtDTO.getInitiator();
 
                     tvOmBefName = findViewById(R.id.tv_ch_om_bef_name);
                     tvOmBefName.setText(om);
                     tvOmBefTel = findViewById(R.id.tv_ch_om_bef_tel);
                     tvOmBefTel.setText(om);
                     tvOmBefSumm = findViewById(R.id.tv_ch_om_bef_summ);
-                    tvOmBefSumm.setText(String.valueOf(nextSumm));
+                    tvOmBefSumm.setText(String.valueOf(prevDebtDTO.getCount()));
                     tvOmBefCur = findViewById(R.id.tv_ch_om_bef_cur);
-                    tvOmBefCur.setText(nextCurrency);
+                    tvOmBefCur.setText(prevDebtDTO.getCurrency());
 
                     tvOmAfName = findViewById(R.id.tv_ch_om_af_name);
                     tvOmAfName.setText(om);
                     tvOmAfTel = findViewById(R.id.tv_ch_om_af_tel);
                     tvOmAfTel.setText(om);
                     tvOmAfSumm = findViewById(R.id.tv_ch_om_af_summ);
-                    tvOmAfSumm.setText(String.valueOf(nextDiffSumm));
+                    tvOmAfSumm.setText(String.valueOf(prevDebtDTO.getTotalCount()));
                     tvOmAfCur = findViewById(R.id.tv_ch_om_af_cur);
-                    tvOmAfCur.setText(nextCurrency);
+                    tvOmAfCur.setText(prevDebtDTO.getCurrency());
 
                     String io = codeService.getNumber().equals(nextDebtDTO.getInitiator()) ? nextDebtDTO.getReceiver() : nextDebtDTO.getInitiator();
-                    double prevSumm = person.isOwesMe() ? prevDebtDTO.getCount() : Double.valueOf(person.getSumm());
-                    double prevDiffSumm = person.isOwesMe() ? prevDebtDTO.getTotalCount() : debtDTO.getTotalCount();
-                    String prevCurrency = person.isOwesMe() ? prevDebtDTO.getCurrency() : person.getCurrency();
-
                     tvIoBefName = findViewById(R.id.tv_ch_io_bef_name);
                     tvIoBefName.setText(io);
                     tvIoBefTel = findViewById(R.id.tv_ch_io_bef_tel);
                     tvIoBefTel.setText(io);
                     tvIoBefSumm = findViewById(R.id.tv_ch_io_bef_summ);
-                    tvIoBefSumm.setText(String.valueOf(prevSumm));
+                    tvIoBefSumm.setText(String.valueOf(nextDebtDTO.getCount()));
                     tvIoBefCur = findViewById(R.id.tv_ch_io_bef_cur);
-                    tvIoBefCur.setText(prevCurrency);
+                    tvIoBefCur.setText(nextDebtDTO.getCurrency());
 
                     tvIoAfName = findViewById(R.id.tv_ch_io_af_name);
                     tvIoAfName.setText(io);
                     tvIoAfTel = findViewById(R.id.tv_ch_io_af_tel);
                     tvIoAfTel.setText(io);
                     tvIoAfSumm = findViewById(R.id.tv_ch_io_af_summ);
-                    tvIoAfSumm.setText(String.valueOf(prevDiffSumm));
+                    tvIoAfSumm.setText(String.valueOf(nextDebtDTO.getTotalCount()));
                     tvIoAfCur = findViewById(R.id.tv_ch_io_af_cur);
-                    tvIoAfCur.setText(prevCurrency);
+                    tvIoAfCur.setText(nextDebtDTO.getCurrency());
                 }
             }
 

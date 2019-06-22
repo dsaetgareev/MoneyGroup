@@ -16,6 +16,7 @@ import moneygroup.devufa.ru.moneygroup.fragment.registrations.ChangePasswordFrom
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 
 public class ForgotActivity extends AppCompatActivity {
 
@@ -23,15 +24,22 @@ public class ForgotActivity extends AppCompatActivity {
 
     private EditText etTelNumber;
     private Spinner spinner;
+    private CodeService codeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
+        final View view = findViewById(R.id.rl_forgot);
+        KeyboardUtil.setClick(view, ForgotActivity.this);
         final Bundle args = new Bundle();
         progressBarMoney = new ProgressBarMoney(ForgotActivity.this);
+        codeService = new CodeService(getApplicationContext());
 
         etTelNumber = findViewById(R.id.et_forgot_phone_number);
+        if (codeService.getCodeList().size() > 0) {
+            etTelNumber.setText(codeService.getNumber());
+        }
 
         spinner = (Spinner) findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

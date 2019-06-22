@@ -36,16 +36,24 @@ public class NewDebtDialog extends DialogFragment {
     private String debtId;
     private String debtTelephoneNumber;
     private String debtCurrentCount;
+    private String debtCurrency;
     private String type;
+    private String body;
 
-    private TextView textView;
+    private TextView textViewBody;
+    private TextView tvTitle;
+    private TextView tvAbonentTel;
+    private TextView tvSumm;
+    private TextView tvCurrency;
 
     public static NewDebtDialog newInstance(Map<String, String> args) {
         Bundle bundle = new Bundle();
         bundle.putString("id", args.get("id"));
         bundle.putString("telephoneNumber", args.get("telephoneNumber"));
         bundle.putString("currentCount", args.get("currentCount"));
+        bundle.putString("currency", args.get("currency"));
         bundle.putString("type", args.get("type"));
+        bundle.putString("body", args.get("body"));
         NewDebtDialog debtDialog = new NewDebtDialog();
         debtDialog.setArguments(bundle);
         return debtDialog;
@@ -59,6 +67,8 @@ public class NewDebtDialog extends DialogFragment {
             debtTelephoneNumber = getArguments().getString("telephoneNumber");
             debtCurrentCount = getArguments().getString("currentCount");
             type = getArguments().getString("type");
+            debtCurrency = getArguments().getString("currency");
+            body = getArguments().getString("body");
         }
     }
 
@@ -71,8 +81,20 @@ public class NewDebtDialog extends DialogFragment {
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fg_dialog_debt, null);
-        textView = view.findViewById(R.id.tv_debt_dialog);
-        textView.setText(createText());
+        textViewBody = view.findViewById(R.id.tv_debt_dialog);
+        textViewBody.setText(body);
+
+        tvTitle = view.findViewById(R.id.tv_debt_dial_title);
+        tvTitle.setText("NEW_DEBT".equals(type) ? getString(R.string.i_owe_title) : getString(R.string.tv_omp_title));
+        tvAbonentTel = view.findViewById(R.id.tv_debt_dial_tel);
+        tvAbonentTel.setText(debtTelephoneNumber);
+
+        tvSumm = view.findViewById(R.id.tv_debt_dial_summ);
+        tvSumm.setText(debtCurrentCount);
+
+        tvCurrency = view.findViewById(R.id.tv_debt_dial_cur);
+        tvCurrency.setText(debtCurrency);
+
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 // Add action buttons
@@ -86,7 +108,7 @@ public class NewDebtDialog extends DialogFragment {
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(context, "Email сохранен", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Запрос отправлен", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -100,6 +122,22 @@ public class NewDebtDialog extends DialogFragment {
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false);
+                        progressBarMoney.show();
+                        call.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                progressBarMoney.dismiss();
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(context, "Запрос отправлен", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
                         NewDebtDialog.this.getDialog().cancel();
                         toHomeActivity();
                     }
@@ -109,16 +147,6 @@ public class NewDebtDialog extends DialogFragment {
 
     public void showDialog() {
         super.show(getFragmentManager(), "newDebtDialog");
-    }
-
-    private String createText() {
-        String text = "";
-        if ("NEW_DEBT".equals(type)) {
-            text = String.format(getString(R.string.new_debt_notif), debtCurrentCount, debtTelephoneNumber);
-        } else {
-            text = String.format(getString(R.string.new_loan_norif), debtCurrentCount, debtTelephoneNumber);
-        }
-        return text;
     }
 
     private void toHomeActivity() {

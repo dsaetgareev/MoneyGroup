@@ -28,6 +28,7 @@ public class IOweAdapter extends RecyclerView.Adapter<IOweAdapter.IOweViewHolder
     class IOweViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView summ;
+        private TextView currency;
         private Person person;
         private ImageView chianImg;
 
@@ -35,6 +36,7 @@ public class IOweAdapter extends RecyclerView.Adapter<IOweAdapter.IOweViewHolder
             super(itemView);
             name = itemView.findViewById(R.id.tv_io_name_title);
             summ = itemView.findViewById(R.id.tv_io_summ);
+            currency = itemView.findViewById(R.id.tv_currency);
             chianImg = itemView.findViewById(R.id.iv_io_chain);
 
 
@@ -58,6 +60,7 @@ public class IOweAdapter extends RecyclerView.Adapter<IOweAdapter.IOweViewHolder
         public void bind(Person person) {
             name.setText(person.getName());
             summ.setText(person.getSumm());
+            currency.setText(person.getCurrency());
             if (person.isOwesMe()) {
                 summ.setTextColor(R.style.OweMe);
             }

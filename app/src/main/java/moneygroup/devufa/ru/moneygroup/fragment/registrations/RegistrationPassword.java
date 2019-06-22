@@ -27,6 +27,7 @@ import moneygroup.devufa.ru.moneygroup.model.dto.PersonDTO;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,6 +66,8 @@ public class RegistrationPassword extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_registration_password, container, false);
+        final View rl = view.findViewById(R.id.rl_reg_password);
+        KeyboardUtil.setClick(rl, getActivity());
         progressBarMoney = ((Registration)getActivity()).getProgressBarMoney();
         lowerCase = view.findViewById(R.id.fg_iv_lower_case_valid);
         upperCase = view.findViewById(R.id.fg_iv_upper_case_valid);
@@ -74,7 +77,7 @@ public class RegistrationPassword extends Fragment {
         back = view.findViewById(R.id.fg_tv_password_back);
 
         confirmPassword = view.findViewById(R.id.fg_et_confirm_password);
-        blockedEditText(confirmPassword, true);
+        //blockedEditText(confirmPassword, true);
         newPassword = view.findViewById(R.id.fg_et_new_password);
 
         btnSavePassword = view.findViewById(R.id.fg_bt_save_password);
@@ -128,10 +131,7 @@ public class RegistrationPassword extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if (validatePassword(newPassword.getText().toString())) {
-                    blockedEditText(confirmPassword, false);
                     validateConfirm(s, confirmPassword);
-                } else {
-                    blockedEditText(confirmPassword, true);
                 }
 
             }

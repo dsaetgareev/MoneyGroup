@@ -19,6 +19,7 @@ import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.NewPassword;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +47,7 @@ public class ChangePasswordFromQuestion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.change_password_from_question, container, false);
+        KeyboardUtil.setClick(view, getActivity());
         progressBarMoney = ((ForgotActivity) getActivity()).getProgressBarMoney();
         tvControlQuestion = view.findViewById(R.id.tv_control_question);
         etFromQuestion = view.findViewById(R.id.et_password_from_question);

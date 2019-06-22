@@ -27,11 +27,20 @@
         android:id="@+id/tv_om_summ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/tv_om_icon"
+        android:layout_toStartOf="@id/tv_currency"
         android:layout_marginRight="@dimen/google_1x"
         android:text="2500"
         android:layout_centerVertical="true"
         />
+
+    <TextView
+        android:id="@+id/tv_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/tv_om_icon"
+        android:layout_marginRight="@dimen/google_1x"
+        android:layout_centerVertical="true"
+        android:text="RUB" />
 
     <TextView
         android:id="@+id/tv_om_icon"

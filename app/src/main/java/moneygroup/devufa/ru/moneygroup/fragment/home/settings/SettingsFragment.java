@@ -35,6 +35,7 @@ import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import moneygroup.devufa.ru.moneygroup.service.registration.api.ApiService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,6 +97,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fg_settings, container, false);
+        final View rl = view.findViewById(R.id.rl_settings);
+        KeyboardUtil.setClick(rl, getActivity());
         this.view = view;
         progressBarMoney = new ProgressBarMoney(getActivity());
         codeService = new CodeService(getActivity());

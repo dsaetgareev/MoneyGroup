@@ -17,6 +17,7 @@ import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +46,8 @@ public class NewPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_password);
-
+        final View view = findViewById(R.id.rl_new_password);
+        KeyboardUtil.setClick(view, NewPassword.this);
         progressBarMoney = new ProgressBarMoney(NewPassword.this);
 
         choice = getIntent().getStringExtra("choice");

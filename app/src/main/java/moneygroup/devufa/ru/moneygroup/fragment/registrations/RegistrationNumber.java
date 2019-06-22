@@ -17,8 +17,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,12 +51,16 @@ public class RegistrationNumber extends Fragment {
     private TextView skip;
     private TextView back;
 
+    private Spinner spinner;
+
     private RegistrationService service;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_registration_number, container, false);
+        final View rl = view.findViewById(R.id.rl_reg_number);
+        KeyboardUtil.setClick(rl, getActivity());
         progressBarMoney = ((Registration)getActivity()).getProgressBarMoney();
 
         service = new RegistrationService();
@@ -61,10 +68,12 @@ public class RegistrationNumber extends Fragment {
         initConfirmButton(view);
         initEtCode(view);
         initOkButton(view);
+        initSpinner(view);
 
 
         skip = view.findViewById(R.id.tv_next_rg_fr);
         back = view.findViewById(R.id.fg_tv_password_back);
+        back.setVisibility(View.INVISIBLE);
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,20 +100,70 @@ public class RegistrationNumber extends Fragment {
     private void initEnterNumber(View view) {
         etEnterNumber = view.findViewById(R.id.et_number_rg_fr);
 
-        etEnterNumber.addTextChangedListener(new TextWatcher() {
+        etEnterNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher() {
+            //we need to know if the user is erasing or inputing some new character
+            private boolean backspacingFlag = false;
+            //we need to block the :afterTextChanges method to be called again after we just replaced the EditText text
+            private boolean editedFlag = false;
+            //we need to mark the cursor position and restore it after the edition
+            private int cursorComplement;
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //we store the cursor local relative to the end of the string in the EditText before the edition
+                cursorComplement = s.length()-etEnterNumber.getSelectionStart();
+                //we check if the user ir inputing or erasing a character
+                if (count > after) {
+                    backspacingFlag = true;
+                } else {
+                    backspacingFlag = false;
+                }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // nothing to do here =D
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                String string = s.toString();
+                //what matters are the phone digits beneath the mask, so we always work with a raw string with only digits
+                String phone = string.replaceAll("[^\\d]", "");
 
+                //if the text was just edited, :afterTextChanged is called another time... so we need to verify the flag of edition
+                //if the flag is false, this is a original user-typed entry. so we go on and do some magic
+                if (!editedFlag) {
+
+                    //we start verifying the worst case, many characters mask need to be added
+                    //example: 999999999 <- 6+ digits already typed
+                    // masked: (999) 999-999
+                    if (phone.length() >= 7 && !backspacingFlag) {
+                        //we will edit. next call on this textWatcher will be ignored
+                        editedFlag = true;
+                        //here is the core. we substring the raw digits and add the mask as convenient
+                        String ans = phone.substring(0, 1) + "(" + phone.substring(1, 4) + ") " + phone.substring(4,7) + "-" + phone.substring(7);
+                        etEnterNumber.setText(ans);
+                        //we deliver the cursor to its original position relative to the end of the string
+                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
+
+                        //we end at the most simple case, when just one character mask is needed
+                        //example: 99999 <- 3+ digits already typed
+                        // masked: (999) 99
+                    } else if (phone.length() >= 4 && !backspacingFlag) {
+                        editedFlag = true;
+                        String ans = phone.substring(0, 1) + "(" +phone.substring(1, 4) + ") " + phone.substring(4);
+                        etEnterNumber.setText(ans);
+                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
+                    } else if (phone.length() == 1 && !backspacingFlag && !phone.equals("7")) {
+                        phone = "7";
+                        etEnterNumber.setText(phone);
+                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
+                    }
+                    // We just edited the field, ignoring this cicle of the watcher and getting ready for the next
+                } else {
+                    editedFlag = false;
+                }
             }
         });
     }
@@ -114,7 +173,7 @@ public class RegistrationNumber extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number = etEnterNumber.getText().toString();
+                number = etEnterNumber.getText().toString().replaceAll("[^\\d]", "");
                 String locale = getResources().getConfiguration().locale.toString();
                 Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale);
                 progressBarMoney.show();
@@ -197,6 +256,14 @@ public class RegistrationNumber extends Fragment {
             }
 
         });
+    }
+
+    private void initSpinner(View view) {
+        spinner = (Spinner) view.findViewById(R.id.number_array);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.number_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
 }

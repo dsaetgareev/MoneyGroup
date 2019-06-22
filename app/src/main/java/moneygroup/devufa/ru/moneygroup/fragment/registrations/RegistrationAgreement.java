@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 
 public class RegistrationAgreement extends Fragment {
 
+    private TextView textAgreement;
+
     private TextView acceptAgreement;
     private TextView backAgreement;
 
@@ -26,6 +30,13 @@ public class RegistrationAgreement extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_registration_agreement, container, false);
+
+        textAgreement = view.findViewById(R.id.tv_agreement_text);
+        textAgreement.setClickable(true);
+        textAgreement.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = getString(R.string.agreement_link);
+        textAgreement.setText(Html.fromHtml(text));
+
         acceptAgreement = view.findViewById(R.id.tv_agreement_accept);
         backAgreement = view.findViewById(R.id.tv_agreement_back);
 

@@ -79,10 +79,20 @@
     <string name="cycleText">Цепочка из %s элементов собрана. %s USD</string>
     <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
     <string name="new_loan_norif">Подтвердите долг в размере %s дебитору %s</string>
+    <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Политика соглашения </a>]]></string>
+    <string name="abonent">Абонент</string>
 
 
     <string-array name="language_array">
         <item>ru</item>
         <item>en</item>
+    </string-array>
+
+    <string-array name="number_array">
+        <item>+7</item>
+        <item>+1</item>
+        <item>+33</item>
+        <item>+49</item>
+        <item>+86</item>
     </string-array>
 </resources>

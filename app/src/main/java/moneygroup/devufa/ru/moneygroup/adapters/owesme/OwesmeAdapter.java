@@ -31,6 +31,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
 
         private TextView name;
         private TextView summ;
+        private TextView currency;
         private Person person;
         private ImageView chianImg;
 
@@ -38,6 +39,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
             super(itemView);
             name = itemView.findViewById(R.id.tv_om_name_title);
             summ = itemView.findViewById(R.id.tv_om_summ);
+            currency = itemView.findViewById(R.id.tv_currency);
             chianImg = itemView.findViewById(R.id.iv_om_chain);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +62,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
         public void bind(Person person) {
             name.setText(person.getName());
             summ.setText(person.getSumm());
+            currency.setText(person.getCurrency());
             if (person.isOwesMe()) {
                 summ.setTextColor(R.style.OweMe);
             }

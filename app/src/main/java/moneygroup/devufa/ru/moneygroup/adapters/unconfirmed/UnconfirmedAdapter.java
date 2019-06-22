@@ -44,6 +44,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
 
         private TextView name;
         private TextView summ;
+        private TextView currency;
         private CheckBox checkBox;
         private Person person;
 
@@ -52,6 +53,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
             super(itemView);
             name = itemView.findViewById(R.id.tv_name_title);
             summ = itemView.findViewById(R.id.tv_summ);
+            currency = itemView.findViewById(R.id.tv_currency);
             initButtonBox();
 
             if (layout == R.layout.list_item_debt_edit) {
@@ -97,6 +99,7 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
         public void bind(Person person) {
             name.setText(person.getName());
             summ.setText(person.getSumm());
+            currency.setText(person.getCurrency());
             if (person.isOwesMe()) {
                 summ.setTextColor(R.style.OweMe);
             }

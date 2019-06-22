@@ -27,6 +27,9 @@ public class NotificationsActivity extends AppCompatActivity {
         debtTelephoneNumber = getIntent().getStringExtra("telephoneNumber");
         debtCurrentCount = getIntent().getStringExtra("currentCount");
         type = getIntent().getStringExtra("type");
+        args.put("title", getIntent().getStringExtra("title"));
+        args.put("body", getIntent().getStringExtra("body"));
+        args.put("currency", getIntent().getStringExtra("currency"));
         initArgs();
         switch (type) {
             case "NEW_DEBT":
@@ -38,8 +41,6 @@ public class NotificationsActivity extends AppCompatActivity {
                 debtLoanDialog.show(getSupportFragmentManager(), "newDebtDialog");
                 break;
             default:
-                args.put("title", getIntent().getStringExtra("title"));
-                args.put("body", getIntent().getStringExtra("body"));
                 MessageDialog messageDialog = MessageDialog.newInstance(args);
                 messageDialog.show(getSupportFragmentManager(), "messageDialog");
                 break;

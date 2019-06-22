@@ -33,6 +33,7 @@ import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,6 +79,8 @@ public class AddPersonFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_person, container, false);
+        final View rl = view.findViewById(R.id.rl_add_person);
+        KeyboardUtil.setClick(rl, getActivity());
         progressBarMoney = new ProgressBarMoney(getActivity());
         this.view = view;
         initView(view);
@@ -126,6 +129,7 @@ public class AddPersonFragment extends Fragment {
 
     public void initGetContacts(View view) {
         getContacts = view.findViewById(R.id.iv_get_contacts_icon);
+        getContacts.setVisibility(View.INVISIBLE);
         getContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

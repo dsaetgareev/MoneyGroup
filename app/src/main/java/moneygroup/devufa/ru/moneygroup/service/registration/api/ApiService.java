@@ -2,6 +2,9 @@ package moneygroup.devufa.ru.moneygroup.service.registration.api;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
+import moneygroup.devufa.ru.moneygroup.model.dto.CountryCode;
 import moneygroup.devufa.ru.moneygroup.model.dto.PersonDTO;
 import moneygroup.devufa.ru.moneygroup.model.dto.SettingDto;
 import okhttp3.ResponseBody;
@@ -68,4 +71,7 @@ public interface ApiService {
 
     @GET("person/getSetting")
     Call<SettingDto> getSetting(@Header("Authorization") String authorization);
+
+    @GET("countryCode/anonymous/getCodes")
+    Call<List<String>> getCodes();
 }

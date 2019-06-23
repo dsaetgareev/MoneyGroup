@@ -12,8 +12,6 @@ public class Person implements Serializable {
 
     private String name;
 
-    private String countryCode;
-
     private String number;
 
     private String password;
@@ -30,11 +28,7 @@ public class Person implements Serializable {
 
     private Status status;
 
-    private double minCountInCycle;
-
-    private String prevInCycle;
-
-    private String nextInCycle;
+    private String countryCody;
 
     public Person() {
         id = UUID.randomUUID();
@@ -65,14 +59,6 @@ public class Person implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
     }
 
     public String getNumber() {
@@ -137,5 +123,13 @@ public class Person implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getCountryCody() {
+        return countryCody;
+    }
+
+    public void setCountryCody(String countryCody) {
+        this.countryCody = countryCody;
     }
 }

@@ -104,6 +104,14 @@
                 android:layout_margin="@dimen/google_1x"
                 />
 
+            <Spinner
+                android:id="@+id/number_array"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/google_1x"
+                />
+
             <EditText
                 android:id="@+id/et_ap_phone"
                 android:layout_width="match_parent"
@@ -111,6 +119,8 @@
                 android:hint="@string/enter_phone"
                 android:inputType="phone"
                 android:background="@drawable/back"
+                android:maxLength="15"
+                android:lines="1"
                 android:layout_margin="@dimen/google_1x"
                 />
         </LinearLayout>

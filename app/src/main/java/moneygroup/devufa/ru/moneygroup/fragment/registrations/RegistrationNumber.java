@@ -17,12 +17,15 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
@@ -52,6 +55,7 @@ public class RegistrationNumber extends Fragment {
     private TextView back;
 
     private Spinner spinner;
+    private String spText;
 
     private RegistrationService service;
 
@@ -138,11 +142,11 @@ public class RegistrationNumber extends Fragment {
                     //we start verifying the worst case, many characters mask need to be added
                     //example: 999999999 <- 6+ digits already typed
                     // masked: (999) 999-999
-                    if (phone.length() >= 7 && !backspacingFlag) {
+                    if (phone.length() >= 6 && !backspacingFlag) {
                         //we will edit. next call on this textWatcher will be ignored
                         editedFlag = true;
                         //here is the core. we substring the raw digits and add the mask as convenient
-                        String ans = phone.substring(0, 1) + "(" + phone.substring(1, 4) + ") " + phone.substring(4,7) + "-" + phone.substring(7);
+                        String ans = "(" + phone.substring(0, 3) + ") " + phone.substring(3, 6) + "-" + phone.substring(6);
                         etEnterNumber.setText(ans);
                         //we deliver the cursor to its original position relative to the end of the string
                         etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
@@ -150,14 +154,10 @@ public class RegistrationNumber extends Fragment {
                         //we end at the most simple case, when just one character mask is needed
                         //example: 99999 <- 3+ digits already typed
                         // masked: (999) 99
-                    } else if (phone.length() >= 4 && !backspacingFlag) {
+                    } else if (phone.length() >= 3 && !backspacingFlag) {
                         editedFlag = true;
-                        String ans = phone.substring(0, 1) + "(" +phone.substring(1, 4) + ") " + phone.substring(4);
+                        String ans = "(" +phone.substring(0, 3) + ") " + phone.substring(3);
                         etEnterNumber.setText(ans);
-                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
-                    } else if (phone.length() == 1 && !backspacingFlag && !phone.equals("7")) {
-                        phone = "7";
-                        etEnterNumber.setText(phone);
                         etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
                     }
                     // We just edited the field, ignoring this cicle of the watcher and getting ready for the next
@@ -173,7 +173,7 @@ public class RegistrationNumber extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number = etEnterNumber.getText().toString().replaceAll("[^\\d]", "");
+                number = (spText + etEnterNumber.getText().toString()).replaceAll("[^\\d]", "");
                 String locale = getResources().getConfiguration().locale.toString();
                 Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale);
                 progressBarMoney.show();
@@ -260,10 +260,37 @@ public class RegistrationNumber extends Fragment {
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.number_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        Call<List<String>> call = RegistrationService.getApiService().getCodes();
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                System.out.println(response.body());
+                if (response.isSuccessful()) {
+                    List<String> countryCodes = response.body();
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countryCodes);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String[] choose = getResources().getStringArray(R.array.number_array);
+                            spText = choose[position];
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+
+            }
+        });
     }
 
 }

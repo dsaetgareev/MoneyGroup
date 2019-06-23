@@ -81,6 +81,7 @@
     <string name="new_loan_norif">Confirm the debt in the amount of %s to the customer %s</string>
     <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Agreement policy </a>]]></string>
     <string name="abonent">Абонент</string>
+    <string name="sended">Отправлено</string>
 
     <string-array name="language_array">
         <item>ru</item>

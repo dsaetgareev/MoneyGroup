@@ -14,33 +14,42 @@
         android:layout_centerHorizontal="true"
         />
 
-    <Spinner
-        android:id="@+id/number_array"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/et_number_rg_fr"
-        android:layout_below="@id/tv_enter_number_rg_fr"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp" />
-
-    <EditText
-        android:id="@+id/et_number_rg_fr"
+    <LinearLayout
+        android:id="@+id/ll_number_rg_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_enter_number_rg_fr"
         android:layout_centerHorizontal="true"
-        android:hint="9171234567"
-        android:inputType="phone"
         android:layout_marginTop="10dp"
-        android:maxLength="15"
-        android:lines="1"
+        >
+
+        <Spinner
+        android:id="@+id/number_array"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         />
+
+        <EditText
+            android:id="@+id/et_number_rg_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="9171234567"
+            android:inputType="phone"
+            android:maxLength="15"
+            android:lines="1"
+            />
+
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/bt_confirm_rg_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_number_rg_fr"
+        android:layout_below="@+id/ll_number_rg_fr"
         android:layout_centerHorizontal="true"
         android:text="@string/btn_confirm"
         />

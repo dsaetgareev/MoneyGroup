@@ -46,6 +46,7 @@ public class PersonService {
         values.put(PersonTable.Cols.NOTE, person.getNote());
         values.put(PersonTable.Cols.COMMENT, person.getComment());
         values.put(PersonTable.Cols.IS_OWES_ME, person.isOwesMe() ? 1 : 0);
+        values.put(PersonTable.Cols.COUNTRY_CODE, person.getCountryCody());
         return values;
     }
 

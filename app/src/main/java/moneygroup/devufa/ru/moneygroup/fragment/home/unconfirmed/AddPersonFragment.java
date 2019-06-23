@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,12 +22,14 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.ContactsActivity;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.CountryCode;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
@@ -33,6 +37,7 @@ import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -44,6 +49,8 @@ public class AddPersonFragment extends Fragment {
     public static final String ARG_PERSON_ID = "personId";
 
     private View view;
+
+    private CodeService codeService;
 
     private Person person;
     private ProgressBarMoney progressBarMoney;
@@ -59,6 +66,9 @@ public class AddPersonFragment extends Fragment {
     private EditText comment;
     private Button saveButton;
     private Button sendButton;
+
+    private Spinner spinner;
+    private String spText;
 
     public static AddPersonFragment newInstance(UUID personId) {
         Bundle args = new Bundle();
@@ -79,6 +89,7 @@ public class AddPersonFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_person, container, false);
+        codeService = new CodeService(getActivity());
         final View rl = view.findViewById(R.id.rl_add_person);
         KeyboardUtil.setClick(rl, getActivity());
         progressBarMoney = new ProgressBarMoney(getActivity());
@@ -90,6 +101,7 @@ public class AddPersonFragment extends Fragment {
     private void initView(View view) {
         initEtName(view);
         initGetContacts(view);
+        initSpinner(view);
         initEtPhone(view);
         initEtSumm(view);
         initCurrency(view);
@@ -144,7 +156,9 @@ public class AddPersonFragment extends Fragment {
 
     public void initEtPhone(View view) {
         etPhone = view.findViewById(R.id.et_ap_phone);
-        etPhone.setText(person.getNumber());
+        if (person.getNumber() != null) {
+            etPhone.setText(person.getNumber().substring(person.getCountryCody().length() - 1));
+        }
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -153,7 +167,7 @@ public class AddPersonFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                person.setNumber(s.toString());
+
             }
 
             @Override
@@ -293,6 +307,7 @@ public class AddPersonFragment extends Fragment {
             public void onClick(View v) {
                 String code = CodeService.get(getActivity()).getCode();
                 DebtConverter debtConverter = new DebtConverter(getActivity());
+                person.setNumber((spText + etPhone.getText().toString()).replaceAll("[^\\d]", ""));
                 DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
                 Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO);
                 progressBarMoney.show();
@@ -302,7 +317,7 @@ public class AddPersonFragment extends Fragment {
                         progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             backAndUpdate();
-                            Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.sended), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -316,10 +331,59 @@ public class AddPersonFragment extends Fragment {
     }
 
     private void backAndUpdate() {
+        person.setCountryCody(spText);
+        person.setNumber((spText + etPhone.getText().toString()).replaceAll("[^\\d]", ""));
         PersonService.get(getActivity()).updatePerson(person);
         Class home = HomeActivity.class;
         Intent intent = new Intent(getActivity(), home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         getActivity().startActivity(intent);
+    }
+
+    private void initSpinner(View view) {
+        spinner = (Spinner) view.findViewById(R.id.number_array);
+        Call<List<String>> call = RegistrationService.getApiService().getCodes();
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                System.out.println(response.body());
+                if (response.isSuccessful()) {
+                    List<String> countryCodes = response.body();
+                    String compareValue = "";
+                    if (person.getCountryCody() != null) {
+                        compareValue = person.getCountryCody();
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, countryCodes);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+                    if (person.getNumber() != null) {
+                        int spinnerPosition = adapter.getPosition(compareValue);
+                        spinner.setSelection(spinnerPosition);
+                    }
+                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String[] choose = getResources().getStringArray(R.array.number_array);
+                            spText = choose[position];
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                } else {
+                    System.out.println("dfdf");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+
+            }
+        });
+
+
     }
 }

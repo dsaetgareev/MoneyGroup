@@ -23,6 +23,7 @@ public class PersonCursorWrapper extends CursorWrapper {
         String personNote = getString(getColumnIndex(PersonTable.Cols.NOTE));
         String personComment = getString(getColumnIndex(PersonTable.Cols.COMMENT));
         int isOwesMe = getInt(getColumnIndex(PersonTable.Cols.IS_OWES_ME));
+        String personCountryCode = getString(getColumnIndex(PersonTable.Cols.COUNTRY_CODE));
 
         Person person = new Person(UUID.fromString(personUUID));
         person.setName(personName);
@@ -32,6 +33,7 @@ public class PersonCursorWrapper extends CursorWrapper {
         person.setNote(personNote);
         person.setComment(personComment);
         person.setOwesMe(isOwesMe != 0);
+        person.setCountryCody(personCountryCode);
         return person;
     }
 }

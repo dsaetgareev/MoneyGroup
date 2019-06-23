@@ -54,6 +54,13 @@
                 android:textSize="20sp"
                 />
 
+            <Spinner
+                android:id="@+id/number_array"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                />
+
 
             <EditText
                 android:id="@+id/et_phone_number"

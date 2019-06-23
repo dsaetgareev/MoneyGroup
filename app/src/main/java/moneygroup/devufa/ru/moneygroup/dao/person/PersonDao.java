@@ -15,6 +15,7 @@ public class PersonDao {
             public static final String NOTE = "note";
             public static final String COMMENT = "comment";
             public static final String IS_OWES_ME = "is_owes_me";
+            public static final String COUNTRY_CODE = "country_code";
         }
     }
 

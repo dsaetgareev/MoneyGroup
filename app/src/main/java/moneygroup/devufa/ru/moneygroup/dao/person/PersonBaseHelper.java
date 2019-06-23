@@ -11,11 +11,13 @@ import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.CodeTable;
 
 public class PersonBaseHelper extends SQLiteOpenHelper {
 
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     public static final String DATA_BASE_NAME = "personBase.db";
+    private Context context;
 
     public PersonBaseHelper(Context context) {
         super(context, DATA_BASE_NAME, null, VERSION);
+        this.context = context;
     }
 
     @Override
@@ -29,7 +31,8 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
                 PersonTable.Cols.CURRENCY + ", " +
                 PersonTable.Cols.NOTE + ", " +
                 PersonTable.Cols.COMMENT + ", " +
-                PersonTable.Cols.IS_OWES_ME +
+                PersonTable.Cols.IS_OWES_ME + ", " +
+                PersonTable.Cols.COUNTRY_CODE +
                 ")"
         );
         db.execSQL("create table " + ArchiveTable.NAME + "(" +

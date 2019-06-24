@@ -22,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -317,6 +318,7 @@ public class AddPersonFragment extends Fragment {
                         progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             backAndUpdate();
+                            PersonService.get(getActivity()).deletePerson(person);
                             Toast.makeText(getActivity(), getString(R.string.sended), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -342,19 +344,22 @@ public class AddPersonFragment extends Fragment {
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);
-        Call<List<String>> call = RegistrationService.getApiService().getCodes();
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<CountryCode>> call = RegistrationService.getApiService().getCodes();
+        call.enqueue(new Callback<List<CountryCode>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                System.out.println(response.body());
+            public void onResponse(Call<List<CountryCode>> call, Response<List<CountryCode>> response) {
                 if (response.isSuccessful()) {
-                    List<String> countryCodes = response.body();
+                    List<CountryCode> countryCodes = response.body();
+                    List<String> codes = new ArrayList<>();
+                    for (CountryCode countryCode : countryCodes) {
+                        codes.add(countryCode.getCode());
+                    }
                     String compareValue = "";
                     if (person.getCountryCody() != null) {
                         compareValue = person.getCountryCody();
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, countryCodes);
+                    ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, codes);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                     if (person.getNumber() != null) {
@@ -379,7 +384,7 @@ public class AddPersonFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<CountryCode>> call, Throwable t) {
 
             }
         });

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import okhttp3.ResponseBody;
@@ -32,6 +34,7 @@ public class RemoveDebtDialog extends DialogFragment {
     private String id;
     private CodeService codeService;
     private Context context;
+    private OwesmeFragment fragment;
 
     public static RemoveDebtDialog newInstance(String id) {
         Bundle bundle = new Bundle();
@@ -60,7 +63,9 @@ public class RemoveDebtDialog extends DialogFragment {
         codeService = new CodeService(getActivity());
         context = getActivity();
         title = view.findViewById(R.id.tv_mess_title);
+        title.setText("Moneybook");
         body = view.findViewById(R.id.tv_mess_body);
+        body.setText(String.format("Вы хотите удалить долг?"));
         builder.setView(view)
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -70,9 +75,9 @@ public class RemoveDebtDialog extends DialogFragment {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if (response.isSuccessful()) {
+                                    fragment.adapterInit();
 
                                 }
-                                toHomeActivity();
                             }
 
                             @Override
@@ -97,5 +102,13 @@ public class RemoveDebtDialog extends DialogFragment {
         Intent intent = new Intent(context, home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.fragment = (OwesmeFragment) fragment;
     }
 }

@@ -87,6 +87,8 @@ public class OwesmeFragment extends Fragment {
     }
 
     public void getDebtDtoList(DebtType type) {
+        owesmeAdapter = new OwesmeAdapter();
+        owesmeAdapter.setFragment(this);
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.NEW);
         statuses.add(Status.NOT_REGISTERED);
@@ -101,7 +103,6 @@ public class OwesmeFragment extends Fragment {
                 progressBarMoney.dismiss();
                 if (response.isSuccessful()) {
                     personList = converter.convertToPersonList(response.body());
-                    owesmeAdapter = new OwesmeAdapter();
                     owesmeAdapter.setActivity((AppCompatActivity)getActivity());
                     owesmeAdapter.setPersonList(personList);
                     owesmeAdapter.setFragmentManager(getFragmentManager());

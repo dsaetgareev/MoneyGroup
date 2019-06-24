@@ -25,12 +25,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.activity.Welcome;
+import moneygroup.devufa.ru.moneygroup.model.dto.CountryCode;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
@@ -55,6 +60,7 @@ public class RegistrationNumber extends Fragment {
     private TextView back;
 
     private Spinner spinner;
+    private Spinner countrySpinner;
     private String spText;
 
     private RegistrationService service;
@@ -77,7 +83,6 @@ public class RegistrationNumber extends Fragment {
 
         skip = view.findViewById(R.id.tv_next_rg_fr);
         back = view.findViewById(R.id.fg_tv_password_back);
-        back.setVisibility(View.INVISIBLE);
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +96,11 @@ public class RegistrationNumber extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getActivity();
-                Class welcome = Welcome.class;
-                Intent intent = new Intent(context, welcome);
-                startActivity(intent);
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                RegistrationAgreement fragment = new RegistrationAgreement();
+                transaction.replace(R.id.registration_container, fragment)
+                        .commit();
             }
         });
 
@@ -260,22 +266,33 @@ public class RegistrationNumber extends Fragment {
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);
-        Call<List<String>> call = RegistrationService.getApiService().getCodes();
-        call.enqueue(new Callback<List<String>>() {
+        countrySpinner = view.findViewById(R.id.sp_country);
+        Call<List<CountryCode>> call = RegistrationService.getApiService().getCodes();
+        call.enqueue(new Callback<List<CountryCode>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+            public void onResponse(Call<List<CountryCode>> call, Response<List<CountryCode>> response) {
                 System.out.println(response.body());
                 if (response.isSuccessful()) {
-                    List<String> countryCodes = response.body();
+                    List<CountryCode> countryCodes = response.body();
+                    List<String> codes = new ArrayList<>();
+                    List<String> countrys = new ArrayList<>();
+                    for (int i = 0; i < countryCodes.size(); i++) {
+                        codes.add(i, countryCodes.get(i).getCode());
+                        countrys.add(i, countryCodes.get(i).getName());
+                    }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countryCodes);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(adapter);
+                    ArrayAdapter<String> codeAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, codes);
+                    ArrayAdapter<String> countryAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, countrys);
+                    codeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(codeAdapter);
+                    countrySpinner.setAdapter(countryAdapter);
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             String[] choose = getResources().getStringArray(R.array.number_array);
                             spText = choose[position];
+                            countrySpinner.setSelection(position);
                         }
 
                         @Override
@@ -283,11 +300,24 @@ public class RegistrationNumber extends Fragment {
 
                         }
                     });
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            spinner.setSelection(position);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+
                 }
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<CountryCode>> call, Throwable t) {
 
             }
         });

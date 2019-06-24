@@ -2,6 +2,7 @@ package moneygroup.devufa.ru.moneygroup.adapters.unconfirmed;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,12 +23,24 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.service.ArchiveService;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
+import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.UnconfirmedViewHolder> {
 
     private int layout;
+
+    private ProgressBarMoney progressBarMoney;
+    private Fragment fragment;
 
     private List<Person> personList = new ArrayList<>();
     private List<Person> changingList = new ArrayList<>();
@@ -142,16 +155,37 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
     }
 
     public void initButtonBox() {
+        progressBarMoney = new ProgressBarMoney(getActivity());
         linearLayout = activity.findViewById(R.id.ll_unc_button_box);
         toArchive = activity.findViewById(R.id.bt_unc_to_arhive);
         toArchive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (Person person : changingList) {
-                    ArchiveService.get(activity).addPerson(person);
-                    PersonService.get(activity).deletePerson(person);
+                for (final Person person : changingList) {
+                    String code = CodeService.get(getActivity()).getCode();
+                    DebtConverter debtConverter = new DebtConverter(getActivity());
+                    DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
+                    Call<ResponseBody> call = DebtService.getApiService().toInArchive(code, debtDTO);
+                    progressBarMoney.show();
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            progressBarMoney.dismiss();
+                            if (response.isSuccessful()) {
+                                PersonService.get(activity).deletePerson(person);
+                                Toast.makeText(getActivity(), getActivity().getString(R.string.sended), Toast.LENGTH_SHORT).show();
+                                toHomeActivity();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
-                toHomeActivity();
+
             }
         });
         delete = activity.findViewById(R.id.bt_unc_delete);
@@ -203,5 +237,13 @@ public class UnconfirmedAdapter extends RecyclerView.Adapter<UnconfirmedAdapter.
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
     }
 }

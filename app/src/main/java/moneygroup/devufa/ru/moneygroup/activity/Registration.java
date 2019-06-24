@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.fragment.registrations.RegistrationAgreement;
 import moneygroup.devufa.ru.moneygroup.fragment.registrations.RegistrationNumber;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
@@ -26,7 +27,7 @@ public class Registration extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        RegistrationNumber fragment = new RegistrationNumber();
+        RegistrationAgreement fragment = new RegistrationAgreement();
         transaction.replace(R.id.registration_container, fragment)
                 .commit();
     }

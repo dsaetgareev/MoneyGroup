@@ -9,23 +9,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/agreement_title"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         />
 
-    <ScrollView
-        android:id="@+id/sv_agreement_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_agreement_title"
-        >
 
         <TextView
             android:id="@+id/tv_agreement_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/agreement_text"
+            android:layout_below="@+id/tv_agreement_title"
             />
-    </ScrollView>
+        <TextView
+            android:id="@+id/tv_link_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agreement_text"
+            android:layout_below="@id/tv_agreement_text"
+            android:textColorLink="@color/oweMe"
+            />
+        <TextView
+            android:id="@+id/tv_link_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agreement_text"
+            android:layout_below="@+id/tv_link_1"
+            android:textColorLink="@color/oweMe"
+            />
+
 
     <TextView
         android:id="@+id/tv_agreement_accept"
@@ -34,6 +46,9 @@
         android:text="@string/tv_accept"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/google_1x"
+        android:textColor="@color/oweMe"
         />
     <TextView
         android:id="@+id/tv_agreement_back"
@@ -42,6 +57,9 @@
         android:text="@string/tv_back"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/google_1x"
+        android:textColor="@color/oweMe"
         />
 
 

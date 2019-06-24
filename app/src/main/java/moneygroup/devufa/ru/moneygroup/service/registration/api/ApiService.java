@@ -73,5 +73,5 @@ public interface ApiService {
     Call<SettingDto> getSetting(@Header("Authorization") String authorization);
 
     @GET("countryCode/anonymous/getCodes")
-    Call<List<String>> getCodes();
+    Call<List<CountryCode>> getCodes();
 }

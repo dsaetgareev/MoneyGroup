@@ -22,6 +22,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.unconfirmed.UnconfirmedAdapter;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.PersonService;
 
 
@@ -34,6 +35,8 @@ public class UnconfirmedFragment extends Fragment {
     private RecyclerView recyclerView;
     private UnconfirmedAdapter unconfirmedAdapter;
     private boolean editButton;
+
+    private CodeService codeService;
 
     public static UnconfirmedFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -56,7 +59,7 @@ public class UnconfirmedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fg_unconfirmed_debts, container, false);
-
+        codeService = new CodeService(getActivity());
         recyclerView = view.findViewById(R.id.rv_for_unconfirmed_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterInit(R.layout.list_item_debt);
@@ -109,10 +112,12 @@ public class UnconfirmedFragment extends Fragment {
             unconfirmedAdapter.setActivity((AppCompatActivity)getActivity());
             unconfirmedAdapter.setLayout(layout);
             unconfirmedAdapter.setPersonList(personList);
+            unconfirmedAdapter.setFragment(this);
             recyclerView.setAdapter(unconfirmedAdapter);
         } else {
             unconfirmedAdapter.setLayout(layout);
             unconfirmedAdapter.setPersonList(personList);
+            unconfirmedAdapter.setFragment(this);
             recyclerView.setAdapter(unconfirmedAdapter);
         }
 
@@ -123,6 +128,14 @@ public class UnconfirmedFragment extends Fragment {
             adapterInit(R.layout.list_item_debt_edit);
         } else {
             adapterInit(R.layout.list_item_debt);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && codeService != null) {
+            updateUI();
         }
     }
 }

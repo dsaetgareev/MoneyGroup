@@ -4,16 +4,25 @@ import java.util.UUID;
 
 public class CountryCode {
 
-    private UUID id;
+    private String code;
 
     private String name;
 
-    public UUID getId() {
-        return id;
+    public CountryCode(String code, String name) {
+        this.code = code;
+        this.name = name;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public CountryCode(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

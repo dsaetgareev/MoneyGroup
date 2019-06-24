@@ -17,7 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.archive.ArchiveActivity;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveViewHolder> {
 
@@ -25,8 +33,10 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     private List<Person> changingList = new ArrayList<>();
     private AppCompatActivity activity = getActivity();
     private LinearLayout linearLayout;
-    private Button toArchive;
     private Button delete;
+    private ArchiveActivity archiveActivity;
+
+    private ProgressBarMoney progressBarMoney;
 
     class ArchiveViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,6 +51,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             name = itemView.findViewById(R.id.tv_name_title);
             summ = itemView.findViewById(R.id.tv_summ);
             currency = itemView.findViewById(R.id.tv_currency);
+            initButtonBox();
             checkBox = itemView.findViewById(R.id.cb_item_debt_edit);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -99,6 +110,37 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         return personList.size();
     }
 
+    public void initButtonBox() {
+        progressBarMoney = new ProgressBarMoney(getActivity());
+        linearLayout = activity.findViewById(R.id.ll_unc_button_box);
+        delete = activity.findViewById(R.id.bt_ar_delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (final Person person : changingList) {
+                    String code = CodeService.get(getActivity()).getCode();
+                    Call<ResponseBody> call = DebtService.getApiService().outArchive(code, person.getId().toString());
+                    progressBarMoney.show();
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            progressBarMoney.dismiss();
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getActivity(), getActivity().getString(R.string.sended), Toast.LENGTH_SHORT).show();
+                                archiveActivity.adapterInit();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     public void showButtonBux() {
         if (changingList.size() > 0) {
             linearLayout.setVisibility(View.VISIBLE);
@@ -129,5 +171,13 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
+    }
+
+    public ArchiveActivity getArchiveActivity() {
+        return archiveActivity;
+    }
+
+    public void setArchiveActivity(ArchiveActivity archiveActivity) {
+        this.archiveActivity = archiveActivity;
     }
 }

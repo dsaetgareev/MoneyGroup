@@ -14,11 +14,30 @@
         android:layout_centerHorizontal="true"
         />
 
+    <Spinner
+        android:id="@+id/sp_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_enter_number_rg_fr"
+        android:layout_marginTop="@dimen/google_1x"
+        android:layout_marginHorizontal="@dimen/google_1x"
+        android:layout_marginBottom="1dp"
+        />
+
+    <View
+        android:id="@+id/view_laine"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@+id/sp_country"
+        android:background="#7b7b7b"
+        android:layout_marginBottom="@dimen/google_1x"
+        />
+
     <LinearLayout
         android:id="@+id/ll_number_rg_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_enter_number_rg_fr"
+        android:layout_below="@id/view_laine"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         >
@@ -82,6 +101,9 @@
         android:text="@string/tv_skip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/google_1x"
+        android:textSize="20sp"
+        android:textColor="@color/oweMe"
         />
 
     <TextView
@@ -91,6 +113,9 @@
         android:text="@string/tv_back"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/google_1x"
+        android:textSize="20sp"
+        android:textColor="@color/oweMe"
         />
 
 </RelativeLayout>

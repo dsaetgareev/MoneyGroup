@@ -77,6 +77,7 @@ public class IOweFragment extends Fragment {
     }
 
     public void getDebtDtoList(DebtType type) {
+        iOweAdapter = new IOweAdapter();
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.NEW);
         statuses.add(Status.NOT_REGISTERED);
@@ -91,9 +92,9 @@ public class IOweFragment extends Fragment {
                 progressBarMoney.dismiss();
                 if (response.isSuccessful()) {
                     personList = converter.convertToPersonList(response.body());
-                    iOweAdapter = new IOweAdapter();
                     iOweAdapter.setActivity((AppCompatActivity)getActivity());
                     iOweAdapter.setPersonList(personList);
+                    iOweAdapter.setFragmentManager(getFragmentManager());
                     recyclerView.setAdapter(iOweAdapter);
                 }
             }

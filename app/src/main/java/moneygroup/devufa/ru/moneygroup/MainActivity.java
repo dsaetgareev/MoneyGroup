@@ -22,12 +22,15 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
+import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
+import moneygroup.devufa.ru.moneygroup.model.dto.CountryCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
@@ -93,9 +96,8 @@ public class MainActivity extends AppCompatActivity {
         this.registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = MainActivity.this;
-                Class registration = Registration.class;
-                Intent intent = new Intent(context, registration);
+                Class welcomeClass = Welcome.class;
+                Intent intent = new Intent(MainActivity.this, welcomeClass);
                 startActivity(intent);
             }
         });
@@ -262,15 +264,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);
-        Call<List<String>> call = RegistrationService.getApiService().getCodes();
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<CountryCode>> call = RegistrationService.getApiService().getCodes();
+        call.enqueue(new Callback<List<CountryCode>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                System.out.println(response.body());
+            public void onResponse(Call<List<CountryCode>> call, Response<List<CountryCode>> response) {
                 if (response.isSuccessful()) {
-                    List<String> countryCodes = response.body();
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_spinner_item, countryCodes);
+                    List<CountryCode> countryCodes = response.body();
+                    List<String> codes = new ArrayList<>();
+                    for (CountryCode countryCode : countryCodes) {
+                        codes.add(countryCode.getCode());
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_spinner_item, codes);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -289,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<CountryCode>> call, Throwable t) {
 
             }
         });

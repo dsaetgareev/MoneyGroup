@@ -18,6 +18,12 @@ public interface ApiDebt {
     @POST("debt/")
     Call<ResponseBody> sendDebt(@Header("Authorization") String authorization, @Body DebtDTO debtDTO1);
 
+    @POST("debt/toInArchive")
+    Call<ResponseBody> toInArchive(@Header("Authorization") String authorization, @Body DebtDTO debtDTO1);
+
+    @POST("debt/outArchive/{id}")
+    Call<ResponseBody> outArchive(@Header("Authorization") String authorization, @Path("id") String id);
+
     @GET("debt/list/{type}")
     Call<List<DebtDTO>> getDebtList(@Header("Authorization") String authorization, @Path("type") String type, @Query("status") List<Status> statuses);
 

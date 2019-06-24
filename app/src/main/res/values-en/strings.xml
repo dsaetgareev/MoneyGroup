@@ -28,11 +28,11 @@
     <string name="enter_number_titel">Enter the number</string>
     <string name="tv_skip">Skip</string>
     <string name="agreement_title">Agreement of the parties</string>
-    <string name="agreement_text">Consent to the processing of personal data - gives the right to the processing of passport data, addresses, dates of birth and even the last name and patronymic of each citizen, who specifically protects the law. All persons who for one reason or another receive, process, transmit or store such information are operators and must obtain consent for any actions with the information received. A sample agreement on the processing of personal data and the requirements for its registration can be found in a special material PPT.ru.</string>
+    <string name="agreement_text">By using the <b> <i> Moneybook </ i> </ b> application and services, you agree to</string>
     <string name="tv_accept">Accept</string>
     <string name="tv_back">Back</string>
     <string name="change_password">Change password</string>
-    <string name="welcome_title">Welcome</string>
+    <string name="welcome_title">Language</string>
     <string name="language">Language</string>
     <string name="btn_confirm">get the code</string>
     <string name="welcome_go">Next</string>
@@ -49,7 +49,7 @@
     <string name="currency">Currency</string>
     <string name="enter_summ">Enter amount</string>
     <string name="Contacts">Contacts</string>
-    <string name="phone_number">+79171234567</string>
+    <string name="phone_number">9171234567</string>
     <string name="password">Password</string>
     <string name="tv_change_password">Change password</string>
     <string name="enter_confirmation_code">Enter confirmation code</string>
@@ -79,9 +79,11 @@
     <string name="cycleText">Chain of %s items collected. %s USD</string>
     <string name="new_debt_notif">Verify debt at %s to lender %s</string>
     <string name="new_loan_norif">Confirm the debt in the amount of %s to the customer %s</string>
-    <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Agreement policy </a>]]></string>
-    <string name="abonent">Абонент</string>
-    <string name="sended">Отправлено</string>
+    <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Terms of Use </a>]]></string>
+    <string name="agreement_link_1"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Privacy Policy </a>]]></string>
+    <string name="abonent">Subscriber</string>
+    <string name="sended">Sent</string>
+    <string name="restore">Restore</string>
 
     <string-array name="language_array">
         <item>ru</item>

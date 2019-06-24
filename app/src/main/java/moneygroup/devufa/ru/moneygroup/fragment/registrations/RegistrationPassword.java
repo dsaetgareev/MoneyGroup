@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.fragment.registrations;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
@@ -96,13 +98,16 @@ public class RegistrationPassword extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
-                            RegistrationService.saveBasicCode(number, password, getActivity());
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    RegistrationService.saveBasicCode(number, password, getActivity());
+                                }
+                            }).start();
                             Toast.makeText(getContext(), "Пароль сохранен", Toast.LENGTH_SHORT).show();
-                            FragmentManager manager = getFragmentManager();
-                            FragmentTransaction transaction = manager.beginTransaction();
-                            RegistrationAgreement fragment = new RegistrationAgreement();
-                            transaction.replace(R.id.registration_container, fragment)
-                                    .commit();
+                            Class main = MainActivity.class;
+                            Intent intent = new Intent(getActivity(), main);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getContext(), "Пароль не сохранен", Toast.LENGTH_SHORT).show();
                         }

@@ -2,7 +2,9 @@ package moneygroup.devufa.ru.moneygroup.adapters.owesme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.cycle.CycleActivity;
@@ -29,6 +32,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
     private List<Person> personList = new ArrayList<>();
     private AppCompatActivity activity;
     private FragmentManager fragmentManager;
+    private Fragment fragment;
 
     class OwesmeViewHolder extends RecyclerView.ViewHolder {
 
@@ -46,23 +50,6 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
             currency = itemView.findViewById(R.id.tv_currency);
             chianImg = itemView.findViewById(R.id.iv_om_chain);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = getActivity();
-                    Intent intent;
-                    if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
-                        intent = CycleActivity.newInstance(context, person);
-//                        intent = ChainActivity.newIntent(context, person);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    } else {
-                        intent = OwesmePersonActivity.newIntent(context, person);
-                    }
-                    activity.startActivity(intent);
-                }
-            });
-
             itemView.setOnTouchListener(new View.OnTouchListener() {
                 long startTime;
                 @Override
@@ -77,10 +64,20 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
                         case MotionEvent.ACTION_CANCEL:
                             long totalTime = System.currentTimeMillis() - startTime;
                             long totalSecunds = totalTime / 1000;
-                            if( totalSecunds >= 3 )
+                            if( totalSecunds >= 2 )
                             {
                                 RemoveDebtDialog debtDialog = RemoveDebtDialog.newInstance(debtId);
+                                debtDialog.setFragment(fragment);
                                 debtDialog.show(fragmentManager, "removeDebtDialog");
+                            } else {
+                                Context context = getActivity();
+                                Intent intent;
+                                if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
+                                    intent = CycleActivity.newInstance(context, person);
+                                } else {
+                                    intent = OwesmePersonActivity.newIntent(context, person);
+                                }
+                                activity.startActivity(intent);
                             }
                             break;
                     }
@@ -145,5 +142,13 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
 
     public void setFragmentManager(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
     }
 }

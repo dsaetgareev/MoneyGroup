@@ -205,7 +205,6 @@ public class ChainActivity extends AppCompatActivity {
 
                     }
                 });
-                toHomeActivity();
             }
         });
     }

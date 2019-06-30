@@ -98,6 +98,10 @@
     <string name="password_saved">Пароль сохранен</string>
     <string name="password_not_saved">Пароль не сохранен</string>
     <string name="akkaunt_remove">Удалить аккаунт</string>
+    <string name="lowercase_letter">строчная буква</string>
+    <string name="uppercase_letter">прописная буква</string>
+    <string name="numeral">цифра</string>
+    <string name="characters_6">не менее 6 символов</string>
 
 
     <string-array name="language_array">

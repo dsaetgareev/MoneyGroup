@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                     for (CountryCode countryCode : countryCodes) {
                         codes.add(countryCode.getCode());
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_spinner_item, codes);
+                    ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, R.layout.spinner_item, codes);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

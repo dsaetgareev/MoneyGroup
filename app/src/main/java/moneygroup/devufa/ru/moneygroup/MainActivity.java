@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 goToHomeActivity();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Неврный пароль", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.wrong_password), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -220,10 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-                } else {
-                    System.out.println("je");
                 }
-
             }
         });
     }

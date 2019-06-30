@@ -71,7 +71,7 @@ public class RegistrationNumber extends Fragment {
         View view = inflater.inflate(R.layout.fg_registration_number, container, false);
         final View rl = view.findViewById(R.id.rl_reg_number);
         KeyboardUtil.setClick(rl, getActivity());
-        progressBarMoney = ((Registration)getActivity()).getProgressBarMoney();
+        progressBarMoney = ((Registration) getActivity()).getProgressBarMoney();
 
         service = new RegistrationService();
         initEnterNumber(view);
@@ -121,7 +121,7 @@ public class RegistrationNumber extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //we store the cursor local relative to the end of the string in the EditText before the edition
-                cursorComplement = s.length()-etEnterNumber.getSelectionStart();
+                cursorComplement = s.length() - etEnterNumber.getSelectionStart();
                 //we check if the user ir inputing or erasing a character
                 if (count > after) {
                     backspacingFlag = true;
@@ -155,16 +155,16 @@ public class RegistrationNumber extends Fragment {
                         String ans = "(" + phone.substring(0, 3) + ") " + phone.substring(3, 6) + "-" + phone.substring(6);
                         etEnterNumber.setText(ans);
                         //we deliver the cursor to its original position relative to the end of the string
-                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
+                        etEnterNumber.setSelection(etEnterNumber.getText().length() - cursorComplement);
 
                         //we end at the most simple case, when just one character mask is needed
                         //example: 99999 <- 3+ digits already typed
                         // masked: (999) 99
                     } else if (phone.length() >= 3 && !backspacingFlag) {
                         editedFlag = true;
-                        String ans = "(" +phone.substring(0, 3) + ") " + phone.substring(3);
+                        String ans = "(" + phone.substring(0, 3) + ") " + phone.substring(3);
                         etEnterNumber.setText(ans);
-                        etEnterNumber.setSelection(etEnterNumber.getText().length()-cursorComplement);
+                        etEnterNumber.setSelection(etEnterNumber.getText().length() - cursorComplement);
                     }
                     // We just edited the field, ignoring this cicle of the watcher and getting ready for the next
                 } else {
@@ -280,40 +280,42 @@ public class RegistrationNumber extends Fragment {
                         codes.add(i, countryCodes.get(i).getCode());
                         countrys.add(i, countryCodes.get(i).getName());
                     }
+                    if (getActivity() != null) {
+                        ArrayAdapter<String> codeAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, codes);
+                        ArrayAdapter<String> countryAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, countrys);
+                        codeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(codeAdapter);
+                        countrySpinner.setAdapter(countryAdapter);
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                String[] choose = getResources().getStringArray(R.array.number_array);
+                                spText = choose[position];
+                                countrySpinner.setSelection(position);
+                            }
 
-                    ArrayAdapter<String> codeAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, codes);
-                    ArrayAdapter<String> countryAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, countrys);
-                    codeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(codeAdapter);
-                    countrySpinner.setAdapter(countryAdapter);
-                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String[] choose = getResources().getStringArray(R.array.number_array);
-                            spText = choose[position];
-                            countrySpinner.setSelection(position);
-                        }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+                        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                spinner.setSelection(position);
+                            }
 
-                        }
-                    });
-                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            spinner.setSelection(position);
-                        }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
+                            }
+                        });
 
 
+                    }
                 }
+
             }
 
             @Override

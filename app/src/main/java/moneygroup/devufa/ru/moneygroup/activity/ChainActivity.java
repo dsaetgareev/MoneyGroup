@@ -159,7 +159,7 @@ public class ChainActivity extends AppCompatActivity {
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<ResponseBody> call = DebtService.getApiService().acceptRelief(codeService.getCode(), person.getId().toString(), true, cycleDTO.getId().toString());
+                Call<ResponseBody> call = DebtService.getApiService().acceptRelief(codeService.getCode(), prevDebtDTO.getId(), nextDebtDTO.getId(), true, cycleDTO.getId().toString());
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -168,7 +168,7 @@ public class ChainActivity extends AppCompatActivity {
                             Context context = ChainActivity.this;
                             Intent intent = new Intent(context, home);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            context.startActivity(intent);
+                            startActivity(intent);
                         }
                     }
 
@@ -177,7 +177,6 @@ public class ChainActivity extends AppCompatActivity {
 
                     }
                 });
-                toHomeActivity();
             }
         });
     }
@@ -187,7 +186,7 @@ public class ChainActivity extends AppCompatActivity {
         btnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<ResponseBody> call = DebtService.getApiService().acceptRelief(codeService.getCode(), person.getId().toString(), false, cycleDTO.getId().toString());
+                Call<ResponseBody> call = DebtService.getApiService().acceptRelief(codeService.getCode(), prevDebtDTO.getId().toString(), nextDebtDTO.getId().toString(), false, cycleDTO.getId().toString());
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

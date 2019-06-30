@@ -98,24 +98,17 @@ public class RegistrationPassword extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    RegistrationService.saveBasicCode(number, password, getActivity());
-                                }
-                            }).start();
-                            Toast.makeText(getContext(), "Пароль сохранен", Toast.LENGTH_SHORT).show();
                             Class main = MainActivity.class;
                             Intent intent = new Intent(getActivity(), main);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getContext(), "Пароль не сохранен", Toast.LENGTH_SHORT).show();
+                            RegistrationService.saveBasicCode(number, password, getActivity(), intent);
+                            Toast.makeText(getContext(), getString(R.string.password_saved), Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getContext(), "Пароль не сохранен", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.password_not_saved), Toast.LENGTH_SHORT).show();
                     }
                 });
 

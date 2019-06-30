@@ -39,6 +39,6 @@ public interface ApiDebt {
     @POST("debt/close/{id}")
     Call<ResponseBody> close(@Header("Authorization") String authorization, @Path("id") String id);
 
-    @POST("debt/acceptRelief/{id}")
-    Call<ResponseBody> acceptRelief(@Header("Authorization") String authorization, @Path("id") String id, @Query("isAccepted") boolean isAccepted, @Query("cycleId") String cycleId);
+    @POST("debt/acceptRelief/fDebt/{fId}/sDebt/{sId}")
+    Call<ResponseBody> acceptRelief(@Header("Authorization") String authorization, @Path("fId") String fId, @Path("sId") String sId, @Query("isAccepted") boolean isAccepted, @Query("cycleId") String cycleId);
 }

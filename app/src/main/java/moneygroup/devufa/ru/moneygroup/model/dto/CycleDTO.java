@@ -15,6 +15,8 @@ public class CycleDTO implements Serializable {
 
     private int acceptedPerson;
 
+    private String cycleCurrency;
+
     public UUID getId() {
         return id;
     }
@@ -53,5 +55,13 @@ public class CycleDTO implements Serializable {
 
     public void setAcceptedPerson(int acceptedPerson) {
         this.acceptedPerson = acceptedPerson;
+    }
+
+    public String getCycleCurrency() {
+        return cycleCurrency;
+    }
+
+    public void setCycleCurrency(String cycleCurrency) {
+        this.cycleCurrency = cycleCurrency;
     }
 }

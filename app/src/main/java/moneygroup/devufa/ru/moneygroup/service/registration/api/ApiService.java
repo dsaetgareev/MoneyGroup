@@ -74,4 +74,7 @@ public interface ApiService {
 
     @GET("countryCode/anonymous/getCodes")
     Call<List<CountryCode>> getCodes();
+
+    @GET("person/remove")
+    Call<ResponseBody> remove(@Header("Authorization") String authorization);
 }

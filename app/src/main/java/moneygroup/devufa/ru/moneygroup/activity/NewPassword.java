@@ -208,10 +208,9 @@ public class NewPassword extends AppCompatActivity {
     }
 
     public void toMainActivity(String number, String code, String password) {
-        RegistrationService.saveBasicCode(number, password, NewPassword.this);
         Context context = getApplicationContext();
         Class mainActivity = MainActivity.class;
         Intent intent = new Intent(context, mainActivity);
-        startActivity(intent);
+        RegistrationService.saveBasicCode(number, password, NewPassword.this, intent);
     }
 }

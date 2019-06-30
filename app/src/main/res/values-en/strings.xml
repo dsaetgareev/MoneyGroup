@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Moneybook</string>
-    <string name="into_in_profil">Login to profile</string>
+    <string name="into_in_profil"><b>Login to profile</b></string>
     <string name="login_text">Login</string>
     <string name="password_text">Password</string>
     <string name="login_button">Enter</string>
@@ -21,10 +21,9 @@
     <string name="enter_new_password">Enter a new password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="save">Save</string>
-    <string name="password_description">The password must contain only letters of the Latin alphabet,
-        as imaginary one upper case letter, one lower case letter, one number and at least 6 characters.</string>
+    <string name="password_description">The password must contain only letters of the Latin alphabet</string>
     
-    <string name="registration_title">Registration</string>
+    <string name="registration_title"><b>Registration</b></string>
     <string name="enter_number_titel">Enter the number</string>
     <string name="tv_skip">Skip</string>
     <string name="agreement_title">Agreement of the parties</string>
@@ -84,6 +83,10 @@
     <string name="abonent">Subscriber</string>
     <string name="sended">Sent</string>
     <string name="restore">Restore</string>
+    <string name="wrong_password">Пароль неверный</string>
+    <string name="password_saved">Пароль сохранен</string>
+    <string name="password_not_saved">Пароль не сохранен</string>
+    <string name="akkaunt_remove">Удалить аккаунт</string>
 
     <string-array name="language_array">
         <item>ru</item>

@@ -20,22 +20,25 @@
             android:layout_height="wrap_content"
             android:text="@string/agreement_text"
             android:layout_below="@+id/tv_agreement_title"
+            android:textSize="15sp"
             />
         <TextView
             android:id="@+id/tv_link_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/agreement_text"
+            android:text="@string/agreement_link"
             android:layout_below="@id/tv_agreement_text"
             android:textColorLink="@color/oweMe"
+            android:textSize="15sp"
             />
         <TextView
             android:id="@+id/tv_link_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/agreement_text"
+            android:text="@string/agreement_link_1"
             android:layout_below="@+id/tv_link_1"
             android:textColorLink="@color/oweMe"
+            android:textSize="15sp"
             />
 
 
@@ -47,7 +50,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:textSize="20sp"
-        android:layout_margin="@dimen/google_1x"
+        android:layout_margin="16dp"
         android:textColor="@color/oweMe"
         />
     <TextView
@@ -58,7 +61,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_margin="@dimen/google_1x"
+        android:layout_margin="16dp"
         android:textColor="@color/oweMe"
         />
 

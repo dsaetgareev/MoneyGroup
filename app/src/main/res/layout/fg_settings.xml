@@ -213,6 +213,14 @@
                 android:text="@string/save"
                 android:textAlignment="center" />
 
+            <Button
+                android:id="@+id/bt_set_remove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/akkaunt_remove"
+                android:textAlignment="center" />
+
 
         </LinearLayout>
 

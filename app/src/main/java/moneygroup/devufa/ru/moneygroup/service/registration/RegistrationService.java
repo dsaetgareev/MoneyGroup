@@ -1,6 +1,7 @@
 package moneygroup.devufa.ru.moneygroup.service.registration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
@@ -49,7 +50,7 @@ public class RegistrationService {
         return getRetrofitInstance().create(ApiService.class);
     }
 
-    public static void saveBasicCode(final String number, String password, Context context) {
+    public static void saveBasicCode(final String number, String password, final Context context, final Intent intent) {
         final CodeService codeService = CodeService.get(context);
         Call<ResponseBody> callCode = getLoginApiService().login(number, password);
         callCode.enqueue(new Callback<ResponseBody>() {
@@ -59,6 +60,7 @@ public class RegistrationService {
                     try {
                         BasicCode basicCode = new BasicCode(number, response.body().string());
                         codeService.saveOrUpdate(basicCode);
+                        context.startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

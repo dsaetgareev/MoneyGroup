@@ -57,6 +57,7 @@ public class DebtConverter {
         }
         Person person = new Person();
         person.setId(UUID.fromString(debtDTO.getId()));
+        person.setCreateDate(debtDTO.getCreateDate());
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());
             person.setName(debtDTO.getReceiver());

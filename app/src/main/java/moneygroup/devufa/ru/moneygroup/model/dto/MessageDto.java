@@ -1,7 +1,11 @@
 package moneygroup.devufa.ru.moneygroup.model.dto;
 
+import java.util.Date;
+
 public class MessageDto {
     private String id;
+
+    private Date createDate;
 
     private String debtId;
 
@@ -39,6 +43,14 @@ public class MessageDto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public String getDebtId() {

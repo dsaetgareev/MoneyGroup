@@ -1,6 +1,7 @@
 package moneygroup.devufa.ru.moneygroup.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -9,6 +10,8 @@ import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 public class Person implements Serializable {
 
     private UUID id;
+
+    private Date createDate;
 
     private String name;
 
@@ -51,6 +54,14 @@ public class Person implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public String getName() {

@@ -40,11 +40,11 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void initLanguages() {
-        languages.add(new Language("English", "en"));
-        languages.add(new Language("Русский", "ru"));
-        languages.add(new Language("Spanish", "ru"));
-        languages.add(new Language("Deutsch", "en"));
-        languages.add(new Language("French", "ru"));
+        languages.add(new Language("English", "en_US"));
+        languages.add(new Language("Русский", "ru_RU"));
+        languages.add(new Language("Spanish", "ru_RU"));
+        languages.add(new Language("Deutsch", "en_US"));
+        languages.add(new Language("French", "ru_RU"));
     }
 
 

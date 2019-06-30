@@ -68,6 +68,7 @@ public class SettingsFragment extends Fragment {
     private CheckBox diffCurCb;
 
     private Button saveButton;
+    private Button removeButton;
 
     private CodeService codeService;
 
@@ -306,6 +307,33 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    private void initRemoveButton(View view) {
+        removeButton = view.findViewById(R.id.bt_set_remove);
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call<ResponseBody> call = RegistrationService.getApiService().remove(basicCode.getCode());
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getActivity(), "OK", Toast.LENGTH_SHORT).show();
+                            new CodeService(getActivity()).deleteCode(basicCode);
+                            Class mainActivity = MainActivity.class;
+                            Intent intent = new Intent(getActivity(), mainActivity);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -348,6 +376,7 @@ public class SettingsFragment extends Fragment {
                     initChainCb(view);
                     initDiffCurCb(view);
                     initSaveButton(view);
+                    initRemoveButton(view);
                 }
             }
 

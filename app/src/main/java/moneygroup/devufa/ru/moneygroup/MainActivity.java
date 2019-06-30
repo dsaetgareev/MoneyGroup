@@ -2,6 +2,7 @@ package moneygroup.devufa.ru.moneygroup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -24,6 +25,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
@@ -32,6 +34,7 @@ import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
 import moneygroup.devufa.ru.moneygroup.model.dto.CountryCode;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.LocaleService;
 import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
@@ -69,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
         final View view = findViewById(R.id.rl_main);
         KeyboardUtil.setClick(view, MainActivity.this);
         progressBarMoney = new ProgressBarMoney(MainActivity.this);
+        boolean firstInit = initLocale();
         codeService = CodeService.get(getApplicationContext());
-        if (!codeService.getCodeList().isEmpty()) {
+        if (firstInit) {
+            toWelcomeClass();
+        } else if (!codeService.getCodeList().isEmpty()) {
             basicCode = codeService.getCodeList().get(0);
             if (basicCode != null) {
                 goToHomeActivity();
@@ -96,11 +102,22 @@ public class MainActivity extends AppCompatActivity {
         this.registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Class welcomeClass = Welcome.class;
-                Intent intent = new Intent(MainActivity.this, welcomeClass);
-                startActivity(intent);
+                toWelcomeClass();
             }
         });
+    }
+
+    public boolean initLocale() {
+        String value = LocaleService.get(MainActivity.this).getLocale();
+        if (value != null) {
+            Locale locale = new Locale(value);
+            Locale.setDefault(locale);
+            Configuration configuration = new Configuration();
+            configuration.locale = locale;
+            getResources().updateConfiguration(configuration, null);
+            return false;
+        }
+        return true;
     }
 
     private void initEtPhone() {
@@ -294,6 +311,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void toWelcomeClass() {
+        Class welcomeClass = Welcome.class;
+        Intent intent = new Intent(MainActivity.this, welcomeClass);
+        startActivity(intent);
     }
 
 }

@@ -42,4 +42,13 @@ public class PersonDao {
             public static final String CODE = "code";
         }
     }
+
+    public static final class LocaleTable {
+        public static final String NAME = "locale";
+
+        public static final class Cols {
+            public static final String LOCALE_NAME = "locale_name";
+            public static final String LOCALE = "locale";
+        }
+    }
 }

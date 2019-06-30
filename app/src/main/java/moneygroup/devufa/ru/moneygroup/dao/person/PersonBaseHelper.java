@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.PersonTable;
 import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.ArchiveTable;
 import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.CodeTable;
+import moneygroup.devufa.ru.moneygroup.dao.person.PersonDao.LocaleTable;
 
 
 public class PersonBaseHelper extends SQLiteOpenHelper {
 
-    public static final int VERSION = 2;
+    public static final int VERSION = 3;
     public static final String DATA_BASE_NAME = "personBase.db";
     private Context context;
 
@@ -52,6 +53,13 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
                 "_id integer primary key autoincrement, " +
                 CodeTable.Cols.NUMBER + ", " +
                 CodeTable.Cols.CODE +
+                ")"
+        );
+
+        db.execSQL("create table " + LocaleTable.NAME + "(" +
+                "_id integer primary key autoincrement, " +
+                LocaleTable.Cols.LOCALE_NAME + ", " +
+                LocaleTable.Cols.LOCALE +
                 ")"
         );
 

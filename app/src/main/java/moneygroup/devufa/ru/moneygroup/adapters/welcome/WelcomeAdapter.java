@@ -19,6 +19,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
 import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.model.Language;
+import moneygroup.devufa.ru.moneygroup.service.LocaleService;
 
 public class WelcomeAdapter extends RecyclerView.Adapter<WelcomeAdapter.WelcomeViewHolder> {
 
@@ -41,6 +42,7 @@ public class WelcomeAdapter extends RecyclerView.Adapter<WelcomeAdapter.WelcomeV
                     Configuration configuration = new Configuration();
                     configuration.locale = locale;
                     getActivity().getResources().updateConfiguration(configuration, null);
+                    LocaleService.get(getActivity()).updateLocale(value);
 
                     Context context = getActivity();
                     Class registration = Registration.class;

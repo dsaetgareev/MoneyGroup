@@ -121,5 +121,6 @@ public class PersonService {
         database.delete(PersonTable.NAME, null, null);
         database.delete(PersonDao.ArchiveTable.NAME, null, null);
         database.delete(PersonDao.CodeTable.NAME, null, null);
+        database.delete(PersonDao.LocaleTable.NAME, null, null);
     }
 }

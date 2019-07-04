@@ -92,10 +92,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 isDialog = true;
                 args.put("id", debtId);
                 args.put("telephoneNumber", debtTelephoneNumber);
-                args.put("currentCount", debtCurrentCount.toString());
+                args.put("count", debtCurrentCount.toString());
                 args.put("title", message.getTitle());
                 args.put("body", message.getBody());
                 args.put("currency", message.getCurrency());
+                args.put("messageId", messageId);
             } else {
                 isDialog = false;
                 args.put("title", message.getTitle());

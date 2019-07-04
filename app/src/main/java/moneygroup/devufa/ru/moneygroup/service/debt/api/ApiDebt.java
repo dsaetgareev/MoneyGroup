@@ -28,7 +28,13 @@ public interface ApiDebt {
     Call<List<DebtDTO>> getDebtList(@Header("Authorization") String authorization, @Path("type") String type, @Query("status") List<Status> statuses);
 
     @POST("debt/accept/{id}")
-    Call<ResponseBody> acceptDebt(@Header("Authorization") String authorization, @Path("id") String id, @Query("isAccepted") boolean isAccepted);
+    Call<ResponseBody> acceptDebt(@Header("Authorization") String authorization,
+                                  @Path("id") String id,
+                                  @Query("isAccepted") boolean isAccepted,
+                                  @Query("name") String name,
+                                  @Query("messageId") String messageId
+
+    );
 
     @GET("debt/get/{id}")
     Call<DebtDTO> getDebtById(@Header("Authorization") String authorization, @Path("id") String id);

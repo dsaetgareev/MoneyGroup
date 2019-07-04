@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
         codeService = CodeService.get(getApplicationContext());
         if (firstInit) {
             toWelcomeClass();
-        } else if (!codeService.getCodeList().isEmpty()) {
+        }
+        if (!codeService.getCodeList().isEmpty()) {
             basicCode = codeService.getCodeList().get(0);
             if (basicCode != null) {
                 goToHomeActivity();

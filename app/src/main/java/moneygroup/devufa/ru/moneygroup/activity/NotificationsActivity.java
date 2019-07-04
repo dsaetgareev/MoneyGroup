@@ -17,6 +17,7 @@ public class NotificationsActivity extends AppCompatActivity {
     private String debtTelephoneNumber;
     private String debtCurrentCount;
     private String type;
+    private String messageId;
     private Map<String, String> args = new HashMap<>();
 
     @Override
@@ -25,11 +26,13 @@ public class NotificationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notificactions);
         debtId = getIntent().getStringExtra("id");
         debtTelephoneNumber = getIntent().getStringExtra("telephoneNumber");
-        debtCurrentCount = getIntent().getStringExtra("currentCount");
+        debtCurrentCount = getIntent().getStringExtra("count");
         type = getIntent().getStringExtra("type");
         args.put("title", getIntent().getStringExtra("title"));
         args.put("body", getIntent().getStringExtra("body"));
         args.put("currency", getIntent().getStringExtra("currency"));
+        args.put("id", debtId);
+        args.put("messageId", messageId);
         initArgs();
         switch (type) {
             case "NEW_DEBT":
@@ -51,7 +54,7 @@ public class NotificationsActivity extends AppCompatActivity {
     private void initArgs() {
         args.put("id", debtId);
         args.put("telephoneNumber", debtTelephoneNumber);
-        args.put("currentCount", debtCurrentCount);
+        args.put("count", debtCurrentCount);
         args.put("type", type);
     }
 }

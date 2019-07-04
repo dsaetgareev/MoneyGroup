@@ -181,7 +181,7 @@ public class RegistrationNumber extends Fragment {
             public void onClick(View v) {
                 number = (spText + etEnterNumber.getText().toString()).replaceAll("[^\\d]", "");
                 String locale = getResources().getConfiguration().locale.toString();
-                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale);
+                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale, spText.replaceAll("[^\\d]", ""));
                 progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

@@ -17,7 +17,6 @@ import java.util.Locale;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.Registration;
-import moneygroup.devufa.ru.moneygroup.activity.Welcome;
 import moneygroup.devufa.ru.moneygroup.model.Language;
 import moneygroup.devufa.ru.moneygroup.service.LocaleService;
 

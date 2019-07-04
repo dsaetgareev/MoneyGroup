@@ -14,7 +14,11 @@ public class DebtDTO implements Serializable {
 
     private String initiator;
 
+    private String nameForInitiator;
+
     private String receiver;
+
+    private String nameForReceiver;
 
     private double totalCount;
 
@@ -129,5 +133,21 @@ public class DebtDTO implements Serializable {
 
     public void setRelief(boolean relief) {
         this.relief = relief;
+    }
+
+    public String getNameForInitiator() {
+        return nameForInitiator;
+    }
+
+    public void setNameForInitiator(String nameForInitiator) {
+        this.nameForInitiator = nameForInitiator;
+    }
+
+    public String getNameForReceiver() {
+        return nameForReceiver;
+    }
+
+    public void setNameForReceiver(String nameForReceiver) {
+        this.nameForReceiver = nameForReceiver;
     }
 }

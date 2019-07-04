@@ -5,7 +5,7 @@ import java.util.Date;
 public class MessageDto {
     private String id;
 
-    private Date createDate;
+    private String createDate;
 
     private String debtId;
 
@@ -45,11 +45,11 @@ public class MessageDto {
         this.id = id;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class AddPersonFragment extends Fragment {
     private EditText comment;
     private Button saveButton;
     private Button sendButton;
+    private TextView errText;
 
     private Spinner spinner;
     private String spText;
@@ -102,8 +104,9 @@ public class AddPersonFragment extends Fragment {
     private void initView(View view) {
         initEtName(view);
         initGetContacts(view);
-        initSpinner(view);
+//        initSpinner(view);
         initEtPhone(view);
+        initErrText(view);
         initEtSumm(view);
         initCurrency(view);
         initIsOwesMe(view);
@@ -142,7 +145,6 @@ public class AddPersonFragment extends Fragment {
 
     public void initGetContacts(View view) {
         getContacts = view.findViewById(R.id.iv_get_contacts_icon);
-        getContacts.setVisibility(View.INVISIBLE);
         getContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +160,7 @@ public class AddPersonFragment extends Fragment {
     public void initEtPhone(View view) {
         etPhone = view.findViewById(R.id.et_ap_phone);
         if (person.getNumber() != null) {
-            etPhone.setText(person.getNumber().substring(person.getCountryCody().length() - 1));
+            etPhone.setText(person.getNumber());
         }
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -173,9 +175,19 @@ public class AddPersonFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                String string = s.toString();
+                if (!"".equals(string) && !string.substring(0, 1).equals("+")) {
+                    errText.setVisibility(View.VISIBLE);
+                } else {
+                    errText.setVisibility(View.INVISIBLE);
+                }
             }
         });
+    }
+
+    public void initErrText(View view) {
+        errText = view.findViewById(R.id.tv_ap_err);
+        errText.setVisibility(View.INVISIBLE);
     }
 
     public void initEtSumm(View view) {
@@ -308,7 +320,8 @@ public class AddPersonFragment extends Fragment {
             public void onClick(View v) {
                 String code = CodeService.get(getActivity()).getCode();
                 DebtConverter debtConverter = new DebtConverter(getActivity());
-                person.setNumber((spText + etPhone.getText().toString()).replaceAll("[^\\d]", ""));
+                person.setNumber((etPhone.getText().toString()).replaceAll("[^\\d]", ""));
+                person.setName(etName.getText().toString());
                 DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
                 Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO);
                 progressBarMoney.show();
@@ -334,7 +347,7 @@ public class AddPersonFragment extends Fragment {
 
     private void backAndUpdate() {
         person.setCountryCody(spText);
-        person.setNumber((spText + etPhone.getText().toString()).replaceAll("[^\\d]", ""));
+        person.setNumber((etPhone.getText().toString()).replaceAll("[^\\d]", ""));
         PersonService.get(getActivity()).updatePerson(person);
         Class home = HomeActivity.class;
         Intent intent = new Intent(getActivity(), home);

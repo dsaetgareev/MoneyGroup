@@ -47,7 +47,7 @@ public class DebtConverter {
         debtDTO.setComment(person.getComment());
         debtDTO.setNote(person.getNote());
         debtDTO.setDebtType(person.isOwesMe() ? DebtType.LOAN : DebtType.DEBT);
-
+        debtDTO.setNameForReceiver(person.getName());
         return debtDTO;
     }
 

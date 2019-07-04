@@ -39,6 +39,7 @@ public class NewDebtDialog extends DialogFragment {
     private String debtCurrency;
     private String type;
     private String body;
+    private String messageId;
 
     private TextView textViewBody;
     private TextView tvTitle;
@@ -50,10 +51,11 @@ public class NewDebtDialog extends DialogFragment {
         Bundle bundle = new Bundle();
         bundle.putString("id", args.get("id"));
         bundle.putString("telephoneNumber", args.get("telephoneNumber"));
-        bundle.putString("currentCount", args.get("currentCount"));
+        bundle.putString("count", args.get("count"));
         bundle.putString("currency", args.get("currency"));
         bundle.putString("type", args.get("type"));
         bundle.putString("body", args.get("body"));
+        bundle.putString("messageId", args.get("messageId"));
         NewDebtDialog debtDialog = new NewDebtDialog();
         debtDialog.setArguments(bundle);
         return debtDialog;
@@ -65,10 +67,11 @@ public class NewDebtDialog extends DialogFragment {
         if (getArguments() != null) {
             debtId = getArguments().getString("id");
             debtTelephoneNumber = getArguments().getString("telephoneNumber");
-            debtCurrentCount = getArguments().getString("currentCount");
+            debtCurrentCount = getArguments().getString("count");
             type = getArguments().getString("type");
             debtCurrency = getArguments().getString("currency");
             body = getArguments().getString("body");
+            messageId = getArguments().getString("messageId");
         }
     }
 
@@ -101,7 +104,7 @@ public class NewDebtDialog extends DialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true);
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true, "Almaz", messageId);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
@@ -122,7 +125,7 @@ public class NewDebtDialog extends DialogFragment {
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false);
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false, "A;", messageId);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override

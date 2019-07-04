@@ -5,7 +5,7 @@
     >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:id="@+id/rl_add_person"
     >
@@ -104,14 +104,6 @@
                 android:layout_margin="@dimen/google_1x"
                 />
 
-            <Spinner
-                android:id="@+id/number_array"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/google_1x"
-                />
-
             <EditText
                 android:id="@+id/et_ap_phone"
                 android:layout_width="match_parent"
@@ -124,6 +116,14 @@
                 android:layout_margin="@dimen/google_1x"
                 />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_ap_err"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Формат номера должен быть +79171234567"
+            android:textColor="@color/oweMe"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

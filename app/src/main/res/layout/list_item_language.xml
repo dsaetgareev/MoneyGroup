@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:layout_margin="@dimen/google_1x"
+    android:layout_marginHorizontal="@dimen/google_1x"
+    android:layout_marginTop="4dp"
     >
 
     <TextView
         android:id="@+id/tv_lan_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/google_1x"
         android:text="@string/language"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -19,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/google_1x"
         android:text=">"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -30,8 +29,8 @@
         android:layout_height="wrap_content"
         style="?android:listSeparatorTextViewStyle"
         android:layout_below="@+id/tv_icon"
-        android:textSize="15sp"
         android:textStyle="bold"
+        android:layout_marginTop="-15dp"
         />
 
 </RelativeLayout>

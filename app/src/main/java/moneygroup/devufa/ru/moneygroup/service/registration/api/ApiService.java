@@ -20,7 +20,9 @@ public interface ApiService {
 
     @POST("person/anonymous/registerRequest/")
     Call<ResponseBody> sendNumber(@Query("telephoneNumber") String telephoneNumber,
-                                  @Query("locale") String locale);
+                                  @Query("locale") String locale,
+                                  @Query("countryCode") String countryCode
+    );
 
     @POST("person/anonymous/{code}")
     Call<ResponseBody> registerPassword(@Body PersonDTO personDTO, @Path("code") String code);

@@ -36,6 +36,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         private TextView title;
         private TextView body;
+        private TextView tvDate;
         private boolean isDialog;
 
         private String debtId;
@@ -48,6 +49,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             super(itemView);
             title = itemView.findViewById(R.id.tv_mess_title);
             body = itemView.findViewById(R.id.tv_mess_body);
+            tvDate = itemView.findViewById(R.id.tv_mess_date);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -82,6 +84,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             messageId = message.getId();
             title.setText(message.getTitle());
             body.setText(message.getBody());
+            tvDate.setText(message.getCreateDate());
             if (!message.isRead()) {
                 title.setTypeface(null, Typeface.BOLD);
                 body.setTypeface(null, Typeface.BOLD);
@@ -102,6 +105,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 isDialog = false;
                 args.put("title", message.getTitle());
                 args.put("body", message.getBody());
+                args.put("date", message.getCreateDate());
             }
 
         }

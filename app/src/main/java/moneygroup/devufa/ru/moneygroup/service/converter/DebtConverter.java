@@ -60,10 +60,10 @@ public class DebtConverter {
         person.setCreateDate(debtDTO.getCreateDate());
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());
-            person.setName(debtDTO.getReceiver());
+            person.setName(debtDTO.getNameForReceiver() != null ? debtDTO.getNameForReceiver() : debtDTO.getReceiver());
         } else {
             person.setNumber(debtDTO.getInitiator());
-            person.setName(debtDTO.getInitiator());
+            person.setName(debtDTO.getNameForInitiator() != null ? debtDTO.getNameForInitiator() : debtDTO.getInitiator());
         }
         person.setSumm(String.valueOf(debtDTO.getCount()));
         person.setCurrency(debtDTO.getCurrency());

@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.CycleDTO;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.cycle.CycleApiService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.utils.KeyboardUtil;
 import okhttp3.ResponseBody;
@@ -47,6 +49,7 @@ public class ChainActivity extends AppCompatActivity {
 
     private TextView tvSumm;
     private TextView tvChDesc;
+    private TextView tvChDescCurr;
     private TextView tvChResponse;
 
     private Button btnAgree;
@@ -77,19 +80,8 @@ public class ChainActivity extends AppCompatActivity {
         cycleDTO = (CycleDTO) getIntent().getSerializableExtra("cycle");
         codeService = new CodeService(ChainActivity.this);
 
-        @SuppressLint("StringFormatMatches")
-        String descText = String.format(getString(R.string.descText), cycleDTO.getCountElement());
+        initCycle(cycleDTO.getId().toString(), person.getId().toString());
 
-        @SuppressLint("StringFormatMatches")
-        String descResponse = String.format(getString(R.string.descResponse), cycleDTO.getAcceptedPerson());
-
-        tvChDesc = findViewById(R.id.tv_ch_desc);
-        tvChDesc.setText(descText);
-        tvChResponse = findViewById(R.id.tv_ch_desc_response);
-        tvChResponse.setText(descResponse);
-        tvSumm = findViewById(R.id.tv_ch_desc_summ);
-        tvSumm.setText(String.valueOf(cycleDTO.getMinCount()));
-        init(cycleDTO.getId().toString(), person.getId().toString());
         initBtnAgree();
         initBtnReject();
     }
@@ -105,50 +97,99 @@ public class ChainActivity extends AppCompatActivity {
                     prevDebtDTO = debtDTOS.get(0);
                     nextDebtDTO = debtDTOS.get(1);
 
-                    String om = codeService.getNumber().equals(prevDebtDTO.getInitiator()) ?
-                            prevDebtDTO.getReceiver() : prevDebtDTO.getInitiator();
+                    String omName;
+                    String omNum;
+                    String ioName;
+                    String ioNum;
+
+                    if (codeService.getNumber().equals(prevDebtDTO.getInitiator())) {
+                        omName = prevDebtDTO.getNameForReceiver() != null ? prevDebtDTO.getNameForReceiver() : prevDebtDTO.getReceiver();
+                        omNum = prevDebtDTO.getReceiver();
+                    } else {
+                        omName = prevDebtDTO.getNameForInitiator() != null ? prevDebtDTO.getNameForInitiator() : prevDebtDTO.getInitiator();
+                        omNum = prevDebtDTO.getInitiator();
+                    }
 
                     tvOmBefName = findViewById(R.id.tv_ch_om_bef_name);
-                    tvOmBefName.setText(om);
+                    tvOmBefName.setText(omName);
                     tvOmBefTel = findViewById(R.id.tv_ch_om_bef_tel);
-                    tvOmBefTel.setText(om);
+                    tvOmBefTel.setText(omNum);
                     tvOmBefSumm = findViewById(R.id.tv_ch_om_bef_summ);
                     tvOmBefSumm.setText(String.valueOf(prevDebtDTO.getCount()));
                     tvOmBefCur = findViewById(R.id.tv_ch_om_bef_cur);
                     tvOmBefCur.setText(prevDebtDTO.getCurrency());
 
                     tvOmAfName = findViewById(R.id.tv_ch_om_af_name);
-                    tvOmAfName.setText(om);
+                    tvOmAfName.setText(omName);
                     tvOmAfTel = findViewById(R.id.tv_ch_om_af_tel);
-                    tvOmAfTel.setText(om);
+                    tvOmAfTel.setText(omNum);
                     tvOmAfSumm = findViewById(R.id.tv_ch_om_af_summ);
                     tvOmAfSumm.setText(String.valueOf(prevDebtDTO.getTotalCount()));
                     tvOmAfCur = findViewById(R.id.tv_ch_om_af_cur);
                     tvOmAfCur.setText(prevDebtDTO.getCurrency());
 
-                    String io = codeService.getNumber().equals(nextDebtDTO.getInitiator()) ? nextDebtDTO.getReceiver() : nextDebtDTO.getInitiator();
+                    if (codeService.getNumber().equals(prevDebtDTO.getInitiator())) {
+                        ioName = nextDebtDTO.getNameForReceiver() != null ? nextDebtDTO.getNameForReceiver() : nextDebtDTO.getReceiver();
+                        ioNum = nextDebtDTO.getReceiver();
+                    } else {
+                        ioName = nextDebtDTO.getNameForInitiator() != null ? nextDebtDTO.getNameForInitiator() : nextDebtDTO.getInitiator();
+                        ioNum = nextDebtDTO.getInitiator();
+                    }
                     tvIoBefName = findViewById(R.id.tv_ch_io_bef_name);
-                    tvIoBefName.setText(io);
+                    tvIoBefName.setText(ioName);
                     tvIoBefTel = findViewById(R.id.tv_ch_io_bef_tel);
-                    tvIoBefTel.setText(io);
+                    tvIoBefTel.setText(ioNum);
                     tvIoBefSumm = findViewById(R.id.tv_ch_io_bef_summ);
                     tvIoBefSumm.setText(String.valueOf(nextDebtDTO.getCount()));
                     tvIoBefCur = findViewById(R.id.tv_ch_io_bef_cur);
                     tvIoBefCur.setText(nextDebtDTO.getCurrency());
 
                     tvIoAfName = findViewById(R.id.tv_ch_io_af_name);
-                    tvIoAfName.setText(io);
+                    tvIoAfName.setText(ioName);
                     tvIoAfTel = findViewById(R.id.tv_ch_io_af_tel);
-                    tvIoAfTel.setText(io);
+                    tvIoAfTel.setText(ioNum);
                     tvIoAfSumm = findViewById(R.id.tv_ch_io_af_summ);
                     tvIoAfSumm.setText(String.valueOf(nextDebtDTO.getTotalCount()));
                     tvIoAfCur = findViewById(R.id.tv_ch_io_af_cur);
                     tvIoAfCur.setText(nextDebtDTO.getCurrency());
+
+                    @SuppressLint("StringFormatMatches")
+                    String descText = String.format(getString(R.string.descText), cycleDTO.getCountElement());
+
+                    @SuppressLint("StringFormatMatches")
+                    String descResponse = String.format(getString(R.string.descResponse), cycleDTO.getAcceptedPerson());
+
+                    tvChDesc = findViewById(R.id.tv_ch_desc);
+                    tvChDesc.setText(descText);
+                    tvChDescCurr = findViewById(R.id.tv_ch_desc_cur);
+                    tvChDescCurr.setText(cycleDTO.getCycleCurrency());
+                    tvChResponse = findViewById(R.id.tv_ch_desc_response);
+                    tvChResponse.setText(descResponse);
+                    tvSumm = findViewById(R.id.tv_ch_desc_summ);
+                    tvSumm.setText(String.valueOf(cycleDTO.getMinCount()));
                 }
             }
 
             @Override
             public void onFailure(Call<List<DebtDTO>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void initCycle(final String cycleId, final String debtId) {
+        Call<CycleDTO> call = CycleApiService.getApiService().getCycleById(codeService.getCode(), cycleDTO.getId().toString());
+        call.enqueue(new Callback<CycleDTO>() {
+            @Override
+            public void onResponse(Call<CycleDTO> call, Response<CycleDTO> response) {
+                if (response.isSuccessful()) {
+                    cycleDTO = response.body();
+                    init(cycleId, debtId);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CycleDTO> call, Throwable t) {
 
             }
         });

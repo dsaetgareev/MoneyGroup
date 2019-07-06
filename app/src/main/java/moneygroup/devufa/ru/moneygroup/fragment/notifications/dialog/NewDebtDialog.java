@@ -9,17 +9,22 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.ContactService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
@@ -40,12 +45,14 @@ public class NewDebtDialog extends DialogFragment {
     private String type;
     private String body;
     private String messageId;
+    private String receiverName;
 
     private TextView textViewBody;
     private TextView tvTitle;
     private TextView tvAbonentTel;
     private TextView tvSumm;
     private TextView tvCurrency;
+    private AppCompatActivity appCompatActivity;
 
     public static NewDebtDialog newInstance(Map<String, String> args) {
         Bundle bundle = new Bundle();
@@ -72,6 +79,7 @@ public class NewDebtDialog extends DialogFragment {
             debtCurrency = getArguments().getString("currency");
             body = getArguments().getString("body");
             messageId = getArguments().getString("messageId");
+            initReceiverName();
         }
     }
 
@@ -104,7 +112,7 @@ public class NewDebtDialog extends DialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true, "Almaz", messageId);
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true, receiverName, messageId);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
@@ -125,7 +133,7 @@ public class NewDebtDialog extends DialogFragment {
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false, "A;", messageId);
+                        Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false, receiverName, messageId);
                         progressBarMoney.show();
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
@@ -152,10 +160,30 @@ public class NewDebtDialog extends DialogFragment {
         super.show(getFragmentManager(), "newDebtDialog");
     }
 
+    public void initReceiverName() {
+        List<AndroidContact> androidContacts = (ArrayList<AndroidContact>)ContactService.getContacts(appCompatActivity);
+        for (AndroidContact androidContact : androidContacts) {
+            if (androidContact.getContactNumber().replaceAll("[^\\d]", "").contains(debtTelephoneNumber)) {
+                receiverName = androidContact.getContactName();
+                break;
+            } else {
+                receiverName = debtTelephoneNumber;
+            }
+        }
+    }
+
     private void toHomeActivity() {
         Class home = HomeActivity.class;
         Intent intent = new Intent(context, home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+    }
+
+    public AppCompatActivity getAppCompatActivity() {
+        return appCompatActivity;
+    }
+
+    public void setAppCompatActivity(AppCompatActivity appCompatActivity) {
+        this.appCompatActivity = appCompatActivity;
     }
 }

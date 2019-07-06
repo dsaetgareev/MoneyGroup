@@ -18,6 +18,7 @@ import java.util.UUID;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.adapters.contacts.ContactAdapter;
 import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
+import moneygroup.devufa.ru.moneygroup.service.ContactService;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -38,7 +39,7 @@ public class ContactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contacts);
         personId = (UUID) getIntent().getSerializableExtra(ARG_PERSON_ID);
         initRecyclerView();
-        getContacts();
+        initGetContacts();
         initAdapter();
         recyclerView.setAdapter(adapter);
     }
@@ -60,7 +61,7 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     public void initGetContacts() {
-// получаем разрешения
+        // получаем разрешения
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
         // если устройство до API 23, устанавливаем разрешение
         if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
@@ -94,53 +95,6 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     public void getContacts() {
-        Cursor cursor = null;
-        try {
-            cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null, null, null, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            cursor.close();
-        }
-
-
-        try {
-            if (cursor != null && cursor.getCount() > 0) {
-                while (cursor.moveToNext()) {
-                    AndroidContact androidContact = new AndroidContact();
-                    String name;
-                    String phoneNumber = null;
-                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                    int hasPhoneNumber = Integer.parseInt(
-                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-                    );
-                    if (hasPhoneNumber > 0) {
-                        String selection = ContactsContract.Contacts._ID + " LIKE ? and " + ContactsContract.Contacts.HAS_PHONE_NUMBER + " > 0 ";
-                        String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-                        Cursor phoneCursor = getContentResolver().query(
-                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                                null,
-                                selection,
-                                new String[]{id},
-                                sortOrder
-                        );
-                        while (phoneCursor != null && phoneCursor.moveToNext()) {
-                            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        }
-                        if (phoneCursor != null) {
-                            phoneCursor.close();
-                        }
-                    }
-
-                        androidContact.setContactName(name);
-                        androidContact.setContactNumber(phoneNumber);
-
-                    androidContacts.add(androidContact);
-                }
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        androidContacts = (ArrayList<AndroidContact>)ContactService.getContacts(ContactsActivity.this);
     }
 }

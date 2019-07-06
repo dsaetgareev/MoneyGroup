@@ -111,7 +111,7 @@
                 android:hint="@string/enter_phone"
                 android:inputType="phone"
                 android:background="@drawable/back"
-                android:maxLength="15"
+                android:maxLength="18"
                 android:lines="1"
                 android:layout_margin="@dimen/google_1x"
                 />
@@ -121,7 +121,7 @@
             android:id="@+id/tv_ap_err"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Формат номера должен быть +79171234567"
+            android:text="@string/number_forma_err"
             android:textColor="@color/oweMe"
             />
 

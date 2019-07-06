@@ -91,6 +91,7 @@
     <string name="uppercase_letter">прописная буква</string>
     <string name="numeral">цифра</string>
     <string name="characters_6">не менее 6 символов</string>
+    <string name="number_forma_err">Формат номера должен быть +x(xxx)xxx-xxxx</string>
 
     <string-array name="language_array">
         <item>ru</item>

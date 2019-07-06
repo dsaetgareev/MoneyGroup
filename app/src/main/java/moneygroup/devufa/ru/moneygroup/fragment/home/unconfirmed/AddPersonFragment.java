@@ -178,8 +178,10 @@ public class AddPersonFragment extends Fragment {
                 String string = s.toString();
                 if (!"".equals(string) && !string.substring(0, 1).equals("+")) {
                     errText.setVisibility(View.VISIBLE);
+                    sendButton.setVisibility(View.INVISIBLE);
                 } else {
                     errText.setVisibility(View.INVISIBLE);
+                    sendButton.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -188,6 +190,12 @@ public class AddPersonFragment extends Fragment {
     public void initErrText(View view) {
         errText = view.findViewById(R.id.tv_ap_err);
         errText.setVisibility(View.INVISIBLE);
+        String etPhonText = etPhone.getText().toString();
+        if (!"".equals(etPhonText) && !etPhonText.substring(0, 1).equals("+")) {
+            errText.setVisibility(View.VISIBLE);
+        } else {
+            errText.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void initEtSumm(View view) {
@@ -331,7 +339,6 @@ public class AddPersonFragment extends Fragment {
                         progressBarMoney.dismiss();
                         if (response.isSuccessful()) {
                             backAndUpdate();
-                            PersonService.get(getActivity()).deletePerson(person);
                             Toast.makeText(getActivity(), getString(R.string.sended), Toast.LENGTH_SHORT).show();
                         }
                     }

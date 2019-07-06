@@ -67,6 +67,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     });
                     if (isDialog) {
                         NewDebtDialog debtDialog = NewDebtDialog.newInstance(args);
+                        debtDialog.setAppCompatActivity(activity);
                         debtDialog.show(getActivity().getSupportFragmentManager(), "newDebtDialog");
                     } else {
                         MessageDialog messageDialog = MessageDialog.newInstance(args);

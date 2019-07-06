@@ -98,6 +98,6 @@ public class OwesmePersonActivity extends AppCompatActivity {
         Class home = HomeActivity.class;
         Intent intent = new Intent(getApplicationContext(), home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        getApplicationContext().startActivity(intent);
+        startActivity(intent);
     }
 }

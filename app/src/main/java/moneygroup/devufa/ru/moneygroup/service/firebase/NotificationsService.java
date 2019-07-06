@@ -54,10 +54,12 @@ public class NotificationsService extends FirebaseMessagingService {
         if (remoteMessage.getData().get("type") != null) {
             Map<String, String> debtMap = remoteMessage.getData();
             Intent intent = new Intent(this, NotificationsActivity.class);
-            intent.putExtra("id", debtMap.get("id"));
+            intent.putExtra("debtId", debtMap.get("debtId"));
             intent.putExtra("telephoneNumber", debtMap.get("telephoneNumber"));
             intent.putExtra("count", debtMap.get("count"));
             intent.putExtra("type", debtMap.get("type"));
+            intent.putExtra("currency", debtMap.get("currency"));
+            intent.putExtra("messageId", debtMap.get("messageId"));
             intent.putExtra("title", remoteMessage.getNotification().getTitle());
             intent.putExtra("body", remoteMessage.getNotification().getBody());
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

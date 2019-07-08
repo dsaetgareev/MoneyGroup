@@ -74,8 +74,7 @@ public class MessageDialog extends DialogFragment {
         final View view = inflater.inflate(R.layout.list_imte_message, null);
         title = view.findViewById(R.id.tv_mess_title);
         body = view.findViewById(R.id.tv_mess_body);
-        tvDate = view.findViewById(R.id.tv_mess_date);
-        tvDate.setVisibility(View.INVISIBLE);
+
         title.setText(titleStr);
         body.setText(bodyStr);
         final CodeService service = CodeService.get(context);

@@ -81,7 +81,6 @@ public class NewDebtDialog extends DialogFragment {
             debtCurrency = getArguments().getString("currency");
             body = getArguments().getString("body");
             messageId = getArguments().getString("messageId");
-            initReceiverName();
         }
     }
 
@@ -107,10 +106,7 @@ public class NewDebtDialog extends DialogFragment {
 
         tvCurrency = view.findViewById(R.id.tv_debt_dial_cur);
         tvCurrency.setText(debtCurrency);
-
-        tvDate = view.findViewById(R.id.tv_mess_date);
-        tvDate.setVisibility(View.INVISIBLE);
-
+        initReceiverName();
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 // Add action buttons
@@ -187,8 +183,10 @@ public class NewDebtDialog extends DialogFragment {
                 break;
             } else {
                 receiverName = debtTelephoneNumber;
+                return;
             }
         }
+        receiverName = debtTelephoneNumber;
     }
 
     private void toHomeActivity() {

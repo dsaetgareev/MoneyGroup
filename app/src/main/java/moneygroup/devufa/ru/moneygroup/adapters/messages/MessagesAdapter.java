@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
@@ -84,7 +86,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             messageId = message.getId();
             title.setText(message.getTitle());
             body.setText(message.getBody());
-            tvDate.setText(message.getCreateDate());
+            SimpleDateFormat format = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
+            tvDate.setText(format.format(message.getCreateDate()));
             if (!message.isRead()) {
                 title.setTypeface(null, Typeface.BOLD);
                 body.setTypeface(null, Typeface.BOLD);
@@ -105,7 +108,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 isDialog = false;
                 args.put("title", message.getTitle());
                 args.put("body", message.getBody());
-                args.put("date", message.getCreateDate());
+                SimpleDateFormat format1 = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
+                args.put("date", format1.format(message.getCreateDate()));
             }
 
         }

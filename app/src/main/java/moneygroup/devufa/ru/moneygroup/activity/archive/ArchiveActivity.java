@@ -48,6 +48,9 @@ public class ArchiveActivity extends AppCompatActivity {
         archiveAdapter.setArchiveActivity(this);
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.IN_ARCHIVE);
+        statuses.add(Status.CLOSED);
+        statuses.add(Status.CLOSED_INITIATOR);
+        statuses.add(Status.CLOSED_RECEIVER);
         Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(CodeService.get(ArchiveActivity.this).getCode(), DebtType.ALL.toString(), statuses);
         progressBarMoney.show();
         call.enqueue(new Callback<List<DebtDTO>>() {

@@ -18,6 +18,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.iowe.IOweAdapter;
 import moneygroup.devufa.ru.moneygroup.adapters.owesme.OwesmeAdapter;
+import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
@@ -31,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IOweFragment extends Fragment {
+public class IOweFragment extends Fragment implements DebtFragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
 
@@ -72,12 +73,13 @@ public class IOweFragment extends Fragment {
         return view;
     }
 
-    private void adapterInit() {
+    public void adapterInit() {
         getDebtDtoList(DebtType.DEBT);
     }
 
     public void getDebtDtoList(DebtType type) {
         iOweAdapter = new IOweAdapter();
+        iOweAdapter.setFragment(this);
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.NEW);
         statuses.add(Status.NOT_REGISTERED);

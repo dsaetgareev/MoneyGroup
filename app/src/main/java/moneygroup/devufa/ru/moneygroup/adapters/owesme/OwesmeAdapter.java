@@ -24,6 +24,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.cycle.CycleActivity;
 import moneygroup.devufa.ru.moneygroup.activity.owesme.OwesmePersonActivity;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.RemoveDebtDialog;
+import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
@@ -32,10 +33,10 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
     private List<Person> personList = new ArrayList<>();
     private AppCompatActivity activity;
     private FragmentManager fragmentManager;
-    private Fragment fragment;
+    private DebtFragment fragment;
 
     class OwesmeViewHolder extends RecyclerView.ViewHolder {
-
+        private TextView tvDate;
         private TextView name;
         private TextView summ;
         private TextView currency;
@@ -45,6 +46,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
 
         public OwesmeViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvDate = itemView.findViewById(R.id.tv_om_date);
             name = itemView.findViewById(R.id.tv_om_name_title);
             summ = itemView.findViewById(R.id.tv_om_summ);
             currency = itemView.findViewById(R.id.tv_currency);
@@ -87,6 +89,7 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
         }
 
         public void bind(Person person) {
+            tvDate.setText(person.getCreateDate().toString());
             name.setText(person.getName());
             summ.setText(person.getSumm());
             currency.setText(person.getCurrency());
@@ -144,11 +147,11 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
         this.fragmentManager = fragmentManager;
     }
 
-    public Fragment getFragment() {
+    public DebtFragment getFragment() {
         return fragment;
     }
 
-    public void setFragment(Fragment fragment) {
+    public void setFragment(DebtFragment fragment) {
         this.fragment = fragment;
     }
 }

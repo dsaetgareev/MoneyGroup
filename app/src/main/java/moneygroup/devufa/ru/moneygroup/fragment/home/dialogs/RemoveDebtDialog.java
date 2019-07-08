@@ -18,6 +18,7 @@ import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
@@ -34,7 +35,7 @@ public class RemoveDebtDialog extends DialogFragment {
     private String id;
     private CodeService codeService;
     private Context context;
-    private OwesmeFragment fragment;
+    private DebtFragment fragment;
 
     public static RemoveDebtDialog newInstance(String id) {
         Bundle bundle = new Bundle();
@@ -104,11 +105,11 @@ public class RemoveDebtDialog extends DialogFragment {
         context.startActivity(intent);
     }
 
-    public Fragment getFragment() {
+    public DebtFragment getFragment() {
         return fragment;
     }
 
-    public void setFragment(Fragment fragment) {
-        this.fragment = (OwesmeFragment) fragment;
+    public void setFragment(DebtFragment fragment) {
+        this.fragment = (DebtFragment) fragment;
     }
 }

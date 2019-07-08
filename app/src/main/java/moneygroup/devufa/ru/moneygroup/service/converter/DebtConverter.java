@@ -2,8 +2,10 @@ package moneygroup.devufa.ru.moneygroup.service.converter;
 
 import android.content.Context;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.model.Person;
@@ -57,7 +59,8 @@ public class DebtConverter {
         }
         Person person = new Person();
         person.setId(UUID.fromString(debtDTO.getId()));
-        person.setCreateDate(debtDTO.getCreateDate());
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
+        person.setCreateDate(format.format(debtDTO.getCreateDate()));
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());
             person.setName(debtDTO.getNameForReceiver() != null ? debtDTO.getNameForReceiver() : debtDTO.getReceiver());

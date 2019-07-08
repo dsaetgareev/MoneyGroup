@@ -11,7 +11,7 @@ public class Person implements Serializable {
 
     private UUID id;
 
-    private Date createDate;
+    private String createDate;
 
     private String name;
 
@@ -56,11 +56,11 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

@@ -235,17 +235,6 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void initAutoWriteOffCb(View view) {
-        autoWriteOffCb = view.findViewById(R.id.cb_set_auto_write_off);
-        autoWriteOffCb.setChecked(settings.isAutoWriteOff());
-        autoWriteOffCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                settings.setAutoWriteOff(isChecked);
-            }
-        });
-    }
-
     private void initNewDebtCb(View view) {
         newDebtCb = view.findViewById(R.id.cb_set_new_debt);
         newDebtCb.setChecked(settings.isNewDebt());
@@ -371,7 +360,6 @@ public class SettingsFragment extends Fragment {
                     initSpinner(view);
                     initArchiveSee(view);
                     initExit(view);
-                    initAutoWriteOffCb(view);
                     initNewDebtCb(view);
                     initChainCb(view);
                     initDiffCurCb(view);

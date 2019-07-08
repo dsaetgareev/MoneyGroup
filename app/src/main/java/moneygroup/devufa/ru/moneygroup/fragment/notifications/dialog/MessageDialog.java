@@ -33,6 +33,7 @@ public class MessageDialog extends DialogFragment {
 
     private TextView title;
     private TextView body;
+    private TextView tvDate;
 
     private String messageId;
     private String titleStr;
@@ -73,6 +74,8 @@ public class MessageDialog extends DialogFragment {
         final View view = inflater.inflate(R.layout.list_imte_message, null);
         title = view.findViewById(R.id.tv_mess_title);
         body = view.findViewById(R.id.tv_mess_body);
+        tvDate = view.findViewById(R.id.tv_mess_date);
+        tvDate.setVisibility(View.INVISIBLE);
         title.setText(titleStr);
         body.setText(bodyStr);
         final CodeService service = CodeService.get(context);
@@ -80,6 +83,20 @@ public class MessageDialog extends DialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Call<ResponseBody> callSetRead = NotificationsApiService.getApiService().setRead(service.getCode(), messageId);
+                        callSetRead.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
                         MessageDialog.this.getDialog().cancel();
                         toHomeActivity();
                     }

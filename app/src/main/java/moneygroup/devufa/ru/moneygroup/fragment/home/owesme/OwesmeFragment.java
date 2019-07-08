@@ -20,6 +20,7 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
 import moneygroup.devufa.ru.moneygroup.adapters.owesme.OwesmeAdapter;
+import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
@@ -33,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OwesmeFragment extends Fragment {
+public class OwesmeFragment extends Fragment implements DebtFragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
     private HomePageAdapter pageAdapter;

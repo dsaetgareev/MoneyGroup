@@ -6,11 +6,18 @@
     >
 
     <TextView
+        android:id="@+id/tv_io_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        />
+
+    <TextView
         android:id="@+id/tv_io_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/tv_io_date"
         />
 
     <ImageView
@@ -18,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:layout_toEndOf="@+id/tv_io_name_title"
+        android:layout_toStartOf="@id/tv_io_summ"
         android:src="@mipmap/logo11"
         android:layout_weight="1"
         />

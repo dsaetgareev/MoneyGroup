@@ -26,6 +26,7 @@ import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.ContactService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
+import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import moneygroup.devufa.ru.moneygroup.service.registration.RegistrationService;
 import okhttp3.ResponseBody;
@@ -52,6 +53,7 @@ public class NewDebtDialog extends DialogFragment {
     private TextView tvAbonentTel;
     private TextView tvSumm;
     private TextView tvCurrency;
+    private TextView tvDate;
     private AppCompatActivity appCompatActivity;
 
     public static NewDebtDialog newInstance(Map<String, String> args) {
@@ -87,7 +89,7 @@ public class NewDebtDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         progressBarMoney = new ProgressBarMoney(getActivity());
-        context = getActivity();
+        context = appCompatActivity;
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -96,7 +98,7 @@ public class NewDebtDialog extends DialogFragment {
         textViewBody.setText(body);
 
         tvTitle = view.findViewById(R.id.tv_debt_dial_title);
-        tvTitle.setText("NEW_DEBT".equals(type) ? getString(R.string.i_owe_title) : getString(R.string.tv_omp_title));
+        tvTitle.setText("NEW_DEBT".equals(type) ?  getString(R.string.tv_omp_title) : getString(R.string.i_owe_title));
         tvAbonentTel = view.findViewById(R.id.tv_debt_dial_tel);
         tvAbonentTel.setText(debtTelephoneNumber);
 
@@ -105,6 +107,9 @@ public class NewDebtDialog extends DialogFragment {
 
         tvCurrency = view.findViewById(R.id.tv_debt_dial_cur);
         tvCurrency.setText(debtCurrency);
+
+        tvDate = view.findViewById(R.id.tv_mess_date);
+        tvDate.setVisibility(View.INVISIBLE);
 
         final CodeService service = CodeService.get(context);
         builder.setView(view)
@@ -119,6 +124,20 @@ public class NewDebtDialog extends DialogFragment {
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 progressBarMoney.dismiss();
                                 if (response.isSuccessful()) {
+                                    Call<ResponseBody> callSetRead = NotificationsApiService.getApiService().setRead(service.getCode(), messageId);
+                                    callSetRead.enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            if (response.isSuccessful()) {
+                                                Toast.makeText(appCompatActivity, "ok", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                        }
+                                    });
                                     Toast.makeText(context, "Запрос отправлен", Toast.LENGTH_SHORT).show();
                                 }
                             }

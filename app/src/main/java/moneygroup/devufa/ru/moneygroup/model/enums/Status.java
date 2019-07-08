@@ -14,5 +14,9 @@ public enum Status {
     IN_CYCLE_NEW,
     IN_CYCLE_ACCEPTED,
     //Закрыт
-    CLOSED;
+    CLOSED,
+    //Закрыт
+    CLOSED_INITIATOR,
+    //Закрыт
+    CLOSED_RECEIVER;
 }

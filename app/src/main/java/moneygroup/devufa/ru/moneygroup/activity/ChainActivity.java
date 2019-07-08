@@ -128,7 +128,7 @@ public class ChainActivity extends AppCompatActivity {
                     tvOmAfCur = findViewById(R.id.tv_ch_om_af_cur);
                     tvOmAfCur.setText(prevDebtDTO.getCurrency());
 
-                    if (codeService.getNumber().equals(prevDebtDTO.getInitiator())) {
+                    if (codeService.getNumber().equals(nextDebtDTO.getInitiator())) {
                         ioName = nextDebtDTO.getNameForReceiver() != null ? nextDebtDTO.getNameForReceiver() : nextDebtDTO.getReceiver();
                         ioNum = nextDebtDTO.getReceiver();
                     } else {

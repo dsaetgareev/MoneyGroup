@@ -15,16 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
-import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.iowe.IOweAdapter;
-import moneygroup.devufa.ru.moneygroup.adapters.owesme.OwesmeAdapter;
 import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
 import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
-import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
@@ -74,10 +70,10 @@ public class IOweFragment extends Fragment implements DebtFragment {
     }
 
     public void adapterInit() {
-        getDebtDtoList(DebtType.DEBT);
+        getDebtDtoList();
     }
 
-    public void getDebtDtoList(DebtType type) {
+    public void getDebtDtoList() {
         iOweAdapter = new IOweAdapter();
         iOweAdapter.setFragment(this);
         List<Status> statuses = new ArrayList<>();
@@ -86,7 +82,7 @@ public class IOweFragment extends Fragment implements DebtFragment {
         statuses.add(Status.ACCEPTED);
         statuses.add(Status.IN_CYCLE_NEW);
         statuses.add(Status.IN_CYCLE_ACCEPTED);
-        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), type.toString(), statuses);
+        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(codeService.getCode(), "DEBT", statuses);
         progressBarMoney.show();
         call.enqueue(new Callback<List<DebtDTO>>() {
             @Override

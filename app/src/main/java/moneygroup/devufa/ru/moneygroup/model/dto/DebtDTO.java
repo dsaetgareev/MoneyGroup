@@ -3,7 +3,6 @@ package moneygroup.devufa.ru.moneygroup.model.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
 import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 
 public class DebtDTO implements Serializable {
@@ -11,6 +10,8 @@ public class DebtDTO implements Serializable {
     private String id;
 
     private Date createDate;
+
+    private String creator;
 
     private String initiator;
 
@@ -29,8 +30,6 @@ public class DebtDTO implements Serializable {
     private String comment;
 
     private String note;
-
-    private DebtType debtType;
 
     private Status status;
 
@@ -53,6 +52,14 @@ public class DebtDTO implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public String getInitiator() {
@@ -109,14 +116,6 @@ public class DebtDTO implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public DebtType getDebtType() {
-        return debtType;
-    }
-
-    public void setDebtType(DebtType debtType) {
-        this.debtType = debtType;
     }
 
     public Status getStatus() {

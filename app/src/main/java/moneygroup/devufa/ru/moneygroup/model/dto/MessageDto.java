@@ -31,8 +31,6 @@ public class MessageDto {
 
     private String note;
 
-    private String debtType;
-
     private String status;
 
     private boolean read;
@@ -147,14 +145,6 @@ public class MessageDto {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public String getDebtType() {
-        return debtType;
-    }
-
-    public void setDebtType(String debtType) {
-        this.debtType = debtType;
     }
 
     public String getStatus() {

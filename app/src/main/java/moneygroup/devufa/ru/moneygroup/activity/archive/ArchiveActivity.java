@@ -12,7 +12,6 @@ import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.adapters.archive.ArchiveAdapter;
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
 import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
@@ -51,7 +50,7 @@ public class ArchiveActivity extends AppCompatActivity {
         statuses.add(Status.CLOSED);
         statuses.add(Status.CLOSED_INITIATOR);
         statuses.add(Status.CLOSED_RECEIVER);
-        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(CodeService.get(ArchiveActivity.this).getCode(), DebtType.ALL.toString(), statuses);
+        Call<List<DebtDTO>> call = DebtService.getApiService().getDebtList(CodeService.get(ArchiveActivity.this).getCode(), "ALL", statuses);
         progressBarMoney.show();
         call.enqueue(new Callback<List<DebtDTO>>() {
             @Override

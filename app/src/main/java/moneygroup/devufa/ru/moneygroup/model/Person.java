@@ -13,6 +13,8 @@ public class Person implements Serializable {
 
     private String createDate;
 
+    private String creator;
+
     private String name;
 
     private String number;
@@ -62,6 +64,14 @@ public class Person implements Serializable {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public String getName() {

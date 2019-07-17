@@ -10,7 +10,6 @@ import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
-import moneygroup.devufa.ru.moneygroup.model.enums.DebtType;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 
 public class DebtConverter {
@@ -42,13 +41,10 @@ public class DebtConverter {
             debtDTO.setInitiator(person.getNumber());
             debtDTO.setReceiver(number);
         }
-        debtDTO.setInitiator(number);
-        debtDTO.setReceiver(person.getNumber());
         debtDTO.setCount(Double.valueOf(person.getSumm()));
         debtDTO.setCurrency(person.getCurrency());
         debtDTO.setComment(person.getComment());
         debtDTO.setNote(person.getNote());
-        debtDTO.setDebtType(person.isOwesMe() ? DebtType.LOAN : DebtType.DEBT);
         debtDTO.setNameForReceiver(person.getName());
         return debtDTO;
     }
@@ -61,6 +57,7 @@ public class DebtConverter {
         person.setId(UUID.fromString(debtDTO.getId()));
         SimpleDateFormat format = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
         person.setCreateDate(format.format(debtDTO.getCreateDate()));
+        person.setCreator(debtDTO.getCreator());
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());
             person.setName(debtDTO.getNameForReceiver() != null ? debtDTO.getNameForReceiver() : debtDTO.getReceiver());
@@ -70,7 +67,7 @@ public class DebtConverter {
         }
         person.setSumm(String.valueOf(debtDTO.getCount()));
         person.setCurrency(debtDTO.getCurrency());
-        if (debtDTO.getDebtType().equals(DebtType.DEBT) && debtDTO.getInitiator().equals(number) || debtDTO.getDebtType().equals(DebtType.LOAN) && debtDTO.getReceiver().equals(number)) {
+        if (debtDTO.getReceiver().equals(number)) {
             person.setOwesMe(false);
         }
         person.setComment(debtDTO.getComment());

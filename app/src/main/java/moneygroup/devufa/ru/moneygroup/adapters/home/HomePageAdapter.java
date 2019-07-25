@@ -69,6 +69,4 @@ public class HomePageAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return null;
     }
-
-
 }

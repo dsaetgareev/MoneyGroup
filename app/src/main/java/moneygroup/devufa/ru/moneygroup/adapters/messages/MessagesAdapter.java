@@ -86,8 +86,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             messageId = message.getId();
             title.setText(message.getTitle());
             body.setText(message.getBody());
-            SimpleDateFormat format = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
-            tvDate.setText(format.format(message.getCreateDate()));
+            SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
+            tvDate.setText(format.format(message.getCreateDate()).toString());
             if (!message.isRead()) {
                 title.setTypeface(null, Typeface.BOLD);
                 body.setTypeface(null, Typeface.BOLD);
@@ -108,7 +108,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 isDialog = false;
                 args.put("title", message.getTitle());
                 args.put("body", message.getBody());
-                SimpleDateFormat format1 = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
+                SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
                 args.put("date", format1.format(message.getCreateDate()));
             }
 

@@ -3,6 +3,8 @@ package moneygroup.devufa.ru.moneygroup.service.converter;
 import android.content.Context;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -37,15 +39,16 @@ public class DebtConverter {
         if (person.isOwesMe()) {
             debtDTO.setInitiator(number);
             debtDTO.setReceiver(person.getNumber());
+            debtDTO.setNameForReceiver(person.getName());
         } else {
             debtDTO.setInitiator(person.getNumber());
             debtDTO.setReceiver(number);
+            debtDTO.setNameForInitiator(person.getName());
         }
         debtDTO.setCount(Double.valueOf(person.getSumm()));
         debtDTO.setCurrency(person.getCurrency());
         debtDTO.setComment(person.getComment());
         debtDTO.setNote(person.getNote());
-        debtDTO.setNameForReceiver(person.getName());
         return debtDTO;
     }
 
@@ -55,7 +58,7 @@ public class DebtConverter {
         }
         Person person = new Person();
         person.setId(UUID.fromString(debtDTO.getId()));
-        SimpleDateFormat format = new SimpleDateFormat("dd MMM YYYY HH:mm", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
         person.setCreateDate(format.format(debtDTO.getCreateDate()));
         person.setCreator(debtDTO.getCreator());
         if (debtDTO.getInitiator().equals(number)) {

@@ -43,8 +43,8 @@
     <string name="enter_name">Введите имя</string>
     <string name="enter_phone">Ввдите номер телефона</string>
     <string name="summ">Сумма</string>
-    <string name="note_for_yourself">Заметка для себя</string>
-    <string name="Comment">Комментарий</string>
+    <string name="note_for_yourself">Заметка (для себя)</string>
+    <string name="Comment">Комментарий (для абонента)</string>
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>

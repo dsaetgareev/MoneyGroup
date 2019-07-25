@@ -33,8 +33,6 @@ public class DebtDTO implements Serializable {
 
     private Status status;
 
-    private boolean relief;
-
     public DebtDTO() {
     }
 
@@ -124,14 +122,6 @@ public class DebtDTO implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public boolean isRelief() {
-        return relief;
-    }
-
-    public void setRelief(boolean relief) {
-        this.relief = relief;
     }
 
     public String getNameForInitiator() {

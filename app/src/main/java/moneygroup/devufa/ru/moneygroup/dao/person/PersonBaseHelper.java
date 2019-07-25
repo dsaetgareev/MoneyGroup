@@ -15,6 +15,7 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
     public static final int VERSION = 3;
     public static final String DATA_BASE_NAME = "personBase.db";
     private Context context;
+    private SQLiteDatabase db;
 
     public PersonBaseHelper(Context context) {
         super(context, DATA_BASE_NAME, null, VERSION);
@@ -23,6 +24,7 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        this.db = db;
         db.execSQL("create table " + PersonTable.NAME + "(" +
                 "_id integer primary key autoincrement, " +
                 PersonTable.Cols.UUID + ", " +
@@ -68,5 +70,13 @@ public class PersonBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    @Override
+    public synchronized void close() {
+        if (db != null) {
+            db.close();
+            super.close();
+        }
     }
 }

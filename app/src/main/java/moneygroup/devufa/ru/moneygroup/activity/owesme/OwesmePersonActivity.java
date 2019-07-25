@@ -66,6 +66,9 @@ public class OwesmePersonActivity extends AppCompatActivity {
         tvSumm.setText(person.getSumm());
         tvCurrency.setText(person.getCurrency());
         tvYourself.setText(person.getNote());
+        if (!codeService.getNumber().equals(person.getCreator())) {
+            tvYourself.setVisibility(View.INVISIBLE);
+        }
         tvComment.setText(person.getComment());
 
     }

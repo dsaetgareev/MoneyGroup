@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
 import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.unconfirmed.UnconfirmedAdapter;
 import moneygroup.devufa.ru.moneygroup.model.Person;

@@ -2,6 +2,7 @@ package moneygroup.devufa.ru.moneygroup.adapters.messages;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog.MessageDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog.NewDebtDialog;
 import moneygroup.devufa.ru.moneygroup.model.dto.MessageDto;
@@ -33,6 +35,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private List<MessageDto> messages = new ArrayList<>();
     private AppCompatActivity activity;
     private CodeService service;
+    private MessagesFragment fragment;
 
     class MessagesViewHolder extends RecyclerView.ViewHolder {
 
@@ -72,9 +75,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     if (isDialog) {
                         NewDebtDialog debtDialog = NewDebtDialog.newInstance(args);
                         debtDialog.setAppCompatActivity(activity);
+                        debtDialog.setMessagesFragment(getFragment());
                         debtDialog.show(getActivity().getSupportFragmentManager(), "newDebtDialog");
                     } else {
                         MessageDialog messageDialog = MessageDialog.newInstance(args);
+                        messageDialog.setFragment(getFragment());
                         messageDialog.show(getActivity().getSupportFragmentManager(), "messageDialog");
                     }
 
@@ -147,5 +152,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
         service = new CodeService(activity);
+    }
+
+    public MessagesFragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(MessagesFragment fragment) {
+        this.fragment = fragment;
     }
 }

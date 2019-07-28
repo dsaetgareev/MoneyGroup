@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                 int i = tab.getPosition();
                 switch (i) {
                     case 0:
-                        tab.getIcon().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+                        tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
                         setTitle(R.string.unconfirmed);
                         break;
                     case 1:
@@ -89,11 +89,11 @@ public class HomeActivity extends AppCompatActivity {
                         setTitle(R.string.my_debts);
                         break;
                     case 3:
-                        tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
                         setTitle(R.string.messages);
                         break;
                     case 4:
-                        tab.getIcon().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
+                        tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
                         setTitle(R.string.settings);
                         break;
                 }

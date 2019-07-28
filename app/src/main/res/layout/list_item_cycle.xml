@@ -3,13 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/google_1x"
+    android:background="@color/common_google_signin_btn_text_dark_pressed"
     >
 
     <TextView
         android:id="@+id/tv_cyc_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:text="name"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_below="@+id/tv_summ"
         />
 
 </RelativeLayout>

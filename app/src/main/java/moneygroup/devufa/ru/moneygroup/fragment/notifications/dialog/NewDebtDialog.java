@@ -22,6 +22,7 @@ import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
 import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.ContactService;
@@ -55,6 +56,8 @@ public class NewDebtDialog extends DialogFragment {
     private TextView tvCurrency;
     private TextView tvDate;
     private AppCompatActivity appCompatActivity;
+
+    private MessagesFragment messagesFragment;
 
     public static NewDebtDialog newInstance(Map<String, String> args) {
         Bundle bundle = new Bundle();
@@ -143,7 +146,7 @@ public class NewDebtDialog extends DialogFragment {
 
                             }
                         });
-                        toHomeActivity();
+                        NewDebtDialog.this.getDialog().cancel();
                     }
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -165,7 +168,6 @@ public class NewDebtDialog extends DialogFragment {
                             }
                         });
                         NewDebtDialog.this.getDialog().cancel();
-                        toHomeActivity();
                     }
                 });
         return builder.create();
@@ -202,5 +204,13 @@ public class NewDebtDialog extends DialogFragment {
 
     public void setAppCompatActivity(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
+    }
+
+    public MessagesFragment getMessagesFragment() {
+        return messagesFragment;
+    }
+
+    public void setMessagesFragment(MessagesFragment messagesFragment) {
+        this.messagesFragment = messagesFragment;
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
@@ -39,6 +41,8 @@ public class MessageDialog extends DialogFragment {
     private String titleStr;
     private String bodyStr;
     private String type;
+
+    private MessagesFragment fragment;
 
 
     public static MessageDialog newInstance(Map<String, String> args) {
@@ -96,8 +100,10 @@ public class MessageDialog extends DialogFragment {
 
                             }
                         });
+                        if (fragment != null) {
+                            fragment.adapterInit();
+                        }
                         MessageDialog.this.getDialog().cancel();
-                        toHomeActivity();
                     }
                 });
 
@@ -111,5 +117,11 @@ public class MessageDialog extends DialogFragment {
         context.startActivity(intent);
     }
 
+    public MessagesFragment getFragment() {
+        return fragment;
+    }
 
+    public void setFragment(MessagesFragment fragment) {
+        this.fragment = fragment;
+    }
 }

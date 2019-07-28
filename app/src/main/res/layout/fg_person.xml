@@ -18,19 +18,19 @@
         >
 
         <RadioButton
-            android:id="@+id/rb_add_person_owes_me"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/owes_me"
-            />
-
-        <RadioButton
             android:id="@+id/rb_add_person_should_i"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/should_i"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_add_person_owes_me"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/owes_me"
             />
     </RadioGroup>
 

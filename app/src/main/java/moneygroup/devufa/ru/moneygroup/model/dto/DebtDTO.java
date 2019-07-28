@@ -11,6 +11,8 @@ public class DebtDTO implements Serializable {
 
     private Date createDate;
 
+    private Date modifiedDate;
+
     private String creator;
 
     private String initiator;
@@ -46,6 +48,14 @@ public class DebtDTO implements Serializable {
 
     public Date getCreateDate() {
         return createDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public void setCreateDate(Date createDate) {

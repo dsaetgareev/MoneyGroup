@@ -60,6 +60,7 @@ public class DebtConverter {
         person.setId(UUID.fromString(debtDTO.getId()));
         SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
         person.setCreateDate(format.format(debtDTO.getCreateDate()));
+        person.setModifiedDate(format.format(debtDTO.getModifiedDate()));
         person.setCreator(debtDTO.getCreator());
         if (debtDTO.getInitiator().equals(number)) {
             person.setNumber(debtDTO.getReceiver());

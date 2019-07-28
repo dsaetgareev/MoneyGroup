@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.archive.ArchiveDetail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_archive_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дата архивации"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="28.07.2019"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_archive_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Статус"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/google_1x"
+                android:text="status"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_archive_debt_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/google_1x"
+            android:text="Owes me" />
+
+        <LinearLayout
+            android:id="@+id/ll_archibe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Имя"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/google_1x"
+                android:text="name"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_archive_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Номер телефона"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+79171234567"
+                android:layout_margin="@dimen/google_1x"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_archive_summ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сумма"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_summ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5000"
+                android:layout_margin="@dimen/google_1x"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_archive_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Заметка"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/google_1x"
+                android:text="Заметка"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_archive_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Комментарий"
+                android:layout_margin="@dimen/google_1x"
+                />
+
+            <TextView
+                android:id="@+id/tv_archive_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Комментарий"
+                android:layout_margin="@dimen/google_1x"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

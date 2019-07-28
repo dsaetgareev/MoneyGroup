@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.adapters.archive;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,9 @@ import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.archive.ArchiveActivity;
+import moneygroup.devufa.ru.moneygroup.activity.archive.ArchiveDetail;
 import moneygroup.devufa.ru.moneygroup.model.Person;
+import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
@@ -43,7 +46,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         private TextView name;
         private TextView summ;
         private TextView currency;
-        private CheckBox checkBox;
         private Person person;
 
         public ArchiveViewHolder(@NonNull View itemView) {
@@ -51,35 +53,16 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             name = itemView.findViewById(R.id.tv_name_title);
             summ = itemView.findViewById(R.id.tv_summ);
             currency = itemView.findViewById(R.id.tv_currency);
-            initButtonBox();
-            checkBox = itemView.findViewById(R.id.cb_item_debt_edit);
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        changingList.add(person);
-                        Toast.makeText(activity, person.getName() + String.valueOf(changingList.size()), Toast.LENGTH_SHORT).show();
 
-                    }
-                    if (!isChecked) {
-                        if (changingList.contains(person)) {
-                            changingList.remove(person);
-                            Toast.makeText(activity, person.getName() + String.valueOf(changingList.size()), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    showButtonBux();
-                }
-            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (checkBox.isChecked()) {
-                        checkBox.setChecked(false);
-                    } else {
-                        checkBox.setChecked(true);
-                    }
+                    Intent intent = ArchiveDetail.newInstance(activity, person);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    activity.startActivity(intent);
                 }
             });
+
         }
 
         public void bind(Person person) {
@@ -96,7 +79,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     @NonNull
     @Override
     public ArchiveViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_debt_edit, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_debt, viewGroup, false);
         return new ArchiveViewHolder(view);
     }
 
@@ -108,45 +91,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     @Override
     public int getItemCount() {
         return personList.size();
-    }
-
-    public void initButtonBox() {
-        progressBarMoney = new ProgressBarMoney(getActivity());
-        linearLayout = activity.findViewById(R.id.ll_unc_button_box);
-        delete = activity.findViewById(R.id.bt_ar_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (final Person person : changingList) {
-                    String code = CodeService.get(getActivity()).getCode();
-                    Call<ResponseBody> call = DebtService.getApiService().outArchive(code, person.getId().toString());
-                    progressBarMoney.show();
-                    call.enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            progressBarMoney.dismiss();
-                            if (response.isSuccessful()) {
-                                Toast.makeText(getActivity(), getActivity().getString(R.string.sended), Toast.LENGTH_SHORT).show();
-                                archiveActivity.adapterInit();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    public void showButtonBux() {
-        if (changingList.size() > 0) {
-            linearLayout.setVisibility(View.VISIBLE);
-        } else {
-            linearLayout.setVisibility(View.INVISIBLE);
-        }
     }
 
     public List<Person> getPersonList() {

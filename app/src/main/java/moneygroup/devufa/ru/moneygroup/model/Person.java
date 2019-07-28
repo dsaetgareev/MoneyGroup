@@ -13,6 +13,8 @@ public class Person implements Serializable {
 
     private String createDate;
 
+    private String modifiedDate;
+
     private String creator;
 
     private String name;
@@ -34,6 +36,14 @@ public class Person implements Serializable {
     private Status status;
 
     private String countryCody;
+
+    private String initiator;
+
+    private String nameForInitiator;
+
+    private String receiver;
+
+    private String nameForReceiver;
 
     public Person() {
         id = UUID.randomUUID();
@@ -64,6 +74,14 @@ public class Person implements Serializable {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(String modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public String getCreator() {
@@ -152,5 +170,37 @@ public class Person implements Serializable {
 
     public void setCountryCody(String countryCody) {
         this.countryCody = countryCody;
+    }
+
+    public String getInitiator() {
+        return initiator;
+    }
+
+    public void setInitiator(String initiator) {
+        this.initiator = initiator;
+    }
+
+    public String getNameForInitiator() {
+        return nameForInitiator;
+    }
+
+    public void setNameForInitiator(String nameForInitiator) {
+        this.nameForInitiator = nameForInitiator;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getNameForReceiver() {
+        return nameForReceiver;
+    }
+
+    public void setNameForReceiver(String nameForReceiver) {
+        this.nameForReceiver = nameForReceiver;
     }
 }

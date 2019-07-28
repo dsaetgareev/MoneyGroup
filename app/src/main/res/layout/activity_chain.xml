@@ -87,7 +87,9 @@
                         android:id="@+id/tv_ch_om_bef_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123" />
+                        android:text="+79178643123"
+                        android:textColor="@color/oweMe"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,7 +149,9 @@
                     android:id="@+id/tv_ch_io_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/i_owe_title" />
+                    android:text="@string/i_owe_title"
+                    android:textColor="@color/customRed"
+                    />
 
                 <View
                     android:layout_width="wrap_content"
@@ -193,7 +197,9 @@
                         android:id="@+id/tv_ch_io_bef_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123" />
+                        android:text="+79178643123"
+                        android:textColor="@color/customRed"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,6 +267,7 @@
             android:background="@drawable/back"
             android:paddingStart="@dimen/google_1x"
             android:paddingEnd="@dimen/google_1x"
+            android:textColor="@color/oweMe"
             android:text="EUR" />
 
         <TextView
@@ -273,6 +280,7 @@
             android:background="@drawable/back"
             android:paddingStart="@dimen/google_1x"
             android:paddingEnd="@dimen/google_1x"
+            android:textColor="@color/oweMe"
             android:text="3200" />
 
         <View
@@ -346,7 +354,9 @@
                         android:id="@+id/tv_ch_om_af_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123" />
+                        android:text="+79178643123"
+                        android:textColor="@color/oweMe"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -441,7 +451,9 @@
                         android:id="@+id/tv_ch_io_af_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123" />
+                        android:text="+79178643123"
+                        android:textColor="@color/customRed"
+                        />
                 </LinearLayout>
 
                 <LinearLayout

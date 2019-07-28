@@ -54,7 +54,6 @@ public class NewDebtDialog extends DialogFragment {
     private TextView tvAbonentTel;
     private TextView tvSumm;
     private TextView tvCurrency;
-    private TextView tvDate;
     private AppCompatActivity appCompatActivity;
 
     private MessagesFragment messagesFragment;
@@ -113,7 +112,7 @@ public class NewDebtDialog extends DialogFragment {
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 // Add action buttons
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Подтвердить", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, true, receiverName, messageId);
@@ -149,7 +148,7 @@ public class NewDebtDialog extends DialogFragment {
                         NewDebtDialog.this.getDialog().cancel();
                     }
                 })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Call<ResponseBody> call = DebtService.getApiService().acceptDebt(service.getCode(), debtId, false, receiverName, messageId);
                         progressBarMoney.show();
@@ -182,7 +181,7 @@ public class NewDebtDialog extends DialogFragment {
         for (AndroidContact androidContact : androidContacts) {
             if (androidContact.getContactNumber().replaceAll("[^\\d]", "").contains(debtTelephoneNumber)) {
                 receiverName = androidContact.getContactName();
-                break;
+                return;
             } else {
                 receiverName = debtTelephoneNumber;
                 return;

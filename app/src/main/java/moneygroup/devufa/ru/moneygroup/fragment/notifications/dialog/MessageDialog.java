@@ -41,16 +41,18 @@ public class MessageDialog extends DialogFragment {
     private String titleStr;
     private String bodyStr;
     private String type;
+    private String date;
 
     private MessagesFragment fragment;
 
 
     public static MessageDialog newInstance(Map<String, String> args) {
         Bundle bundle = new Bundle();
-        bundle.putString("id", args.get("id"));
+        bundle.putString("messageId", args.get("messageId"));
         bundle.putString("title", args.get("title"));
         bundle.putString("body", args.get("body"));
         bundle.putString("type", args.get("type"));
+        bundle.putString("date", args.get("date"));
         MessageDialog dialog = new MessageDialog();
         dialog.setArguments(bundle);
         return dialog;
@@ -60,10 +62,11 @@ public class MessageDialog extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            messageId = getArguments().getString("id");
+            messageId = getArguments().getString("messageId");
             titleStr = getArguments().getString("title");
             bodyStr = getArguments().getString("body");
             type = getArguments().getString("type");
+            date = getArguments().getString("date");
         }
     }
 
@@ -78,9 +81,15 @@ public class MessageDialog extends DialogFragment {
         final View view = inflater.inflate(R.layout.list_imte_message, null);
         title = view.findViewById(R.id.tv_mess_title);
         body = view.findViewById(R.id.tv_mess_body);
+        tvDate = view.findViewById(R.id.tv_mess_date);
 
         title.setText(titleStr);
         body.setText(bodyStr);
+        if (date == null) {
+            tvDate.setVisibility(View.INVISIBLE);
+        } else {
+            tvDate.setText(date);
+        }
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
@@ -91,7 +100,7 @@ public class MessageDialog extends DialogFragment {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

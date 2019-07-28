@@ -109,12 +109,15 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 args.put("body", message.getBody());
                 args.put("currency", message.getCurrency());
                 args.put("messageId", messageId);
+                SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
+                args.put("date", format1.format(message.getCreateDate()));
             } else {
                 isDialog = false;
                 args.put("title", message.getTitle());
                 args.put("body", message.getBody());
                 SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
                 args.put("date", format1.format(message.getCreateDate()));
+                args.put("messageId", messageId);
             }
 
         }

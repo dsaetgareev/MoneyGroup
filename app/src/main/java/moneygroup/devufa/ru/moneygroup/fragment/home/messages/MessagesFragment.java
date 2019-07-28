@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,13 +25,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessagesFragment extends Fragment {
+public class MessagesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private CodeService codeService;
     private ProgressBarMoney progressBarMoney;
     private RecyclerView recyclerView;
     private MessagesAdapter messagesAdapter;
     private List<MessageDto> messages = new ArrayList<>();
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     public static MessagesFragment newInstance() {
@@ -47,6 +50,12 @@ public class MessagesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_for_messages_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterInit();
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_messages_container);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         return view;
     }
 
@@ -83,5 +92,11 @@ public class MessagesFragment extends Fragment {
         if (isVisibleToUser && codeService != null) {
             getMessages();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(false);
+        adapterInit();
     }
 }

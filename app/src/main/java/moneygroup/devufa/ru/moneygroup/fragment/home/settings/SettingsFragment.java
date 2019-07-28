@@ -26,6 +26,7 @@ import moneygroup.devufa.ru.moneygroup.MainActivity;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.ForgotActivity;
 import moneygroup.devufa.ru.moneygroup.activity.archive.ArchiveActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.ExitDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.MailDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.QuestionDialog;
 import moneygroup.devufa.ru.moneygroup.model.BasicCode;
@@ -227,10 +228,12 @@ public class SettingsFragment extends Fragment {
         btExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CodeService(getActivity()).deleteCode(basicCode);
-                Class mainActivity = MainActivity.class;
-                Intent intent = new Intent(getActivity(), mainActivity);
-                startActivity(intent);
+//                new CodeService(getActivity()).deleteCode(basicCode);
+//                Class mainActivity = MainActivity.class;
+//                Intent intent = new Intent(getActivity(), mainActivity);
+//                startActivity(intent);
+                ExitDialog exitDialog = new ExitDialog();
+                exitDialog.show(getFragmentManager(), "exitDialog");
             }
         });
     }
@@ -253,17 +256,6 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 settings.setChainNotif(isChecked);
-            }
-        });
-    }
-
-    private void initDiffCurCb(View view) {
-        diffCurCb = view.findViewById(R.id.cb_set_diff_cur);
-        diffCurCb.setChecked(settings.isDiffCur());
-        diffCurCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                settings.setDiffCur(isChecked);
             }
         });
     }
@@ -362,7 +354,6 @@ public class SettingsFragment extends Fragment {
                     initExit(view);
                     initNewDebtCb(view);
                     initChainCb(view);
-                    initDiffCurCb(view);
                     initSaveButton(view);
                     initRemoveButton(view);
                 }

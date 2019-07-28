@@ -52,6 +52,7 @@
                     android:id="@+id/bt_set_change_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="11sp"
                     android:text="@string/change_password" />
 
             </LinearLayout>
@@ -68,7 +69,6 @@
                 android:id="@+id/ll_set_reset_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/google_1x"
                 android:orientation="horizontal">
 
                 <Button
@@ -76,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="11sp"
                     android:text="Установить"
                     android:textAlignment="center" />
 
@@ -90,7 +91,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/google_1x"
                 android:orientation="horizontal">
 
 
@@ -99,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="11sp"
                     android:text="@string/view_archive" />
 
                 <Button
@@ -106,6 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="11sp"
                     android:text="@string/exit" />
 
             </LinearLayout>
@@ -162,25 +164,6 @@
 
                 <CheckBox
                     android:id="@+id/cb_set_chain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/google_1x">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:padding="@dimen/google_1x"
-                    android:text="@string/multi_valute" />
-
-                <CheckBox
-                    android:id="@+id/cb_set_diff_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

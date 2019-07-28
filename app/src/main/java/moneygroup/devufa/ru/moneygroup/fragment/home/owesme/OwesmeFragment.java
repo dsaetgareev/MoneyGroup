@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OwesmeFragment extends Fragment implements DebtFragment {
+public class OwesmeFragment extends Fragment implements DebtFragment, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String ARG_PAGE = "ARG_PAGE";
     private HomePageAdapter pageAdapter;
@@ -43,6 +44,8 @@ public class OwesmeFragment extends Fragment implements DebtFragment {
     private DebtConverter converter;
     private CodeService codeService;
     private ProgressBarMoney progressBarMoney;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static OwesmeFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -72,6 +75,12 @@ public class OwesmeFragment extends Fragment implements DebtFragment {
         converter = new DebtConverter(getActivity());
         codeService = new CodeService(getActivity());
         adapterInit();
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_om_container);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         return view;
     }
 
@@ -121,5 +130,11 @@ public class OwesmeFragment extends Fragment implements DebtFragment {
         if (isVisibleToUser && codeService != null) {
             adapterInit();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(false);
+        adapterInit();
     }
 }

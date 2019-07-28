@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
+        android:textColor="@color/customRed"
         />
 
     <TextView
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="name"
         android:layout_below="@id/tv_io_date"
+        android:textColor="@color/customRed"
         />
 
     <ImageView
@@ -37,6 +39,7 @@
         android:layout_toStartOf="@id/tv_currency"
         android:layout_marginRight="@dimen/google_1x"
         android:text="2500"
+        android:textColor="@color/customRed"
         android:layout_centerVertical="true"
         />
 
@@ -47,7 +50,9 @@
         android:layout_toStartOf="@id/tv_io_icon"
         android:layout_marginRight="@dimen/google_1x"
         android:layout_centerVertical="true"
-        android:text="RUB" />
+        android:text="RUB"
+        android:textColor="@color/customRed"
+        />
 
     <TextView
         android:id="@+id/tv_io_icon"
@@ -56,6 +61,7 @@
         android:layout_alignParentRight="true"
         android:text=">"
         android:layout_centerVertical="true"
+        android:textColor="@color/customRed"
         />
 
     <TextView

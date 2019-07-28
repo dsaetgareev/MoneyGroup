@@ -78,18 +78,23 @@ public class HomeActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         tab.getIcon().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+                        setTitle(R.string.unconfirmed);
                         break;
                     case 1:
                         tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        setTitle(R.string.owes_me);
                         break;
                     case 2:
                         tab.getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        setTitle(R.string.my_debts);
                         break;
                     case 3:
                         tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        setTitle(R.string.messages);
                         break;
                     case 4:
                         tab.getIcon().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
+                        setTitle(R.string.settings);
                         break;
                 }
             }

@@ -92,6 +92,10 @@
     <string name="numeral">цифра</string>
     <string name="characters_6">не менее 6 символов</string>
     <string name="number_forma_err">Формат номера должен быть +x(xxx)xxx-xxxx</string>
+    <string name="unconfirmed">Неподтвержденные долги</string>
+    <string name="messages">Сообщения</string>
+    <string name="settings">Настройки</string>
+    <string name="my_debts">Мои долги</string>
 
     <string-array name="language_array">
         <item>ru</item>

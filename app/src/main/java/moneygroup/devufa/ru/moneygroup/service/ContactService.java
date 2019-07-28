@@ -16,16 +16,15 @@ import moneygroup.devufa.ru.moneygroup.model.AndroidContact;
 public class ContactService {
 
     public static Collection<AndroidContact> getContacts(AppCompatActivity appCompatActivity) {
-        Set<AndroidContact> androidContacts = new TreeSet<>(new Comparator<AndroidContact>() {
-            @Override
-            public int compare(AndroidContact o1, AndroidContact o2) {
-                return o1.getContactName().compareTo(o2.getContactName());
-            }
-        });
+        List<AndroidContact> androidContacts = new ArrayList<>();
         Cursor cursor = null;
         try {
             cursor = appCompatActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null, null, null, null);
+                    new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER,
+                            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                            ContactsContract.CommonDataKinds.Phone._ID,
+                            ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER},
+                    null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,39 +34,28 @@ public class ContactService {
                 while (cursor.moveToNext()) {
                     AndroidContact androidContact = new AndroidContact();
                     String name;
-                    String phoneNumber = null;
+                    String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                     String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                     name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     int hasPhoneNumber = Integer.parseInt(
                             cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
                     );
                     if (hasPhoneNumber > 0) {
-                        String selection = ContactsContract.Contacts._ID + " LIKE ? and " + ContactsContract.Contacts.HAS_PHONE_NUMBER + " > 0 ";
-                        String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-                        Cursor phoneCursor = appCompatActivity.getContentResolver().query(
-                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                                null,
-                                selection,
-                                new String[]{id},
-                                sortOrder
-                        );
-                        while (phoneCursor != null && phoneCursor.moveToNext()) {
-                            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        }
-                        if (phoneCursor != null) {
-                            phoneCursor.close();
-                        }
+                        androidContact.setContactName(name);
+                        androidContact.setContactNumber(phoneNumber);
+
+                        androidContacts.add(androidContact);
                     }
 
-                    androidContact.setContactName(name);
-                    androidContact.setContactNumber(phoneNumber);
-
-                    androidContacts.add(androidContact);
                 }
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        return new ArrayList<>(androidContacts);
+        return androidContacts;
     }
 }

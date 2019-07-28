@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
@@ -20,7 +21,7 @@ import moneygroup.devufa.ru.moneygroup.service.PersonService;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViwHolder> {
 
-    private ArrayList<AndroidContact> androidContacts;
+    private List<AndroidContact> androidContacts;
     private UUID personId;
     private AppCompatActivity activity;
 
@@ -75,11 +76,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         return androidContacts.size();
     }
 
-    public ArrayList<AndroidContact> getAndroidContacts() {
+    public List<AndroidContact> getAndroidContacts() {
         return androidContacts;
     }
 
-    public void setAndroidContacts(ArrayList<AndroidContact> androidContacts) {
+    public void setAndroidContacts(List<AndroidContact> androidContacts) {
         this.androidContacts = androidContacts;
     }
 

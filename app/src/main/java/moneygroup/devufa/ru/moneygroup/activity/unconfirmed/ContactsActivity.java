@@ -10,9 +10,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import moneygroup.devufa.ru.moneygroup.R;
@@ -26,12 +30,14 @@ public class ContactsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ContactAdapter adapter;
-    private ArrayList<AndroidContact> androidContacts = new ArrayList<>();
+    private List<AndroidContact> androidContacts = new ArrayList<>();
 
     private static final int REQUEST_CODE_READ_CONTACTS=1;
     private static boolean READ_CONTACTS_GRANTED =false;
 
     private UUID personId;
+
+    private EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,8 @@ public class ContactsActivity extends AppCompatActivity {
         personId = (UUID) getIntent().getSerializableExtra(ARG_PERSON_ID);
         initRecyclerView();
         initGetContacts();
-        initAdapter();
-        recyclerView.setAdapter(adapter);
+        initEtSearch();
+        initAdapter(androidContacts);
     }
 
     public void initRecyclerView() {
@@ -49,11 +55,43 @@ public class ContactsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(ContactsActivity.this));
     }
 
-    public void initAdapter() {
+    public void initAdapter(List<AndroidContact> contacts) {
         adapter = new ContactAdapter();
-        adapter.setAndroidContacts(androidContacts);
+        if (contacts.isEmpty() && etSearch.getText().toString().length() < 0) {
+            adapter.setAndroidContacts(androidContacts);
+        } else {
+            adapter.setAndroidContacts(contacts);
+        }
         adapter.setPersonId(personId);
         adapter.setActivity(getContactActivity());
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void initEtSearch() {
+        etSearch = findViewById(R.id.et_contacts_search);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                List<AndroidContact> newContacts = new ArrayList<>();
+                newContacts.clear();
+                for (AndroidContact androidContact : androidContacts) {
+                    if (androidContact.getContactName().toLowerCase().startsWith(s.toString().toLowerCase())) {
+                        newContacts.add(androidContact);
+                    }
+                }
+                initAdapter(newContacts);
+            }
+        });
     }
 
     public  AppCompatActivity getContactActivity() {

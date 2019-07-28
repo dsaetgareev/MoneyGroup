@@ -21,4 +21,7 @@ public interface NotificationApi {
 
     @POST("message/read/{id}")
     Call<ResponseBody> setRead(@Header("Authorization") String authorization, @Path("id") String id);
+
+    @POST("message/delete/{id}")
+    Call<ResponseBody> delete(@Header("Authorization") String authorization, @Path("id") String id);
 }

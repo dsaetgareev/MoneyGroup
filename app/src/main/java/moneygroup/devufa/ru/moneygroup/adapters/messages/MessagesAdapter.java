@@ -3,9 +3,11 @@ package moneygroup.devufa.ru.moneygroup.adapters.messages;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
+import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.RemoveDebtDialog;
+import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.RemoveMessageDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog.MessageDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog.NewDebtDialog;
@@ -36,6 +40,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private AppCompatActivity activity;
     private CodeService service;
     private MessagesFragment fragment;
+    private FragmentManager fragmentManager;
 
     class MessagesViewHolder extends RecyclerView.ViewHolder {
 
@@ -82,9 +87,35 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                         messageDialog.setFragment(getFragment());
                         messageDialog.show(getActivity().getSupportFragmentManager(), "messageDialog");
                     }
-
                 }
             });
+
+//            itemView.setOnTouchListener(new View.OnTouchListener() {
+//                long startTime;
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    switch (event.getAction()) {
+//                        case MotionEvent.ACTION_DOWN: // нажатие
+//                            startTime = System.currentTimeMillis();
+//                            break;
+//                        case MotionEvent.ACTION_MOVE: // движение
+//                            break;
+//                        case MotionEvent.ACTION_UP: // отпускание
+//                        case MotionEvent.ACTION_CANCEL:
+//                            long totalTime = System.currentTimeMillis() - startTime;
+//                            long totalSecunds = totalTime / 1000;
+//                            if( totalSecunds >= 2 ) {
+//                                RemoveMessageDialog dialog = RemoveMessageDialog.newInstance(messageId);
+//                                dialog.setFragment(getFragment());
+//                                dialog.show(getFragmentManager(), "messagesDialog");
+//                            } else {
+//
+//                            }
+//                            break;
+//                    }
+//                    return true;
+//                }
+//            });
         }
 
         public void bind(MessageDto message) {
@@ -109,8 +140,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 args.put("body", message.getBody());
                 args.put("currency", message.getCurrency());
                 args.put("messageId", messageId);
-                SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
-                args.put("date", format1.format(message.getCreateDate()));
             } else {
                 isDialog = false;
                 args.put("title", message.getTitle());
@@ -163,5 +192,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     public void setFragment(MessagesFragment fragment) {
         this.fragment = fragment;
+    }
+
+    public FragmentManager getFragmentManager() {
+        return fragmentManager;
+    }
+
+    public void setFragmentManager(FragmentManager fragmentManager) {
+        this.fragmentManager = fragmentManager;
     }
 }

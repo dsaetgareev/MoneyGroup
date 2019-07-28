@@ -1,4 +1,4 @@
-package moneygroup.devufa.ru.moneygroup.fragment.notifications.dialog;
+package moneygroup.devufa.ru.moneygroup.fragment.home.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,94 +13,73 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Map;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.fragment.home.messages.MessagesFragment;
+import moneygroup.devufa.ru.moneygroup.fragment.home.owesme.OwesmeFragment;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.notification.NotificationsApiService;
-import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessageDialog extends DialogFragment {
-
-    private ProgressBarMoney progressBarMoney;
-    private Context context;
+public class RemoveMessageDialog extends DialogFragment {
 
     private TextView title;
     private TextView body;
-    private TextView tvDate;
 
-    private String messageId;
-    private String titleStr;
-    private String bodyStr;
-    private String type;
-    private String date;
-
+    private String id;
+    private CodeService codeService;
+    private Context context;
     private MessagesFragment fragment;
 
-
-    public static MessageDialog newInstance(Map<String, String> args) {
+    public static RemoveMessageDialog newInstance(String id) {
         Bundle bundle = new Bundle();
-        bundle.putString("messageId", args.get("messageId"));
-        bundle.putString("title", args.get("title"));
-        bundle.putString("body", args.get("body"));
-        bundle.putString("type", args.get("type"));
-        bundle.putString("date", args.get("date"));
-        MessageDialog dialog = new MessageDialog();
-        dialog.setArguments(bundle);
-        return dialog;
+        bundle.putString("id", id);
+        RemoveMessageDialog removeMessageDialog = new RemoveMessageDialog();
+        removeMessageDialog.setArguments(bundle);
+        return removeMessageDialog;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            messageId = getArguments().getString("messageId");
-            titleStr = getArguments().getString("title");
-            bodyStr = getArguments().getString("body");
-            type = getArguments().getString("type");
-            date = getArguments().getString("date");
+            id = getArguments().getString("id");
         }
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        progressBarMoney = new ProgressBarMoney(getActivity());
-        context = getActivity();
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.list_imte_message, null);
+        codeService = new CodeService(getActivity());
+        context = getActivity();
         title = view.findViewById(R.id.tv_mess_title);
+        title.setText("Moneybook");
         body = view.findViewById(R.id.tv_mess_body);
-        tvDate = view.findViewById(R.id.tv_mess_date);
-
-        title.setText(titleStr);
-        body.setText(bodyStr);
-        if (date == null) {
-            tvDate.setVisibility(View.INVISIBLE);
-        } else {
-            tvDate.setText(date);
-        }
-        final CodeService service = CodeService.get(context);
+        body.setText(String.format("Вы хотите удалить сообщение?"));
         builder.setView(view)
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Call<ResponseBody> callSetRead = NotificationsApiService.getApiService().setRead(service.getCode(), messageId);
-                        callSetRead.enqueue(new Callback<ResponseBody>() {
+                        Call<ResponseBody> call = NotificationsApiService.getApiService().delete(codeService.getCode(), id);
+                        call.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
+                                    fragment.adapterInit();
+
                                 }
                             }
 
@@ -109,17 +88,17 @@ public class MessageDialog extends DialogFragment {
 
                             }
                         });
-                        if (fragment != null) {
-                            fragment.adapterInit();
-                        }
-                        MessageDialog.this.getDialog().cancel();
-                        if (date == null) {
-                            toHomeActivity();
-                        }
+                    }
+
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        fragment.adapterInit();
+                        RemoveMessageDialog.this.getDialog().cancel();
                     }
                 });
-
-         return builder.create();
+        return builder.create();
     }
 
     private void toHomeActivity() {
@@ -134,6 +113,6 @@ public class MessageDialog extends DialogFragment {
     }
 
     public void setFragment(MessagesFragment fragment) {
-        this.fragment = fragment;
+        this.fragment = (MessagesFragment) fragment;
     }
 }

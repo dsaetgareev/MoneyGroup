@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void viewPagerInit() {
         viewPager = findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(1);
         adapterInit();
     }
 

@@ -21,7 +21,7 @@
     <string name="enter_new_password">Введите новый пароль</string>
     <string name="confirm_password">Повторите пароль</string>
     <string name="save">Сохранить</string>
-    <string name="password_description">Пароль должен содержать только буквы латинского алфавита</string>
+    <string name="password_description">Пароль должен содержать только буквы латинского алфавита, одну прописную (A-Z) и строчную (a-z) букву</string>
 
     <string name="registration_title"><b>Регистрация</b></string>
     <string name="enter_number_titel">Введите номер</string>
@@ -44,7 +44,9 @@
     <string name="enter_phone">Ввдите номер телефона</string>
     <string name="summ">Сумма</string>
     <string name="note_for_yourself">Заметка (для себя)</string>
+    <string name="note_for_yourself_in_detail">Данная запись делается только для себя и не показывается у другого абонента при отправке запроса.</string>
     <string name="Comment">Комментарий (для абонента)</string>
+    <string name="Comment_in_detail">Данный комментарий видит абонент которому вы отправляете запрос на подтверждение долга.</string>
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>
@@ -53,7 +55,7 @@
     <string name="tv_change_password">Сменить пароль</string>
     <string name="enter_confirmation_code">Введите код подтверждения</string>
     <string name="send_request">Отправить запрос</string>
-    <string name="tv_tel">Тел.</string>
+    <string name="tv_tel">Тел.:</string>
     <string name="tv_omp_title">Должен мне</string>
     <string name="btn_to_archiv">В архив</string>
     <string name="btn_to_delete">Удалить</string>
@@ -73,7 +75,7 @@
     <string name="not_new_debt">Уведомление о новом долге</string>
     <string name="not_new_cycle">Присылать сообщение о собранной цепочке долгов</string>
     <string name="multi_valute">Разновалютная цепь долгов</string>
-    <string name="descText">Цепь долгов совпала из %s учатников мы можем списать у всех участников по:</string>
+    <string name="descText">Цепь долгов совпала из %s участников. Мы можем списать у всех участников по:</string>
     <string name="descResponse">Подтвердили на списание %s участников.  После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг.</string>
     <string name="cycleText">Цепочка из %s элементов собрана. %s USD</string>
     <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
@@ -91,7 +93,7 @@
     <string name="uppercase_letter">прописная буква</string>
     <string name="numeral">цифра</string>
     <string name="characters_6">не менее 6 символов</string>
-    <string name="number_forma_err">Формат номера должен быть +x(xxx)xxx-xxxx</string>
+    <string name="number_forma_err">Введите номер в международном формате, пример +ххххххххх</string>
     <string name="unconfirmed">Неподтвержденные долги</string>
     <string name="messages">Сообщения</string>
     <string name="settings">Настройки</string>

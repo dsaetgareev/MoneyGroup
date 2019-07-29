@@ -8,62 +8,77 @@
         android:id="@+id/tv_agreement_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/agreement_title"
-        android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        />
+
+        android:layout_marginTop="15sp"
+        android:text="@string/agreement_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/tv_agreement_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/agreement_text"
-            android:layout_below="@+id/tv_agreement_title"
-            android:textSize="15sp"
-            />
-        <TextView
-            android:id="@+id/tv_link_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/agreement_link"
-            android:layout_below="@id/tv_agreement_text"
-            android:textColorLink="@color/oweMe"
-            android:textSize="15sp"
-            />
-        <TextView
-            android:id="@+id/tv_link_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/agreement_link_1"
-            android:layout_below="@+id/tv_link_1"
-            android:textColorLink="@color/oweMe"
-            android:textSize="15sp"
-            />
+    <TextView
+        android:id="@+id/tv_agreement_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_agreement_title"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/agreement_text"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_link_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_agreement_text"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        android:text="@string/agreement_link"
+        android:textColor="@android:color/black"
+        android:textColorLink="@color/oweMe"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_link_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_link_1"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:text="@string/agreement_link_1"
+        android:textColor="@android:color/black"
+        android:textColorLink="@color/oweMe"
+        android:textSize="15sp" />
 
 
     <TextView
         android:id="@+id/tv_agreement_accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_accept"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textSize="20sp"
-        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/tv_accept"
         android:textColor="@color/oweMe"
-        />
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/tv_agreement_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_back"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:textSize="20sp"
-        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/tv_back"
         android:textColor="@color/oweMe"
-        />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

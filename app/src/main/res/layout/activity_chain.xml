@@ -9,23 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rl_chain"
-        android:layout_margin="@dimen/google_1x">
+        android:layout_margin="10sp">
 
         <TextView
             android:id="@+id/tv_ch_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/google_1x"
+            android:layout_marginTop="15sp"
             android:text="@string/tv_chain_title"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
 
         <LinearLayout
             android:id="@+id/ll_bef_write_off"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ch_title"
-            android:layout_margin="@dimen/google_1x"
+            android:layout_marginTop="10sp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -33,15 +34,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/back"
-                android:orientation="vertical">
+                android:background="@drawable/text_fielld_design"
+                android:orientation="vertical"
+                android:padding="3sp">
 
                 <TextView
                     android:id="@+id/tv_ch_om_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_omp_title"
-                    android:textColor="@color/oweMe" />
+                    android:textColor="@color/colorBlueForMoneybook"
+                    android:padding="3sp"/>
 
                 <View
                     android:layout_width="wrap_content"
@@ -66,7 +69,8 @@
                         android:id="@+id/tv_ch_om_bef_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/name" />
+                        android:text="@string/name"
+                        android:textColor="@android:color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,9 +91,8 @@
                         android:id="@+id/tv_ch_om_bef_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123"
-                        android:textColor="@color/oweMe"
-                        />
+                        android:textColor="@android:color/black"
+                        android:text="+79178643123" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,6 +113,7 @@
                         android:id="@+id/tv_ch_om_bef_summ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlueForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
 
@@ -124,6 +128,7 @@
                         android:id="@+id/tv_ch_om_bef_summ_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
                         android:layout_marginRight="@dimen/google_1x"
                         android:text="@string/currency" />
 
@@ -131,6 +136,7 @@
                         android:id="@+id/tv_ch_om_bef_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:text="EUR" />
                 </LinearLayout>
 
@@ -142,16 +148,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/back"
-                android:orientation="vertical">
+                android:background="@drawable/text_fielld_design"
+                android:orientation="vertical"
+                android:padding="3sp">
 
                 <TextView
                     android:id="@+id/tv_ch_io_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/i_owe_title"
-                    android:textColor="@color/customRed"
-                    />
+                    android:padding="3sp"
+                    android:text="@string/i_owe_title" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -175,6 +181,7 @@
                     <TextView
                         android:id="@+id/tv_ch_io_bef_name"
                         android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
                         android:layout_height="wrap_content"
                         android:text="@string/name" />
                 </LinearLayout>
@@ -197,9 +204,8 @@
                         android:id="@+id/tv_ch_io_bef_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123"
-                        android:textColor="@color/customRed"
-                        />
+                        android:textColor="@android:color/black"
+                        android:text="+79178643123" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -220,6 +226,7 @@
                         android:id="@+id/tv_ch_io_bef_summ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorRedForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
 
@@ -241,6 +248,7 @@
                         android:id="@+id/tv_ch_io_bef_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:text="RUR" />
                 </LinearLayout>
 
@@ -262,26 +270,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_ch_desc"
-            android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/google_1x"
-            android:background="@drawable/back"
-            android:paddingStart="@dimen/google_1x"
-            android:paddingEnd="@dimen/google_1x"
-            android:textColor="@color/oweMe"
-            android:text="EUR" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="10sp"
+            android:text="EUR"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_ch_desc_summ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_ch_desc"
-            android:layout_margin="@dimen/google_1x"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="10sp"
             android:layout_toStartOf="@id/tv_ch_desc_cur"
-            android:background="@drawable/back"
-            android:paddingStart="@dimen/google_1x"
-            android:paddingEnd="@dimen/google_1x"
-            android:textColor="@color/oweMe"
-            android:text="3200" />
+            android:text="3200"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="18sp" />
 
         <View
             android:layout_width="wrap_content"
@@ -294,6 +303,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_ch_desc_cur"
+            android:textColor="@color/colorGreenMoneybook"
             android:text="@string/after_write_off_title"
             android:textAlignment="center"
             android:textSize="20sp" />
@@ -311,7 +321,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/back"
+                android:background="@drawable/text_fielld_design"
+                android:padding="3sp"
                 android:orientation="vertical">
 
 
@@ -332,6 +343,7 @@
                     <TextView
                         android:id="@+id/tv_ch_om_af_name"
                         android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
                         android:layout_height="wrap_content"
                         android:text="@string/name" />
                 </LinearLayout>
@@ -354,9 +366,8 @@
                         android:id="@+id/tv_ch_om_af_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123"
-                        android:textColor="@color/oweMe"
-                        />
+                        android:textColor="@android:color/black"
+                        android:text="+79178643123" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -377,6 +388,7 @@
                         android:id="@+id/tv_ch_om_af_summ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlueForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
 
@@ -397,6 +409,7 @@
                     <TextView
                         android:id="@+id/tv_ch_om_af_cur"
                         android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
                         android:layout_height="wrap_content"
                         android:text="RUR" />
                 </LinearLayout>
@@ -409,7 +422,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/back"
+                android:background="@drawable/text_fielld_design"
+                android:padding="3sp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -430,6 +444,7 @@
                         android:id="@+id/tv_ch_io_af_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:text="@string/name" />
                 </LinearLayout>
 
@@ -451,9 +466,8 @@
                         android:id="@+id/tv_ch_io_af_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+79178643123"
-                        android:textColor="@color/customRed"
-                        />
+                        android:textColor="@android:color/black"
+                        android:text="+79178643123" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -474,6 +488,7 @@
                         android:id="@+id/tv_ch_io_af_summ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorRedForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
 
@@ -495,6 +510,7 @@
                         android:id="@+id/tv_ch_io_af_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:text="RUR" />
                 </LinearLayout>
 
@@ -508,6 +524,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_af_write_off"
+
             android:layout_margin="@dimen/google_1x"
             android:text="Подтвердили на списание 11 участников.
 После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг." />
@@ -526,6 +543,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
+                android:background="@drawable/round_shape_button"
+                android:textColor="@color/colorBlueForMoneybook"
                 android:text="@string/rejection" />
 
             <Button
@@ -533,6 +552,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:background="@drawable/round_shape_button"
+                android:textColor="@color/colorBlueForMoneybook"
                 android:layout_weight="1"
                 android:text="@string/agree" />
         </LinearLayout>

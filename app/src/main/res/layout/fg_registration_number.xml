@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl_reg_number"
@@ -10,19 +11,21 @@
         android:id="@+id/tv_enter_number_rg_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_number_titel"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="15sp"
+        android:text="@string/enter_number_titel"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/sp_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_enter_number_rg_fr"
-        android:layout_marginTop="@dimen/google_1x"
-        android:layout_marginHorizontal="@dimen/google_1x"
-        android:layout_marginBottom="1dp"
-        />
+        android:layout_below="@id/edit_info_for_contry"
+        android:layout_marginHorizontal="15sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="1dp" />
 
     <View
         android:id="@+id/view_laine"
@@ -30,8 +33,19 @@
         android:layout_height="2dp"
         android:layout_below="@+id/sp_country"
         android:background="#7b7b7b"
-        android:layout_marginBottom="@dimen/google_1x"
+        android:layout_marginBottom="1sp"
         />
+
+    <EditText
+        android:id="@+id/edit_info_for_contry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_enter_number_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:inputType="textImeMultiLine"
+        android:text="Выберите код страны из списка"
+        android:textColor="@color/colorGrayForMoneybook"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:id="@+id/ll_number_rg_fr"
@@ -39,27 +53,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/view_laine"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        >
+
+        android:layout_marginTop="20dp"
+        tools:layout_centerHorizontal="true">
 
         <Spinner
-        android:id="@+id/number_array"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="#0000"
-        />
+            android:id="@+id/number_array"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#0000" />
 
         <EditText
             android:id="@+id/et_number_rg_fr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:hint="9171234567"
+            android:background="@drawable/text_fielld_design"
+            android:padding="5sp"
+            android:hint="987123456789"
             android:inputType="phone"
-            android:maxLength="15"
             android:lines="1"
-            />
+            android:maxLength="15"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorGrayForMoneybook" />
 
     </LinearLayout>
 
@@ -71,7 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_number_rg_fr"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/round_shape_button"
         android:text="@string/btn_confirm"
+        android:padding="10sp"
+        android:textColor="@color/colorBlueForMoneybook"
         />
 
     <EditText
@@ -80,10 +101,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bt_confirm_rg_fr"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
         android:hint="12345"
         android:inputType="number"
-        android:layout_marginTop="@dimen/google_1x"
-        />
+
+
+        android:background="@drawable/text_fielld_design"
+        android:padding="5sp"
+        android:textColorHint="@color/colorGrayForMoneybook"
+        android:textColor="@android:color/black"
+
+
+
+         />
 
     <Button
         android:id="@+id/bt_ok_rg_fr"
@@ -92,31 +122,35 @@
         android:layout_below="@id/et_confirm_number_rg_fr"
         android:layout_centerHorizontal="true"
         android:text="ok"
-        android:layout_marginTop="@dimen/google_1x"
+        android:layout_marginTop="10sp"
+
+        android:background="@drawable/round_shape_button"
+        android:padding="10sp"
+        android:textColor="@color/colorBlueForMoneybook"
         />
 
     <TextView
         android:id="@+id/tv_next_rg_fr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_skip"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/google_1x"
-        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/tv_skip"
         android:textColor="@color/oweMe"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/fg_tv_password_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_back"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_margin="@dimen/google_1x"
-        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/tv_back"
         android:textColor="@color/oweMe"
-        />
+        android:textSize="20sp" />
 
 </RelativeLayout>

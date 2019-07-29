@@ -1,7 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/google_1x"
+    >
 
     <TextView
         android:id="@+id/tv_debt_dialog"
@@ -27,13 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_omp_title"
+            android:layout_marginLeft="@dimen/google_1x"
             android:textColor="@color/oweMe" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:background="#7b7b7b" />
-
 
         <LinearLayout
             android:id="@+id/ll_debt_dial_tel"
@@ -53,6 +50,7 @@
                 android:id="@+id/tv_debt_dial_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="+79178643123" />
         </LinearLayout>
 
@@ -74,6 +72,7 @@
                 android:id="@+id/tv_debt_dial_summ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="15000" />
         </LinearLayout>
 
@@ -95,6 +94,7 @@
                 android:id="@+id/tv_debt_dial_cur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="EUR" />
         </LinearLayout>
 

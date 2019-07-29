@@ -12,7 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,12 +95,9 @@ public class NewDebtDialog extends DialogFragment {
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fg_dialog_debt, null);
         textViewBody = view.findViewById(R.id.tv_debt_dialog);
-        textViewBody.setText(body);
 
         tvTitle = view.findViewById(R.id.tv_debt_dial_title);
         tvTitle.setText("NEW_DEBT".equals(type) ?  getString(R.string.tv_omp_title) : getString(R.string.i_owe_title));
-        tvAbonentTel = view.findViewById(R.id.tv_debt_dial_tel);
-        tvAbonentTel.setText(debtTelephoneNumber);
 
         tvSumm = view.findViewById(R.id.tv_debt_dial_summ);
         tvSumm.setText(debtCurrentCount);
@@ -109,6 +105,9 @@ public class NewDebtDialog extends DialogFragment {
         tvCurrency = view.findViewById(R.id.tv_debt_dial_cur);
         tvCurrency.setText(debtCurrency);
         initReceiverName();
+        textViewBody.setText(body);
+        tvAbonentTel = view.findViewById(R.id.tv_debt_dial_tel);
+        tvAbonentTel.setText(debtTelephoneNumber);
         final CodeService service = CodeService.get(context);
         builder.setView(view)
                 // Add action buttons
@@ -179,11 +178,10 @@ public class NewDebtDialog extends DialogFragment {
     public void initReceiverName() {
         List<AndroidContact> androidContacts = (ArrayList<AndroidContact>)ContactService.getContacts(appCompatActivity);
         for (AndroidContact androidContact : androidContacts) {
-            if (androidContact.getContactNumber().replaceAll("[^\\d]", "").contains(debtTelephoneNumber)) {
+            if (androidContact.getContactNumber().replaceAll("[^\\d]", "").contains(debtTelephoneNumber) || androidContact.getContactNumber().replaceAll("[^\\d]", "").equals(debtTelephoneNumber)) {
                 receiverName = androidContact.getContactName();
-                return;
-            } else {
-                receiverName = debtTelephoneNumber;
+                body = body.replace(debtTelephoneNumber, receiverName);
+                debtTelephoneNumber = receiverName;
                 return;
             }
         }

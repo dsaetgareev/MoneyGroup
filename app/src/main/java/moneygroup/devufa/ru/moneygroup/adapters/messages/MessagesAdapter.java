@@ -129,7 +129,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 body.setTypeface(null, Typeface.BOLD);
             }
             debtId = message.getDebtId();
-            debtTelephoneNumber = message.getInitiator();
+            debtTelephoneNumber = message.getInitiator().equals(service.getNumber()) ? message.getReceiver() : message.getInitiator();
             debtCurrentCount = message.getCount();
             if (message.getType().equals("NEW_DEBT") || message.getType().equals("NEW_LOAN")) {
                 isDialog = true;

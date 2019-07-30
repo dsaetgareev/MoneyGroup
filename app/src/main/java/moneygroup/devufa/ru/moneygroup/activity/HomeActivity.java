@@ -62,16 +62,21 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(imageResId[0]);
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(0).setText(getResources().getString(R.string.unconfirmed));
         tabLayout.getTabAt(1).setIcon(imageResId[1]);
         tabLayout.getTabAt(1).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).setText(getResources().getString(R.string.owes_me));
         tabLayout.getTabAt(2).setIcon(imageResId[2]);
         tabLayout.getTabAt(2).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).setText(getResources().getString(R.string.i_owe_title));
 
         tabLayout.getTabAt(3).setIcon(imageResId[3]);
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).setText(getResources().getString(R.string.messages));
 
         tabLayout.getTabAt(4).setIcon(imageResId[4]);
         tabLayout.getTabAt(4).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(4).setText(getResources().getString(R.string.settings));
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -79,22 +84,27 @@ public class HomeActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.customGreen));
                         setTitle(R.string.unconfirmed);
                         break;
                     case 1:
                         tab.getIcon().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+                        tabLayout.setSelectedTabIndicatorColor(Color.BLUE);
                         setTitle(R.string.owes_me);
                         break;
                     case 2:
                         tab.getIcon().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        tabLayout.setSelectedTabIndicatorColor(Color.RED);
                         setTitle(R.string.my_debts);
                         break;
                     case 3:
                         tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.customGreen));
                         setTitle(R.string.messages);
                         break;
                     case 4:
                         tab.getIcon().setColorFilter(getResources().getColor(R.color.customGreen), PorterDuff.Mode.SRC_IN);
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.customGreen));
                         setTitle(R.string.settings);
                         break;
                 }

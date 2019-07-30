@@ -1,5 +1,6 @@
 package moneygroup.devufa.ru.moneygroup.fragment.home.owesme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +21,7 @@ import java.util.List;
 
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.HomeActivity;
+import moneygroup.devufa.ru.moneygroup.activity.unconfirmed.PersonPagerActivity;
 import moneygroup.devufa.ru.moneygroup.adapters.home.HomePageAdapter;
 import moneygroup.devufa.ru.moneygroup.adapters.owesme.OwesmeAdapter;
 import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
@@ -24,6 +29,7 @@ import moneygroup.devufa.ru.moneygroup.model.Person;
 import moneygroup.devufa.ru.moneygroup.model.dto.DebtDTO;
 import moneygroup.devufa.ru.moneygroup.model.enums.Status;
 import moneygroup.devufa.ru.moneygroup.service.CodeService;
+import moneygroup.devufa.ru.moneygroup.service.PersonService;
 import moneygroup.devufa.ru.moneygroup.service.converter.DebtConverter;
 import moneygroup.devufa.ru.moneygroup.service.debt.DebtService;
 import moneygroup.devufa.ru.moneygroup.service.processbar.ProgressBarMoney;
@@ -58,6 +64,7 @@ public class OwesmeFragment extends Fragment implements DebtFragment, SwipeRefre
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             page = getArguments().getInt(ARG_PAGE);
         }
@@ -136,5 +143,29 @@ public class OwesmeFragment extends Fragment implements DebtFragment, SwipeRefre
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(false);
         adapterInit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.unconfirmed_menu, menu);
+        MenuItem editTitle = menu.findItem(R.id.menu_item_edit_debts);
+        editTitle.setVisible(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.menu_item_new_debt:
+                Person person = new Person();
+                PersonService.get(getActivity()).addPerson(person);
+                Intent intent = PersonPagerActivity.newIntent(getActivity(), person.getId());
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

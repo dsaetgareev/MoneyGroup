@@ -383,7 +383,10 @@ public class AddPersonFragment extends Fragment {
         Intent intent = new Intent(getActivity(), home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         getActivity().startActivity(intent);
+//        getActivity().onBackPressed();
     }
+
+
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".activity.archive.ArchiveActivity">
 
     <android.support.v7.widget.RecyclerView
@@ -23,13 +24,17 @@
         android:gravity="center"
         android:visibility="invisible"
         >
+
         <Button
             android:id="@+id/bt_ar_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_to_delete"
+            android:layout_margin="15dp"
             android:layout_marginLeft="@dimen/google_1x"
-            />
+            android:text="@string/btn_to_delete"
+            android:padding="5dp"
+            android:background="@drawable/round_shape_button"
+            android:textColor="@color/colorBlueForMoneybook" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/sc_forgot"
+    android:scrollbars="none"
     >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,14 +11,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/rl_forgot"
         tools:context=".activity.ForgotActivity">
 
         <ImageView
             android:id="@+id/iv_forgot_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/logo11" />
 
@@ -28,12 +30,14 @@
             android:layout_below="@id/iv_forgot_logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:textColor="@color/colorGreenMoneybook"
             android:text="@string/change_password"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
         <LinearLayout
             android:id="@+id/ll_ch_number"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_title_text_view"
             android:orientation="horizontal">
@@ -49,7 +53,7 @@
 
             <EditText
                 android:id="@+id/et_forgot_phone_number"
-                android:layout_width="249dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
                 android:inputType="phone" />

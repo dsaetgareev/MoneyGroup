@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,15 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rl_chain"
-        android:layout_margin="10sp">
+        android:layout_marginTop="15dp"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_ch_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
             android:text="@string/tv_chain_title"
             android:textAlignment="center"
+            android:paddingBottom="10dp"
             android:textSize="20sp"
             android:textColor="@android:color/black"/>
 
@@ -26,71 +29,79 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ch_title"
-            android:layout_marginTop="10sp"
+            android:padding="5dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/ll_ch_om_bef"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/text_fielld_design"
+                android:padding="5dp"
                 android:orientation="vertical"
-                android:padding="3sp">
+                >
 
                 <TextView
                     android:id="@+id/tv_ch_om_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_omp_title"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
                     android:textColor="@color/colorBlueForMoneybook"
-                    android:padding="3sp"/>
+                    android:text="@string/tv_omp_title"/>
 
                 <View
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#7b7b7b" />
+                    android:background="#fff" />
 
                 <LinearLayout
                     android:id="@+id/ll_ch_om_bef_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/google_1x"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_name_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
+                        android:textColor="@android:color/black"
                         android:text="@string/name"
-                        android:textColor="@android:color/black"/>
+                        />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_ch_om_bef_tel"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_tel_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/tv_tel" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="match_parent"
                         android:textColor="@android:color/black"
                         android:text="+79178643123" />
                 </LinearLayout>
@@ -98,21 +109,23 @@
                 <LinearLayout
                     android:id="@+id/ll_ch_om_bef_summ"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_summ_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/summ" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_summ"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="match_parent"
                         android:textColor="@color/colorBlueForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
@@ -121,21 +134,20 @@
                     android:id="@+id/ll_ch_om_bef_cur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/google_1x"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_summ_cur"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginRight="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/currency" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_bef_cur"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:textColor="@android:color/black"
                         android:text="EUR" />
                 </LinearLayout>
@@ -146,64 +158,77 @@
             <LinearLayout
                 android:id="@+id/ll_ch_io_bef"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/text_fielld_design"
-                android:orientation="vertical"
-                android:padding="3sp">
+                android:padding="5dp"
+                android:orientation="vertical">
+
+            >
 
                 <TextView
                     android:id="@+id/tv_ch_io_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="3sp"
-                    android:text="@string/i_owe_title" />
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/colorRedForMoneybook"
+                    android:text="@string/i_owe_title"
+                    />
 
                 <View
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#7b7b7b" />
+                    android:background="#fff" />
 
                 <LinearLayout
                     android:id="@+id/ll_ch_io_bef_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/google_1x"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_name_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/google_1x"
-                        android:text="@string/name" />
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/name"  />
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name" />
+                        android:text="@string/name"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_ch_io_bef_tel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
+
+                    android:paddingTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_tel_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/tv_tel" />
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
                         android:text="+79178643123" />
                 </LinearLayout>
@@ -212,20 +237,23 @@
                     android:id="@+id/ll_ch_io_bef_summ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
+                    android:paddingTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_summ_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/summ" />
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_summ"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@color/colorRedForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
@@ -234,14 +262,14 @@
                     android:id="@+id/ll_ch_io_bef_cur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
+                    android:paddingTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_bef_summ_cur"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/currency" />
 
                     <TextView
@@ -262,7 +290,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_bef_write_off"
-            android:layout_margin="@dimen/google_1x"
+            android:padding="10dp"
             android:text="Цепь долгов совпала из 17 учатников мы можем списать у всех участников по:" />
 
         <TextView
@@ -274,6 +302,7 @@
             android:layout_marginTop="10sp"
             android:layout_marginEnd="20sp"
             android:layout_marginBottom="10sp"
+            android:layout_weight="1"
             android:text="EUR"
             android:textColor="@android:color/holo_purple"
             android:textSize="18sp" />
@@ -286,6 +315,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10sp"
             android:layout_marginRight="10sp"
+            android:layout_weight="1"
             android:layout_toStartOf="@id/tv_ch_desc_cur"
             android:text="3200"
             android:textStyle="bold"
@@ -301,6 +331,7 @@
         <TextView
             android:id="@+id/tv_ch_af_write_off_title"
             android:layout_width="match_parent"
+            android:padding="10dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_ch_desc_cur"
             android:textColor="@color/colorGreenMoneybook"
@@ -313,16 +344,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ch_af_write_off_title"
-            android:layout_margin="@dimen/google_1x"
+            android:padding="5dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/ll_ch_om_af"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/text_fielld_design"
-                android:padding="3sp"
+                android:padding="5dp"
                 android:orientation="vertical">
 
 
@@ -330,42 +361,48 @@
                     android:id="@+id/ll_ch_om_af_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_name_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name" />
+                        android:text="@string/name"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_ch_om_af_tel"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_tel_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/tv_tel" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
                         android:text="+79178643123" />
                 </LinearLayout>
@@ -373,21 +410,24 @@
                 <LinearLayout
                     android:id="@+id/ll_ch_om_af_summ"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_summ_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/summ" />
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_summ"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@color/colorBlueForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
@@ -395,15 +435,15 @@
                 <LinearLayout
                     android:id="@+id/ll_ch_om_af_cur"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_om_af_summ_cur"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/currency" />
 
                     <TextView
@@ -420,52 +460,58 @@
             <LinearLayout
                 android:id="@+id/ll_ch_io_af"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/text_fielld_design"
-                android:padding="3sp"
+                android:padding="5dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_ch_io_af_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_name_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/name" />
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
-                        android:text="@string/name" />
+                        android:text="@string/name"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_ch_io_af_tel"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_tel_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/tv_tel" />
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@android:color/black"
                         android:text="+79178643123" />
                 </LinearLayout>
@@ -473,21 +519,24 @@
                 <LinearLayout
                     android:id="@+id/ll_ch_io_af_summ"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_summ_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/summ" />
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_summ"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:lines="1"
                         android:textColor="@color/colorRedForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
@@ -495,15 +544,15 @@
                 <LinearLayout
                     android:id="@+id/ll_ch_io_af_cur"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/google_1x"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_ch_io_af_summ_cur"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/google_1x"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:text="@string/currency" />
 
                     <TextView
@@ -524,24 +573,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_af_write_off"
-
-            android:layout_margin="@dimen/google_1x"
-            android:text="Подтвердили на списание 11 участников.
-После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг." />
+            android:padding="5dp"
+            android:text="@string/descResponse" />
 
         <LinearLayout
             android:id="@+id/ll_ch_btn_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ch_desc_response"
+            android:layout_marginTop="5dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_ch_rejection"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_shape_button"
                 android:textColor="@color/colorBlueForMoneybook"
@@ -550,8 +599,9 @@
             <Button
                 android:id="@+id/btn_ch_agree"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
+                android:layout_margin="10dp"
                 android:background="@drawable/round_shape_button"
                 android:textColor="@color/colorBlueForMoneybook"
                 android:layout_weight="1"

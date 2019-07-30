@@ -14,9 +14,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15sp"
         android:text="@string/enter_number_titel"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorGreenMoneybook"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/edit_info_for_contry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_enter_number_rg_fr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Выберите код страны из списка"
+        android:textColor="@color/colorGrayForMoneybook"
+        android:textSize="12sp" />
 
     <Spinner
         android:id="@+id/sp_country"
@@ -24,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_info_for_contry"
         android:layout_marginHorizontal="15sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="1sp"
+        android:padding="3dp"
         android:layout_marginBottom="1dp" />
 
     <View
@@ -36,16 +48,7 @@
         android:layout_marginBottom="1sp"
         />
 
-    <EditText
-        android:id="@+id/edit_info_for_contry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_enter_number_rg_fr"
-        android:layout_centerHorizontal="true"
-        android:inputType="textImeMultiLine"
-        android:text="Выберите код страны из списка"
-        android:textColor="@color/colorGrayForMoneybook"
-        android:textSize="12sp" />
+
 
     <LinearLayout
         android:id="@+id/ll_number_rg_fr"
@@ -91,7 +94,7 @@
         android:layout_marginTop="10sp"
         android:background="@drawable/round_shape_button"
         android:text="@string/btn_confirm"
-        android:padding="10sp"
+        android:padding="5sp"
         android:textColor="@color/colorBlueForMoneybook"
         />
 
@@ -125,7 +128,7 @@
         android:layout_marginTop="10sp"
 
         android:background="@drawable/round_shape_button"
-        android:padding="10sp"
+        android:padding="5sp"
         android:textColor="@color/colorBlueForMoneybook"
         />
 

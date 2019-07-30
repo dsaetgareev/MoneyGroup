@@ -41,12 +41,18 @@
     <string name="owes_me">Должны мне</string>
     <string name="should_i">Должен я</string>
     <string name="enter_name">Введите имя</string>
-    <string name="enter_phone">Ввдите номер телефона</string>
+    <string name="enter_phone">Введите номер телефона</string>
     <string name="summ">Сумма</string>
     <string name="note_for_yourself">Заметка (для себя)</string>
-    <string name="note_for_yourself_in_detail">Данная запись делается только для себя и не показывается у другого абонента при отправке запроса.</string>
+    <string name="note_for_yourself_help_text">Данная запись делается только для себя и не отправляется другому абоненту</string>
+    <string name="Comment_help_text">Данный коментарий видит абонент, которому вы отправляете запрос на подтверждение долга</string>
     <string name="Comment">Комментарий (для абонента)</string>
-    <string name="Comment_in_detail">Данный комментарий видит абонент которому вы отправляете запрос на подтверждение долга.</string>
+    <string name="date_arhive">Дата архивации</string>
+    <string name="comment_text">Комментарий</string>
+    <string name="note_text">Заметка</string>
+    <string name="telephone_text">Телефон</string>
+    <string name="status_text">Статус</string>
+
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>

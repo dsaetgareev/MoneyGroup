@@ -4,71 +4,130 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/google_1x"
     >
-
-    <TextView
-        android:id="@+id/tv_om_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="date"
-        android:textColor="@color/oweMe"
-        />
-
-    <TextView
-        android:id="@+id/tv_om_name_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="name"
-        android:textColor="@color/oweMe"
-        android:layout_below="@id/tv_om_date"
-        />
-
-    <ImageView
-        android:id="@+id/iv_om_chain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_toStartOf="@id/tv_om_summ"
-        android:src="@mipmap/logo11"
-        android:layout_weight="1"
-        />
-
-    <TextView
-        android:id="@+id/tv_om_summ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/tv_currency"
-        android:layout_marginRight="@dimen/google_1x"
-        android:text="2500"
-        android:textColor="@color/oweMe"
-        android:layout_centerVertical="true"
-        />
-
-    <TextView
-        android:id="@+id/tv_currency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/tv_om_icon"
-        android:layout_marginRight="@dimen/google_1x"
-        android:layout_centerVertical="true"
-        android:text="RUB"
-        android:textColor="@color/oweMe"
-        />
-
-    <TextView
-        android:id="@+id/tv_om_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text=">"
-        android:layout_centerVertical="true"
-        android:textColor="@color/oweMe"
-        />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_below="@+id/tv_om_summ"
-        />
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|left"
+            android:layout_weight="5"
+            android:paddingLeft="10sp"
+
+            android:gravity="center_horizontal|left|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_om_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:paddingEnd="5sp"
+                android:paddingRight="5sp"
+
+                android:textColor="@color/customRed"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_om_chain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:src="@mipmap/logo11"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="2sp"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:id="@+id/tv_om_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textSize="10sp"
+                    android:layout_margin="2sp"
+                    android:textColor="@color/colorGrayForMoneybook" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="2sp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_om_summ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:text="2500"
+                    android:textSize="15sp"
+                    android:layout_margin="2sp"
+                    android:textColor="@color/customRed" />
+
+                <TextView
+                    android:id="@+id/tv_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/google_1x"
+                    android:textSize="15sp"
+                    android:text="RUB"
+                    android:layout_margin="2sp"
+                    android:textColor="@color/customRed" />
+
+                <TextView
+                    android:id="@+id/tv_om_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text=">"
+                    android:layout_margin="2sp"
+                    android:textColor="@color/customRed" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2sp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1sp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

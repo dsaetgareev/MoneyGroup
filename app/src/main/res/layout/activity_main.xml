@@ -4,7 +4,7 @@
     android:id="@+id/rl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="25sp">
+    android:padding="15dp">
 
     <!--<ImageView-->
     <!--android:id="@+id/iv_main_logo"-->
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_title_text_view"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -106,7 +106,7 @@
         android:layout_centerInParent="true"
         android:text="@string/login_button"
         android:background="@drawable/round_shape_button"
-        android:padding="10sp"
+        android:padding="5sp"
         android:textColor="@color/colorBlueForMoneybook"/>
 
     <Button
@@ -119,7 +119,7 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/round_shape_button"
-        android:padding="10sp"
+        android:padding="5sp"
         android:text="@string/forgot_button"
         android:textColor="@color/colorBlueForMoneybook" />
 
@@ -127,9 +127,11 @@
         android:id="@+id/registration_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_shape_button"
         android:textColor="@color/colorBlueForMoneybook"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:padding="5dp"
         android:layout_marginBottom="20dp"
         android:text="@string/registration_button" />
 

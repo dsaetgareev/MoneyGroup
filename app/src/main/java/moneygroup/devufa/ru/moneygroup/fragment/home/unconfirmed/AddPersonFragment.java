@@ -2,6 +2,8 @@ package moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -175,9 +177,16 @@ public class AddPersonFragment extends Fragment {
                 String string = s.toString();
                 if (!"".equals(string) && !string.substring(0, 1).equals("+")) {
                     errText.setVisibility(View.VISIBLE);
+                    try {
+                        etPhone.setBackground(Drawable.createFromXml(getResources(), getResources().getXml(R.xml.error_text)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     sendButton.setVisibility(View.INVISIBLE);
                 } else {
                     errText.setVisibility(View.INVISIBLE);
+                    etPhone.setBackgroundColor(Color.WHITE);
                     sendButton.setVisibility(View.VISIBLE);
                 }
             }

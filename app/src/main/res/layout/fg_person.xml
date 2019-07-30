@@ -26,7 +26,6 @@
                 android:layout_weight="1"
                 android:text="@string/owes_me"
                 android:textAlignment="center"
-                android:textColor="@color/colorBlueForMoneybook"
                 android:textColorHint="#59959595"
                 android:textSize="14sp" />
 
@@ -37,7 +36,6 @@
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:text="@string/should_i"
-                android:textColor="@color/colorRedForMoneybook"
                 android:textColorHint="@color/colorGrayForMoneybook" />
         </RadioGroup>
 

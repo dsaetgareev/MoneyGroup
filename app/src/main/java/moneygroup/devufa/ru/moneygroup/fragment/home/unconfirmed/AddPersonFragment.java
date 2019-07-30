@@ -256,11 +256,22 @@ public class AddPersonFragment extends Fragment {
         isShouldI = view.findViewById(R.id.rb_add_person_should_i);
         isOwesMe.setChecked(person.isOwesMe());
         isShouldI.setChecked(!person.isOwesMe());
+        if (person.isOwesMe()) {
+            isOwesMe.setTextColor(getResources().getColor(R.color.colorBlueForMoneybook));
+        } else {
+            isShouldI.setTextColor(getResources().getColor(R.color.colorRedForMoneybook));
+        }
 
         isOwesMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 person.setOwesMe(isOwesMe.isChecked());
+                if (isOwesMe.isChecked()) {
+                    isOwesMe.setTextColor(getResources().getColor(R.color.colorBlueForMoneybook));
+                    isShouldI.setTextColor(Color.BLACK);
+                } else {
+                    isOwesMe.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -268,6 +279,12 @@ public class AddPersonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 person.setOwesMe(false);
+                if (isShouldI.isChecked()) {
+                    isShouldI.setTextColor(getResources().getColor(R.color.colorRedForMoneybook));
+                    isOwesMe.setTextColor(Color.BLACK);
+                } else {
+                    isShouldI.setTextColor(Color.BLACK);
+                }
             }
         });
     }

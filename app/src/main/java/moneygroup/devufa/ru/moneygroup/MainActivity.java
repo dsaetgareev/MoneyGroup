@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                         editTextPhone.setText(ans);
                         editTextPhone.setSelection(editTextPhone.getText().length()-cursorComplement);
                     }
-//                    number = (spText + editTextPhone.getText().toString()).replaceAll("[^\\d]", "");
+                    number = (editTextPhone.getText().toString());
                     // We just edited the field, ignoring this cicle of the watcher and getting ready for the next
                 } else {
                     editedFlag = false;

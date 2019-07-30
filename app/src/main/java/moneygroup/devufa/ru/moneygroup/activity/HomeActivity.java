@@ -30,8 +30,8 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     int[] imageResId = {
-            R.drawable.plus, R.drawable.up, R.drawable.down, R.mipmap.message,
-            R.drawable.setting
+            R.mipmap.plus, R.mipmap.up, R.mipmap.down, R.mipmap.message,
+            R.mipmap.settings
     };
 
     @Override

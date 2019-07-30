@@ -115,8 +115,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Archive-Денис-Знаки-Moneybook/лого знак +.png" />
-                                      <entry key="outputName" value="up" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Archive-Денис-Знаки-Moneybook/лого- настройка.png" />
+                                      <entry key="outputName" value="settings" />
                                     </map>
                                   </option>
                                 </PersistentState>

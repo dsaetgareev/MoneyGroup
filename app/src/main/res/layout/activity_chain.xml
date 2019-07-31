@@ -195,7 +195,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_name_title"
+                        android:id="@+id/tv_ch_io_bef_name_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -221,7 +221,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_tel_title"
+                        android:id="@+id/tv_ch_io_bef_tel_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -246,7 +246,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_title"
+                        android:id="@+id/tv_ch_io_bef_summ_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -258,7 +258,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
-                        android:textColor="@color/colorBlueForMoneybook"
+                        android:textColor="@color/colorRedForMoneybook"
                         android:text="15000" />
                 </LinearLayout>
 
@@ -270,7 +270,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_cur"
+                        android:id="@+id/tv_ch_io_bef_summ_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -379,7 +379,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_name_title"
+                        android:id="@+id/tv_ch_om_af_name_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -408,7 +408,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_tel_title"
+                        android:id="@+id/tv_ch_om_af_tel_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -435,7 +435,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_title"
+                        android:id="@+id/tv_ch_om_af_summ_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -460,7 +460,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_cur"
+                        android:id="@+id/tv_ch_om_af_summ_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -502,7 +502,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_name_title"
+                        android:id="@+id/tv_ch_io_af_name_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -529,7 +529,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_tel_title"
+                        android:id="@+id/tv_io_io_bef_tel_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -556,7 +556,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_title"
+                        android:id="@+id/tv_ch_io_af_summ_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -568,7 +568,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
-                        android:textColor="@color/colorBlueForMoneybook"
+                        android:textColor="@color/colorRedForMoneybook"
                         android:text="15000"
                         />
                 </LinearLayout>
@@ -581,7 +581,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_ch_om_bef_summ_cur"
+                        android:id="@+id/tv_ch_io_af_summ_cur"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"

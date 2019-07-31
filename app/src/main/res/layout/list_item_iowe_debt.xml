@@ -70,7 +70,7 @@
                     android:layout_marginTop="3dp"
                     android:text="date"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/colorRedForMoneybook"
+                    android:textColor="@color/colorGreenMoneybook"
                     android:textSize="10sp" />
 
                 <LinearLayout

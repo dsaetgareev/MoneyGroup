@@ -3,19 +3,23 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-
-    <color name="colorRedForMoneybook">#CF0202</color>
-    <color name="colorBlueForMoneybook">#0053DC</color>
-    <color name="colorGrayForMoneybook">#959595</color>
-    <color name="colorLightGrayForMoneybook">#B9B9B9</color>
-    <color name="colorLightForMoneybook">#9CA1A2</color>
-    <color name="colorForBackgroundMoneybook">#95F1FF</color>
-    <color name="colorGreenMoneybook">#57A497</color>
     <color name="colorGreenNewMoneybook">#9957A497</color>
-
-
-
     <color name="oweMe">#1E90FF</color>
     <color name="customGreen">#57a497</color>
     <color name="customRed">#cf0202</color>
+    <color name="colorLightGrayForMoneybook">#B9B9B9</color>
+
+    <!--цвет текста подсказок, серый и неподвержденного долга-->
+    <color name="colorGrayForMoneybook">#5E5D5D</color>
+
+    <!--цвет кнопок с легкой обводкой-->
+    <color name="colorLightForMoneybook">#CCB8BFC0</color>
+
+    <!--цвет тестового поля с светло-синий обводкой-->
+    <color name="colorForBackgroundMoneybook">#95F1FF</color>
+
+    <!--цвета знака Moneybook-->
+    <color name="colorGreenMoneybook">#57A497</color>
+    <color name="colorRedForMoneybook">#CF0202</color>
+    <color name="colorBlueForMoneybook">#0053DC</color>
 </resources>

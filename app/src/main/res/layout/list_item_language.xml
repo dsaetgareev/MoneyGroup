@@ -6,31 +6,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:baselineAligned="false"
+        android:background="@drawable/text_desigen_for_debt"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_lan_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/language"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
-        >
-    <TextView
-        android:id="@+id/tv_lan_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:text="@string/language"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        />
 
-    <TextView
-        android:id="@+id/tv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text=">"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        />
+
+            <TextView
+                android:id="@+id/tv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:layout_gravity="center"
+                android:textAlignment="textEnd"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
 
     </LinearLayout>
 

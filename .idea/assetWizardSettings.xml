@@ -45,7 +45,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Dsaetgareev\Desktop\иконки\logo2.png" />
+                                      <entry key="imageAsset" value="$APPLICATION_HOME_DIR$/bin/C:\Users\Dsaetgareev\Desktop\иконки\logo2.png" />
                                       <entry key="outputName" value="logo2" />
                                     </map>
                                   </option>
@@ -73,7 +73,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\Dsaetgareev\Desktop\иконки\logo8.png" />
+                                      <entry key="foregroundImage" value="$APPLICATION_HOME_DIR$/bin/C:\Users\Dsaetgareev\Desktop\иконки\logo8.png" />
                                       <entry key="foregroundLayerName" value="app_logo" />
                                       <entry key="outputName" value="logo8" />
                                     </map>
@@ -97,17 +97,6 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/notification/ic_sms_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -123,10 +112,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\Dsaetgareev\Desktop\иконки\turn-notifications-on-button_icon-icons.com_72507.png" />
-                                      <entry key="outputName" value="message" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/Archive-Денис-Знаки-Moneybook/лого- настройка.png" />
+                                      <entry key="outputName" value="settings" />
                                     </map>
                                   </option>
                                 </PersistentState>

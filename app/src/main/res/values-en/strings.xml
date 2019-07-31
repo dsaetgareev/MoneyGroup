@@ -48,7 +48,7 @@
     <string name="currency">Currency</string>
     <string name="enter_summ">Enter amount</string>
     <string name="Contacts">Contacts</string>
-    <string name="phone_number">9171234567</string>
+    <string name="phone_number">+79171234567</string>
     <string name="password">Password</string>
     <string name="tv_change_password">Change password</string>
     <string name="enter_confirmation_code">Enter confirmation code</string>
@@ -96,6 +96,14 @@
     <string name="messages">Сообщения</string>
     <string name="settings">Настройки</string>
     <string name="my_debts">Мои долги</string>
+    <string name="note_for_yourself_help_text">Данная запись делается только для себя и не отправляется другому абоненту</string>
+    <string name="Comment_help_text">Данный коментарий видит абонент, которому вы отправляете запрос на подтверждение долга</string>
+    <string name="date_arhive">Дата архивации</string>
+    <string name="comment_text">Comment</string>
+    <string name="status_text">Status</string>
+    <string name="note_text">Note</string>
+    <string name="telephone_text">Phone</string>
+    <string name="debts">Долги</string>
 
     <string-array name="language_array">
         <item>ru</item>

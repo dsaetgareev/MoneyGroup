@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         initEtPhone();
-        initSpinner(view);
+//        initSpinner(view);
         initEtPassword();
         this.forgotButton = findViewById(R.id.forgot_button);
         this.registrationButton = findViewById(R.id.registration_button);
@@ -161,11 +161,11 @@ public class MainActivity extends AppCompatActivity {
                     //we start verifying the worst case, many characters mask need to be added
                     //example: 999999999 <- 6+ digits already typed
                     // masked: (999) 999-999
-                    if (phone.length() >= 6 && !backspacingFlag) {
+                    if (phone.length() >= 8 && !backspacingFlag) {
                         //we will edit. next call on this textWatcher will be ignored
                         editedFlag = true;
                         //here is the core. we substring the raw digits and add the mask as convenient
-                        String ans = "(" + phone.substring(0, 3) + ") " + phone.substring(3, 6) + "-" + phone.substring(6);
+                        String ans = "+" + phone.substring(0, 1) + "(" + phone.substring(1, 4) + ") " + phone.substring(4, 7) + "-" + phone.substring(7);
                         editTextPhone.setText(ans);
                         //we deliver the cursor to its original position relative to the end of the string
                         editTextPhone.setSelection(editTextPhone.getText().length()-cursorComplement);
@@ -173,13 +173,13 @@ public class MainActivity extends AppCompatActivity {
                         //we end at the most simple case, when just one character mask is needed
                         //example: 99999 <- 3+ digits already typed
                         // masked: (999) 99
-                    } else if (phone.length() >= 3 && !backspacingFlag) {
+                    } else if (phone.length() >= 5 && !backspacingFlag) {
                         editedFlag = true;
-                        String ans = "(" +phone.substring(0, 3) + ") " + phone.substring(3);
+                        String ans = "+" + phone.substring(0, 1) + "(" +phone.substring(1, 4) + ") " + phone.substring(4);
                         editTextPhone.setText(ans);
                         editTextPhone.setSelection(editTextPhone.getText().length()-cursorComplement);
                     }
-                    number = (spText + editTextPhone.getText().toString()).replaceAll("[^\\d]", "");
+                    number = (editTextPhone.getText().toString());
                     // We just edited the field, ignoring this cicle of the watcher and getting ready for the next
                 } else {
                     editedFlag = false;
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!"".equals(number) && !"".equals(password)) {
-                    number = (spText + editTextPhone.getText().toString()).replaceAll("[^\\d]", "");
+                    number = (editTextPhone.getText().toString()).replaceAll("[^\\d]", "");
                     Call<ResponseBody> call = RegistrationService.getLoginApiService().login(number, password);
                     call.enqueue(new Callback<ResponseBody>() {
                         @Override

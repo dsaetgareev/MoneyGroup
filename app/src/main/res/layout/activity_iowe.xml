@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     >
 
     <LinearLayout
@@ -11,6 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
+
         >
 
         <TextView
@@ -20,13 +29,15 @@
             android:text="@string/i_owe_title"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_margin="@dimen/google_1x"
+            android:layout_margin="15dp"
+            android:textColor="@color/colorRedForMoneybook"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+
             >
 
             <LinearLayout
@@ -40,15 +51,20 @@
                     android:layout_height="wrap_content"
                     android:text="@string/name"
                     android:layout_margin="@dimen/google_1x"
+                    android:textColor="@color/colorGrayForMoneybook"
+
                     />
 
                 <TextView
                     android:id="@+id/tv_io_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/back"
                     android:text="name"
-                    android:layout_margin="@dimen/google_1x"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/text_desigen_for_debt"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:padding="5sp"
                     />
             </LinearLayout>
 
@@ -58,14 +74,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+
             >
 
             <TextView
                 android:id="@+id/tv_io_phone_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorGrayForMoneybook"
                 android:text="@string/tv_tel"
                 android:layout_margin="@dimen/google_1x"
+
                 />
 
             <TextView
@@ -73,8 +92,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="9283293892"
-                android:background="@drawable/back"
-                android:layout_margin="@dimen/google_1x"
+
+                android:layout_margin="5sp"
+                android:background="@drawable/text_desigen_for_debt"
+                android:textSize="14sp"
+                android:paddingLeft="5sp"
+                android:textColor="@android:color/black"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 />
         </LinearLayout>
 
@@ -82,6 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+
             >
 
             <TextView
@@ -89,7 +115,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/summ"
+                android:textColor="@color/colorGrayForMoneybook"
                 android:layout_margin="@dimen/google_1x"
+
                 />
 
             <TextView
@@ -97,8 +125,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="324242"
-                android:background="@drawable/back"
-                android:layout_margin="@dimen/google_1x"
+                android:layout_margin="5sp"
+                android:background="@drawable/text_desigen_for_debt"
+                android:textSize="14sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:textColor="@android:color/black"
                 />
         </LinearLayout>
 
@@ -113,16 +146,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/currency"
+                android:textColor="@color/colorGrayForMoneybook"
                 android:layout_margin="@dimen/google_1x"
+
                 />
 
             <TextView
                 android:id="@+id/tv_io_currency"
                 android:layout_width="match_parent"
+                android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
                 android:text="RUR"
-                android:background="@drawable/back"
-                android:layout_margin="@dimen/google_1x"
+                android:layout_margin="5sp"
+                android:background="@drawable/text_desigen_for_debt"
+                android:textSize="14sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+
                 />
 
         </LinearLayout>
@@ -131,6 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             >
 
             <TextView
@@ -139,14 +181,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/note_for_yourself"
                 android:layout_margin="@dimen/google_1x"
+                android:textColor="@color/colorGrayForMoneybook"
                 />
 
             <TextView
                 android:id="@+id/tv_io_note_for_yourself"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/back"
-                android:layout_margin="@dimen/google_1x"
+                android:layout_margin="5sp"
+                android:background="@drawable/text_desigen_for_debt"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:paddingLeft="5sp"
+                android:layout_height="60dp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 />
         </LinearLayout>
 
@@ -154,11 +202,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             >
 
             <TextView
                 android:id="@+id/tv_io_comment_title"
                 android:layout_width="wrap_content"
+                android:textColor="@color/colorGrayForMoneybook"
                 android:layout_height="wrap_content"
                 android:text="@string/Comment"
                 android:layout_margin="@dimen/google_1x"
@@ -166,10 +216,15 @@
 
             <TextView
                 android:id="@+id/tv_io_comment"
+                android:layout_margin="5sp"
+                android:background="@drawable/text_desigen_for_debt"
+                android:textSize="14sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:layout_height="60dp"
+                android:textColor="@android:color/black"
+                android:paddingBottom="5sp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/back"
-                android:layout_margin="@dimen/google_1x"
                 />
         </LinearLayout>
 
@@ -180,11 +235,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_io_form_container"
+        android:background="@drawable/round_shape_button"
+        android:padding="10sp"
+        android:textColor="@color/colorBlueForMoneybook"
         android:text="@string/btn_to_delete"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/google_1x"
+        android:layout_margin="10sp"
+
         />
 
 
 
 </RelativeLayout>
+</ScrollView>

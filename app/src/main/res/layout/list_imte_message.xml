@@ -2,14 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/google_1x"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
     >
 
     <TextView
         android:id="@+id/tv_mess_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/google_1x"
+        android:layout_margin="10sp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
         android:text="name"
         />
 
@@ -17,7 +21,8 @@
         android:id="@+id/tv_mess_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/google_1x"
+        android:textSize="13sp"
+        android:layout_margin="10sp"
         android:text="date"
         android:layout_alignParentEnd="true"
         />
@@ -28,7 +33,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_mess_title"
-        android:layout_margin="@dimen/google_1x"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_margin="10sp"
         android:text="2500" />
 
     <TextView

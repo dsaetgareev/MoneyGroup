@@ -2,6 +2,8 @@ package moneygroup.devufa.ru.moneygroup.fragment.home.unconfirmed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -175,9 +177,16 @@ public class AddPersonFragment extends Fragment {
                 String string = s.toString();
                 if (!"".equals(string) && !string.substring(0, 1).equals("+")) {
                     errText.setVisibility(View.VISIBLE);
+                    try {
+                        etPhone.setBackground(Drawable.createFromXml(getResources(), getResources().getXml(R.xml.error_text)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     sendButton.setVisibility(View.INVISIBLE);
                 } else {
                     errText.setVisibility(View.INVISIBLE);
+                    etPhone.setBackgroundColor(Color.WHITE);
                     sendButton.setVisibility(View.VISIBLE);
                 }
             }
@@ -247,11 +256,22 @@ public class AddPersonFragment extends Fragment {
         isShouldI = view.findViewById(R.id.rb_add_person_should_i);
         isOwesMe.setChecked(person.isOwesMe());
         isShouldI.setChecked(!person.isOwesMe());
+        if (person.isOwesMe()) {
+            isOwesMe.setTextColor(getResources().getColor(R.color.colorBlueForMoneybook));
+        } else {
+            isShouldI.setTextColor(getResources().getColor(R.color.colorRedForMoneybook));
+        }
 
         isOwesMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 person.setOwesMe(isOwesMe.isChecked());
+                if (isOwesMe.isChecked()) {
+                    isOwesMe.setTextColor(getResources().getColor(R.color.colorBlueForMoneybook));
+                    isShouldI.setTextColor(Color.BLACK);
+                } else {
+                    isOwesMe.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -259,6 +279,12 @@ public class AddPersonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 person.setOwesMe(false);
+                if (isShouldI.isChecked()) {
+                    isShouldI.setTextColor(getResources().getColor(R.color.colorRedForMoneybook));
+                    isOwesMe.setTextColor(Color.BLACK);
+                } else {
+                    isShouldI.setTextColor(Color.BLACK);
+                }
             }
         });
     }
@@ -357,7 +383,10 @@ public class AddPersonFragment extends Fragment {
         Intent intent = new Intent(getActivity(), home);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         getActivity().startActivity(intent);
+//        getActivity().onBackPressed();
     }
+
+
 
     private void initSpinner(View view) {
         spinner = (Spinner) view.findViewById(R.id.number_array);

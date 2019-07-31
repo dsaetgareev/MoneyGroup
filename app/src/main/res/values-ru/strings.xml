@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Moneybook</string>
     <string name="into_in_profil">Вход в профиль</string>
-    <string name="login_text">Логин</string>
-    <string name="password_text">Пароль</string>
-    <string name="login_button">Войти</string>
+    <string name="login_text">Логин:</string>
+    <string name="password_text">Пароль:</string>
+    <string name="login_button">Войти:</string>
     <string name="registration_button">Зарегистрироваться</string>
     <string name="forgot_button">Забыли пароль</string>
     <string name="send_email_button">Отправить письмо</string>
@@ -21,7 +21,7 @@
     <string name="enter_new_password">Введите новый пароль</string>
     <string name="confirm_password">Повторите пароль</string>
     <string name="save">Сохранить</string>
-    <string name="password_description">Пароль должен содержать только буквы латинского алфавита</string>
+    <string name="password_description">Пароль должен содержать только буквы латинского алфавита, одну прописную (A-Z) и строчную (a-z) букву</string>
 
     <string name="registration_title"><b>Регистрация</b></string>
     <string name="enter_number_titel">Введите номер</string>
@@ -41,19 +41,27 @@
     <string name="owes_me">Должны мне</string>
     <string name="should_i">Должен я</string>
     <string name="enter_name">Введите имя</string>
-    <string name="enter_phone">Ввдите номер телефона</string>
+    <string name="enter_phone">Введите номер телефона</string>
     <string name="summ">Сумма</string>
     <string name="note_for_yourself">Заметка (для себя)</string>
+    <string name="note_for_yourself_help_text">Данная запись делается только для себя и не отправляется другому абоненту</string>
+    <string name="Comment_help_text">Данный коментарий видит абонент, которому вы отправляете запрос на подтверждение долга</string>
     <string name="Comment">Комментарий (для абонента)</string>
+    <string name="date_arhive">Дата архивации</string>
+    <string name="comment_text">Комментарий</string>
+    <string name="note_text">Заметка</string>
+    <string name="telephone_text">Телефон</string>
+    <string name="status_text">Статус</string>
+
     <string name="currency">Валюта</string>
     <string name="enter_summ">Введите сумму</string>
     <string name="Contacts">Контакты</string>
-    <string name="phone_number">9171234567</string>
+    <string name="phone_number">+79171234567</string>
     <string name="password">Пароль</string>
     <string name="tv_change_password">Сменить пароль</string>
     <string name="enter_confirmation_code">Введите код подтверждения</string>
     <string name="send_request">Отправить запрос</string>
-    <string name="tv_tel">Тел.</string>
+    <string name="tv_tel">Тел.:</string>
     <string name="tv_omp_title">Должен мне</string>
     <string name="btn_to_archiv">В архив</string>
     <string name="btn_to_delete">Удалить</string>
@@ -73,7 +81,7 @@
     <string name="not_new_debt">Уведомление о новом долге</string>
     <string name="not_new_cycle">Присылать сообщение о собранной цепочке долгов</string>
     <string name="multi_valute">Разновалютная цепь долгов</string>
-    <string name="descText">Цепь долгов совпала из %s учатников мы можем списать у всех участников по:</string>
+    <string name="descText">Цепь долгов совпала из %s участников. Мы можем списать у всех участников по:</string>
     <string name="descResponse">Подтвердили на списание %s участников.  После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг.</string>
     <string name="cycleText">Цепочка из %s элементов собрана. %s USD</string>
     <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
@@ -91,11 +99,12 @@
     <string name="uppercase_letter">прописная буква</string>
     <string name="numeral">цифра</string>
     <string name="characters_6">не менее 6 символов</string>
-    <string name="number_forma_err">Формат номера должен быть +x(xxx)xxx-xxxx</string>
+    <string name="number_forma_err">Введите номер в международном формате, пример +ххххххххх</string>
     <string name="unconfirmed">Неподтвержденные долги</string>
-    <string name="messages">Сообщения</string>
+    <string name="messages">Уведомления</string>
     <string name="settings">Настройки</string>
     <string name="my_debts">Мои долги</string>
+    <string name="debts">Долги</string>
 
 
     <string-array name="language_array">

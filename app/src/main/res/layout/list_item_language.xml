@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/google_1x"
-    android:layout_marginTop="4dp"
+
     >
 
-    <TextView
-        android:id="@+id/tv_lan_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/language"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        />
+        android:layout_height="50dp"
+        android:baselineAligned="false"
+        android:background="@drawable/text_desigen_for_debt"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/tv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text=">"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        />
+        <TextView
+            android:id="@+id/tv_lan_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/language"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_below="@+id/tv_icon"
-        android:textStyle="bold"
-        android:layout_marginTop="-15dp"
-        />
+
+
+
+            <TextView
+                android:id="@+id/tv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:layout_gravity="center"
+                android:textAlignment="textEnd"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(imageResId[0]);
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(0).setText(getResources().getString(R.string.unconfirmed));
+        tabLayout.getTabAt(0).setText(getResources().getString(R.string.debts));
         tabLayout.getTabAt(1).setIcon(imageResId[1]);
         tabLayout.getTabAt(1).getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).setText(getResources().getString(R.string.owes_me));

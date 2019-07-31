@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:scrollbars="none"
     >
 
@@ -10,7 +9,7 @@
         android:id="@+id/rl_add_person"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:padding="10dp"
        >
 
         <RadioGroup
@@ -269,9 +268,9 @@
             android:layout_marginTop="10sp"
             android:background="@drawable/round_shape_button"
             android:textColor="@color/colorBlueForMoneybook"
-
             android:text="@string/send_request"
              />
+
 
     </RelativeLayout>
 </ScrollView>

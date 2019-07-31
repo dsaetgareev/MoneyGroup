@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Moneybook</string>
     <string name="into_in_profil">Вход в профиль</string>
-    <string name="login_text">Логин</string>
-    <string name="password_text">Пароль</string>
-    <string name="login_button">Войти</string>
+    <string name="login_text">Логин:</string>
+    <string name="password_text">Пароль:</string>
+    <string name="login_button">Войти:</string>
     <string name="registration_button">Зарегистрироваться</string>
     <string name="forgot_button">Забыли пароль</string>
     <string name="send_email_button">Отправить письмо</string>
@@ -101,9 +101,10 @@
     <string name="characters_6">не менее 6 символов</string>
     <string name="number_forma_err">Введите номер в международном формате, пример +ххххххххх</string>
     <string name="unconfirmed">Неподтвержденные долги</string>
-    <string name="messages">Сообщения</string>
+    <string name="messages">Уведомления</string>
     <string name="settings">Настройки</string>
     <string name="my_debts">Мои долги</string>
+    <string name="debts">Долги</string>
 
 
     <string-array name="language_array">

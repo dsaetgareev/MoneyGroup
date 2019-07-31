@@ -103,6 +103,7 @@
     <string name="status_text">Status</string>
     <string name="note_text">Note</string>
     <string name="telephone_text">Phone</string>
+    <string name="debts">Долги</string>
 
     <string-array name="language_array">
         <item>ru</item>

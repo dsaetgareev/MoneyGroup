@@ -23,6 +23,7 @@ import java.util.Map;
 import moneygroup.devufa.ru.moneygroup.R;
 import moneygroup.devufa.ru.moneygroup.activity.cycle.CycleActivity;
 import moneygroup.devufa.ru.moneygroup.activity.owesme.OwesmePersonActivity;
+import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.ChainDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.dialogs.RemoveDebtDialog;
 import moneygroup.devufa.ru.moneygroup.fragment.home.interfaces.DebtFragment;
 import moneygroup.devufa.ru.moneygroup.model.Person;
@@ -75,11 +76,14 @@ public class OwesmeAdapter extends RecyclerView.Adapter<OwesmeAdapter.OwesmeView
                                 Context context = getActivity();
                                 Intent intent;
                                 if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
-                                    intent = CycleActivity.newInstance(context, person);
+//                                    intent = CycleActivity.newInstance(context, person);
+                                    ChainDialog dialog = ChainDialog.newInstance(person);
+                                    dialog.setAppCompatActivity(activity);
+                                    dialog.show(fragmentManager, "chainDialog");
                                 } else {
                                     intent = OwesmePersonActivity.newIntent(context, person);
+                                    activity.startActivity(intent);
                                 }
-                                activity.startActivity(intent);
                             }
                             break;
                     }

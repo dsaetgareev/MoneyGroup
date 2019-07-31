@@ -144,6 +144,9 @@ public class NewDebtDialog extends DialogFragment {
 
                             }
                         });
+                        if (messagesFragment != null) {
+                            messagesFragment.adapterInit();
+                        }
                         NewDebtDialog.this.getDialog().cancel();
                     }
                 })
@@ -165,6 +168,9 @@ public class NewDebtDialog extends DialogFragment {
 
                             }
                         });
+                        if (messagesFragment != null) {
+                            messagesFragment.adapterInit();
+                        }
                         NewDebtDialog.this.getDialog().cancel();
                     }
                 });

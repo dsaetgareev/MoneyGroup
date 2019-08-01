@@ -50,24 +50,6 @@ public class IOweAdapter extends RecyclerView.Adapter<IOweAdapter.IOweViewHolder
             currency = itemView.findViewById(R.id.tv_currency);
             chianImg = itemView.findViewById(R.id.iv_io_chain);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = getActivity();
-                    Intent intent;
-                    if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
-//                        intent = CycleActivity.newInstance(context, person);
-                        ChainDialog dialog = ChainDialog.newInstance(person);
-                        dialog.setAppCompatActivity(activity);
-                        dialog.show(fragmentManager, "chainDialog");
-                    } else {
-                        intent = OwesmePersonActivity.newIntent(context, person);
-                        activity.startActivity(intent);
-                    }
-                }
-            });
-
             itemView.setOnTouchListener(new View.OnTouchListener() {
                 long startTime;
                 @Override
@@ -91,11 +73,14 @@ public class IOweAdapter extends RecyclerView.Adapter<IOweAdapter.IOweViewHolder
                                 Context context = getActivity();
                                 Intent intent;
                                 if (person.getStatus().equals(Status.IN_CYCLE_ACCEPTED)) {
-                                    intent = CycleActivity.newInstance(context, person);
+                                    ChainDialog dialog = ChainDialog.newInstance(person);
+                                    dialog.setAppCompatActivity(activity);
+                                    dialog.show(fragmentManager, "chainDialog");
                                 } else {
                                     intent = OwesmePersonActivity.newIntent(context, person);
+                                    activity.startActivity(intent);
                                 }
-                                activity.startActivity(intent);
+
                             }
                             break;
                     }

@@ -22,4 +22,10 @@
     <color name="colorGreenMoneybook">#57A497</color>
     <color name="colorRedForMoneybook">#CF0202</color>
     <color name="colorBlueForMoneybook">#0053DC</color>
+
+    <!--цвета цвет для алерта-->
+    <color name="colorAlertFon">#66414141</color>
+    <color name="colorAlertShape">#66008ECF</color>
+
+
 </resources>

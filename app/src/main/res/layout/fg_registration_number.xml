@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15sp"
         android:text="@string/enter_number_titel"
-        android:textColor="@color/colorGreenMoneybook"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/tv_skip"
         android:textColor="@color/oweMe"
@@ -150,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/tv_back"
         android:textColor="@color/oweMe"

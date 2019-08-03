@@ -5,246 +5,241 @@
     android:scrollbars="none"
     >
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    >
-
-    <LinearLayout
-        android:id="@+id/ll_io_form_container"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-
-        >
-
-        <TextView
-            android:id="@+id/tv_io_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/i_owe_title"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
-            android:textColor="@color/colorRedForMoneybook"
-            />
+        android:layout_height="0dp"
+        android:padding="10dp">
 
         <LinearLayout
+            android:id="@+id/ll_io_form_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+
 
             >
+
+            <TextView
+                android:id="@+id/tv_io_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center_horizontal"
+                android:text="@string/i_owe_title"
+                android:textAlignment="center"
+                android:textColor="@color/colorRedForMoneybook"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:orientation="horizontal"
+
                 >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_io_name_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/google_1x"
+                        android:text="@string/name"
+                        android:textColor="@color/colorGrayForMoneybook"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_io_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_margin="5sp"
+                        android:background="@drawable/text_desigen_for_debt"
+                        android:padding="5sp"
+                        android:text="name"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/tv_io_name_title"
+                    android:id="@+id/tv_io_phone_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
                     android:layout_margin="@dimen/google_1x"
+                    android:text="@string/tv_tel"
                     android:textColor="@color/colorGrayForMoneybook"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_io_name"
+                    android:id="@+id/tv_io_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="name"
+                    android:layout_margin="5sp"
+
+                    android:background="@drawable/text_desigen_for_debt"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="9283293892"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_io_summ_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/google_1x"
+                    android:text="@string/summ"
+                    android:textColor="@color/colorGrayForMoneybook"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_io_summ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:background="@drawable/text_desigen_for_debt"
-                    android:textSize="14sp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="324242"
                     android:textColor="@android:color/black"
-                    android:padding="5sp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_io_currency_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/google_1x"
+                    android:text="@string/currency"
+                    android:textColor="@color/colorGrayForMoneybook"
+
                     />
+
+                <TextView
+                    android:id="@+id/tv_io_currency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/text_desigen_for_debt"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="RUR"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_io_note_for_yourself_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/google_1x"
+                    android:text="@string/note_for_yourself"
+                    android:textColor="@color/colorGrayForMoneybook" />
+
+                <TextView
+                    android:id="@+id/tv_io_note_for_yourself"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/text_desigen_for_debt"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_io_comment_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/google_1x"
+                    android:text="@string/Comment"
+                    android:textColor="@color/colorGrayForMoneybook" />
+
+                <TextView
+                    android:id="@+id/tv_io_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/text_desigen_for_debt"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/bt_io_delete"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_below="@id/ll_io_form_container"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="10sp"
 
-            >
-
-            <TextView
-                android:id="@+id/tv_io_phone_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGrayForMoneybook"
-                android:text="@string/tv_tel"
-                android:layout_margin="@dimen/google_1x"
-
-                />
-
-            <TextView
-                android:id="@+id/tv_io_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="9283293892"
-
-                android:layout_margin="5sp"
-                android:background="@drawable/text_desigen_for_debt"
-                android:textSize="14sp"
-                android:paddingLeft="5sp"
-                android:textColor="@android:color/black"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            >
-
-            <TextView
-                android:id="@+id/tv_io_summ_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/summ"
-                android:textColor="@color/colorGrayForMoneybook"
-                android:layout_margin="@dimen/google_1x"
-
-                />
-
-            <TextView
-                android:id="@+id/tv_io_summ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="324242"
-                android:layout_margin="5sp"
-                android:background="@drawable/text_desigen_for_debt"
-                android:textSize="14sp"
-                android:paddingLeft="5sp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:textColor="@android:color/black"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/tv_io_currency_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/currency"
-                android:textColor="@color/colorGrayForMoneybook"
-                android:layout_margin="@dimen/google_1x"
-
-                />
-
-            <TextView
-                android:id="@+id/tv_io_currency"
-                android:layout_width="match_parent"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:text="RUR"
-                android:layout_margin="5sp"
-                android:background="@drawable/text_desigen_for_debt"
-                android:textSize="14sp"
-                android:paddingLeft="5sp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-
-            >
-
-            <TextView
-                android:id="@+id/tv_io_note_for_yourself_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/note_for_yourself"
-                android:layout_margin="@dimen/google_1x"
-                android:textColor="@color/colorGrayForMoneybook"
-                />
-
-            <TextView
-                android:id="@+id/tv_io_note_for_yourself"
-                android:layout_width="match_parent"
-                android:layout_margin="5sp"
-                android:background="@drawable/text_desigen_for_debt"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:paddingLeft="5sp"
-                android:layout_height="60dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-
-            >
-
-            <TextView
-                android:id="@+id/tv_io_comment_title"
-                android:layout_width="wrap_content"
-                android:textColor="@color/colorGrayForMoneybook"
-                android:layout_height="wrap_content"
-                android:text="@string/Comment"
-                android:layout_margin="@dimen/google_1x"
-                />
-
-            <TextView
-                android:id="@+id/tv_io_comment"
-                android:layout_margin="5sp"
-                android:background="@drawable/text_desigen_for_debt"
-                android:textSize="14sp"
-                android:paddingLeft="5sp"
-                android:paddingTop="5sp"
-                android:layout_height="60dp"
-                android:textColor="@android:color/black"
-                android:paddingBottom="5sp"
-                android:layout_width="match_parent"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/bt_io_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_io_form_container"
-        android:background="@drawable/round_shape_button"
-        android:padding="10sp"
-        android:textColor="@color/colorBlueForMoneybook"
-        android:text="@string/btn_to_delete"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10sp"
-
-        />
+            android:background="@drawable/round_shape_button"
+            android:padding="10sp"
+            android:text="@string/btn_to_delete"
+            android:textColor="@color/colorBlueForMoneybook" />
 
 
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

@@ -8,10 +8,11 @@
 
     <Button
         android:id="@+id/bt_cyc_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_alert"
         android:text="@string/name"
-        android:textSize="16sp"
-        />
+        android:textAlignment="textStart"
+        android:textSize="16sp" />
 
 </RelativeLayout>

@@ -20,19 +20,19 @@
     <LinearLayout
         android:id="@+id/ll_debt_dial"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5sp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#fff"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5sp">
 
         <TextView
             android:id="@+id/tv_debt_dial_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_omp_title"
-            android:textSize="15sp"
-            android:textColor="@color/oweMe" />
+            android:textColor="@color/oweMe"
+            android:textSize="15sp" />
 
         <View
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+79178643123"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,9 +77,9 @@
             <TextView
                 android:id="@+id/tv_debt_dial_summ"
                 android:layout_width="wrap_content"
-                android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
-                android:text="15000" />
+                android:text="15000"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,9 +98,9 @@
             <TextView
                 android:id="@+id/tv_debt_dial_cur"
                 android:layout_width="wrap_content"
-                android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
-                android:text="EUR" />
+                android:text="EUR"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
 

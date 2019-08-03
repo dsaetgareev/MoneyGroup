@@ -55,12 +55,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="5">
 
                     <TextView
@@ -247,13 +248,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_ap_form_container"
-
             android:layout_marginTop="15sp"
             android:text="@string/save"
-
             android:layout_centerHorizontal="true"
             android:padding="5dp"
-            android:background="@drawable/round_shape_button"
+            android:background="@drawable/button"
             android:textColor="@color/colorBlueForMoneybook"
 
             />

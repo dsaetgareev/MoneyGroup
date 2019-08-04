@@ -6,9 +6,8 @@
         android:state_pressed="false">
         <shape android:shape="rectangle">
             <stroke android:width="1dp"
-                android:color="#BEBEBE"/>
-            <corners android:radius="5dp"/>
-            <solid   android:color="#BEBEBE"/>
+                android:color="#7C7C7C"/>
+            <solid   android:color="#33FFFFFF"/>
         </shape>
     </item>
 
@@ -17,15 +16,14 @@
         android:state_focused="true"
         android:state_pressed="true">
         <shape android:shape="rectangle">
-            <stroke android:width="0dp"
-                android:color="#CCC5C4C4"/>
+            <stroke android:width="1dp"
+                android:color="#7C7C7C"/>
             <gradient
                 android:angle="90"
-                android:startColor="#CCC5C4C4"
-                android:centerColor="#CCD3D0D0"
-                android:endColor="#CCC5C4C4"
+                android:startColor="#8085EAFF"
+                android:centerColor="#8056DCF8"
+                android:endColor="#8085EAFF"
                 />
-            <corners android:radius="5dp"/>
         </shape>
     </item>
 
@@ -39,11 +37,10 @@
                 android:color="#CCC5C4C4"/>
             <gradient
                 android:angle="90"
-                android:startColor="#CCC5C4C4"
-                android:centerColor="#CCD3D0D0"
-                android:endColor="#CCC5C4C4"
+                android:startColor="#8085EAFF"
+                android:centerColor="#8056DCF8"
+                android:endColor="#8085EAFF"
                 />
-            <corners android:radius="5dp"/>
         </shape>
     </item>
 
@@ -51,9 +48,8 @@
     <item>
         <shape android:shape="rectangle">
             <stroke android:width="1dp"
-                android:color="#BEBEBE"/>
-            <corners android:radius="5dp"/>
-            <solid   android:color="#BEBEBE"/>
+                android:color="#7C7C7C"/>
+            <solid   android:color="#33FFFFFF"/>
         </shape>
     </item>
 

@@ -4,12 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 <item>
     <shape android:shape="rectangle">
-        <corners android:radius="4dp"/>
+        <corners android:radius="5dp"/>
         <gradient
             android:angle="90"
-            android:startColor="#66008ECF"
-            android:centerColor="#6603AFFF"
-            android:endColor="#66008ECF"
+            android:startColor="@color/colorAlertShape"
+            android:centerColor="#59ABF7F7"
+            android:endColor="@color/colorAlertShape"
             />
     </shape>
 </item>

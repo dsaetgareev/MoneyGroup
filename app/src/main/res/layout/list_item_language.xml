@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:baselineAligned="false"
-        android:background="@drawable/text_desigen_for_debt"
+        android:background="@drawable/cell_siparator"
         android:orientation="horizontal"
         android:padding="10dp">
 

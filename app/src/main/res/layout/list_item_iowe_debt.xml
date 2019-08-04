@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8sp">
+        android:background="@drawable/cell_siparator"
+        android:padding="8sp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"

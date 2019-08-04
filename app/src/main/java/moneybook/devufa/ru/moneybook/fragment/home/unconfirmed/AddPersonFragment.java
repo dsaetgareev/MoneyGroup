@@ -336,7 +336,7 @@ public class AddPersonFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etSumm.getText().toString().isEmpty()) {
+                if (!etSumm.getText().toString().isEmpty()) {
                     backAndUpdate();
                 }
             }

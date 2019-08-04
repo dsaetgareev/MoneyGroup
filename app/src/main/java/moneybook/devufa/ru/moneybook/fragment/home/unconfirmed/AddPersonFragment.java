@@ -336,7 +336,7 @@ public class AddPersonFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!etSumm.getText().toString().isEmpty()) {
+                if (!etSumm.getText().toString().isEmpty() && !etPhone.getText().toString().isEmpty()) {
                     backAndUpdate();
                 }
             }
@@ -351,28 +351,31 @@ public class AddPersonFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = CodeService.get(getActivity()).getCode();
-                DebtConverter debtConverter = new DebtConverter(getActivity());
-                person.setNumber((etPhone.getText().toString()).replaceAll("[^\\d]", ""));
-                person.setName(etName.getText().toString());
-                DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
-                Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO);
-                progressBarMoney.show();
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        progressBarMoney.dismiss();
-                        if (response.isSuccessful()) {
-                            backAndUpdate();
-                            Toast.makeText(getActivity(), getString(R.string.sended), Toast.LENGTH_SHORT).show();
+                if (!etSumm.getText().toString().isEmpty() && !etPhone.getText().toString().isEmpty()) {
+                    String code = CodeService.get(getActivity()).getCode();
+                    DebtConverter debtConverter = new DebtConverter(getActivity());
+                    person.setNumber((etPhone.getText().toString()).replaceAll("[^\\d]", ""));
+                    person.setName(etName.getText().toString());
+                    DebtDTO debtDTO = debtConverter.convertToDebtDTO(person);
+                    Call<ResponseBody> call = DebtService.getApiService().sendDebt(code, debtDTO);
+                    progressBarMoney.show();
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            progressBarMoney.dismiss();
+                            if (response.isSuccessful()) {
+                                backAndUpdate();
+                                Toast.makeText(getActivity(), getString(R.string.sended), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
             }
         });
     }

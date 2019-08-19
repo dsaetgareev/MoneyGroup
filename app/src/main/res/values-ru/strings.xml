@@ -32,7 +32,7 @@
     <string name="tv_back">Назад</string>
     <string name="change_password">Сменить пароль</string>
     <string name="welcome_title">Language</string>
-    <string name="language">Языки</string>
+    <string name="language">Язык</string>
     <string name="btn_confirm">Отправить SMS</string>
     <string name="welcome_go">Дальше</string>
     <string name="add_new_unconfirmed_debts">Добавить</string>
@@ -105,6 +105,7 @@
     <string name="settings">Настройки</string>
     <string name="my_debts">Мои долги</string>
     <string name="debts">Долги</string>
+    <string name="autorization_number_text">Вы авторизовались в приложении по номеру:</string>
 
 
     <string-array name="language_array">

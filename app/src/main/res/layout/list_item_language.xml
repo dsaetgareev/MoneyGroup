@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
 
     >
 
@@ -29,14 +31,16 @@
                 android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/tv_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/imageView14"
+                tools:srcCompat="@mipmap/infostile2"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+
                 android:layout_gravity="center_vertical"
-                android:text=">"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@mipmap/infostile2" />
 
 
         </LinearLayout>

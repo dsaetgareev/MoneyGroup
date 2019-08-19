@@ -1,109 +1,113 @@
 <resources>
     <string name="app_name">Moneybook</string>
-    <string name="into_in_profil"><b>Login to profile</b></string>
-    <string name="login_text">Login</string>
-    <string name="password_text">Password</string>
-    <string name="login_button">Enter</string>
-    <string name="registration_button">Registration</string>
-    <string name="forgot_button">Forgot password</string>
-    <string name="send_email_button">Send email</string>
-    <string name="email_code">Confirmation code</string>
-    <string name="control_question">Your security question</string>
-
+    <string name="into_in_profil">Login to profile</string>
+    <string name="login_text">Login:</string>
+    <string name="password_text">Password:</string>
+    <string name="login_button">Login:</string>
+    <string name="registration_button">Register</string>
+    <string name="forgot_button">Forgot password?</string>
+    <string name="send_email_button">to send a letter</string>
+    <string name="email_code">Code</string>
+    <string name="control_question">Your secret question</string>
 
     <string-array name="planets_array">
         <item>Send email</item>
-        <item>Security Question</item>
+        <item>Security question</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="enter_new_password">Enter a new password</string>
-    <string name="confirm_password">Confirm password</string>
+    <string name="enter_new_password">Enter a new password.</string>
+    <string name="confirm_password">Repeat password.</string>
     <string name="save">Save</string>
-    <string name="password_description">The password must contain only letters of the Latin alphabet</string>
-    
-    <string name="registration_title"><b>Registration</b></string>
-    <string name="enter_number_titel">Enter the number</string>
+    <string name="password_description">Your password must be at least 6 characters long  and contain at least one number (0-9), one uppercase (A-Z) and one lowercase  (a-z) letter of the Latin alphabet</string>
+    <string name="registration_title"><b>Register</b></string>
+    <string name="enter_number_titel">Your  phone number</string>
     <string name="tv_skip">Skip</string>
-    <string name="agreement_title">Agreement of the parties</string>
-    <string name="agreement_text">By using the <b><i> Moneybook </i></b> application and services, you agree to</string>
-    <string name="tv_accept">Accept</string>
+    <string name="agreement_title">User Agreement</string>
+    <string name="agreement_text">using the Moneybook application, as well as Moneybook services, you agree to </string>
+    <string name="tv_accept">Agree</string>
     <string name="tv_back">Back</string>
-    <string name="change_password">Change password</string>
+    <string name="change_password">Change the password</string>
     <string name="welcome_title">Language</string>
     <string name="language">Language</string>
-    <string name="btn_confirm">get the code</string>
-    <string name="welcome_go">Next</string>
+    <string name="btn_confirm">Send SMS</string>
+    <string name="welcome_go">Resume</string>
     <string name="add_new_unconfirmed_debts">Add</string>
-    <string name="menu_edit">Edit</string>
-    <string name="menu_ready">Ready</string>
+    <string name="menu_edit">edit</string>
+    <string name="menu_ready">Done</string>
     <string name="owes_me">Owe me</string>
     <string name="should_i">I owe</string>
-    <string name="enter_name">Enter your name</string>
-    <string name="enter_phone">Enter the phone number</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_phone">Enter phone</string>
     <string name="summ">Amount</string>
-    <string name="note_for_yourself">Note for yourself</string>
-    <string name="Comment">Comment</string>
-    <string name="currency">Currency</string>
-    <string name="enter_summ">Enter amount</string>
-    <string name="Contacts">Contacts</string>
-    <string name="phone_number">+79171234567</string>
-    <string name="password">Password</string>
-    <string name="tv_change_password">Change password</string>
-    <string name="enter_confirmation_code">Enter confirmation code</string>
-    <string name="send_request">Send request</string>
-    <string name="tv_tel">Tel.</string>
-    <string name="tv_omp_title">Owes me</string>
-    <string name="btn_to_archiv">To archive</string>
-    <string name="btn_to_delete">Delete</string>
-    <string name="i_owe_title">I owe</string>
-    <string name="tv_chain_title">Congratulations. You are in a chain!</string>
-    <string name="rejection">Rejection</string>
-    <string name="agree">Agree</string>
-    <string name="after_write_off_title">After debt cancellation</string>
-    <string name="Ask_a_security_question">Ask a security question</string>
-    <string name="write_the_answer">Ask a security question</string>
-    <string name="name">Name</string>
-    <string name="install">To install</string>
-    <string name="view_archive">View archive</string>
-    <string name="exit">Exit</string>
-    <string name="notifications">Push notifications</string>
-    <string name="auro_cancel">Automatically write off debt if the chain is going</string>
-    <string name="not_new_debt">Notification of new debt</string>
-    <string name="not_new_cycle">Send a message about the collected debt chain</string>
-    <string name="multi_valute">Multi-currency debt chain</string>
-    <string name="descText">The debt chain coincided from %s participants, we can write off all participants by:</string>
-    <string name="descResponse">Confirmed to write off %s members. After confirmation of all participants, the debt will be written off. Hurry up your debtors and we will quickly close this debt.</string>
-    <string name="cycleText">Chain of %s items collected. %s USD</string>
-    <string name="new_debt_notif">Verify debt at %s to lender %s</string>
-    <string name="new_loan_norif">Confirm the debt in the amount of %s to the customer %s</string>
-    <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Terms of Use </a>]]></string>
-    <string name="agreement_link_1"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Privacy Policy </a>]]></string>
-    <string name="abonent">Subscriber</string>
-    <string name="sended">Sent</string>
-    <string name="restore">Restore</string>
-    <string name="wrong_password">Пароль неверный</string>
-    <string name="password_saved">Пароль сохранен</string>
-    <string name="password_not_saved">Пароль не сохранен</string>
-    <string name="akkaunt_remove">Удалить аккаунт</string>
-    <string name="lowercase_letter">строчная буква</string>
-    <string name="uppercase_letter">прописная буква</string>
-    <string name="numeral">цифра</string>
-    <string name="characters_6">не менее 6 символов</string>
-    <string name="number_forma_err">Формат номера должен быть +x(xxx)xxx-xxxx</string>
-    <string name="unconfirmed">Неподтвержденные долги</string>
-    <string name="messages">Сообщения</string>
-    <string name="settings">Настройки</string>
-    <string name="my_debts">Мои долги</string>
-    <string name="note_for_yourself_help_text">Данная запись делается только для себя и не отправляется другому абоненту</string>
-    <string name="Comment_help_text">Данный коментарий видит абонент, которому вы отправляете запрос на подтверждение долга</string>
-    <string name="date_arhive">Дата архивации</string>
+    <string name="note_for_yourself">Note (for yourself)</string>
+    <string name="note_for_yourself_help_text">This record is made only for yourself and is not sent to another subscriber.</string>
+    <string name="Comment_help_text">This comment is seen by the subscriber to whom you send a request to confirm the debt</string>
+    <string name="Comment">Comment (for the subscriber)</string>
+    <string name="date_arhive">Archive date</string>
     <string name="comment_text">Comment</string>
-    <string name="status_text">Status</string>
     <string name="note_text">Note</string>
     <string name="telephone_text">Phone</string>
-    <string name="debts">Долги</string>
+    <string name="status_text">Status</string>
+    <string name="currency">Currency</string>
+    <string name="enter_summ">Add amount</string>
+    <string name="Contacts">Сontacts</string>
+    <string name="phone_number">+79171234567</string>
+    <string name="password">Password</string>
+    <string name="tv_change_password">Change the password</string>
+    <string name="enter_confirmation_code">Enter confirmation code</string>
+    <string name="send_request">Send request</string>
+    <string name="tv_tel">Tel.:</string>
+    <string name="tv_omp_title">Owe me</string>
+    <string name="btn_to_archiv">Archived</string>
+    <string name="btn_to_delete">Delete</string>
+    <string name="i_owe_title">I owe</string>
+    <string name="tv_chain_title">Congratulations! You are  in the chain</string>
+    <string name="rejection">Failure</string>
+    <string name="agree">Agree</string>
+    <string name="after_write_off_title">After debiting</string>
+    <string name="Ask_a_security_question">Come up with a security question</string>
+    <string name="write_the_answer">Answer</string>
+    <string name="name">Name</string>
+    <string name="install">Install</string>
+    <string name="view_archive">Archive</string>
+    <string name="exit">Logout</string>
+    <string name="notifications">Push notifications</string>
+    <string name="auro_cancel">Автоматически списывать долг если цепочка собралась</string>
+    <string name="not_new_debt">New Debt Notification</string>
+    <string name="not_new_cycle">Send a message about the collected debt chain</string>
+    <string name="multi_valute">Multi-currency debt chain</string>
+    <string name="descText">The debt chain coincided with %s participants. We can write off from all participants by:</string>
+    <string name="descResponse">Writing-off  is confimed by %s participants. After confirmation of all participants, the debt will be written off. Hurry your debtors up and we will quickly close this debt</string>
+    <string name="cycleText">The chain of debt records is collected from %s subscribers. %s USD</string>
+
+
+    <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
+    <string name="new_loan_norif">Подтвердите долг в размере %s дебитору %s</string>
+
+
+    <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> the Moneybook terms of service </a>]]></string>
+    <string name="agreement_link_1"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> end privacy policy  </a>]]></string>
+    <string name="abonent">The Subscriber</string>
+    <string name="sended">Sent</string>
+    <string name="restore">Restore</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="password_saved">Password saved</string>
+    <string name="password_not_saved">Password not saved</string>
+    <string name="akkaunt_remove">Delete (Account)</string>
+    <string name="lowercase_letter">lowercase letter</string>
+    <string name="uppercase_letter">uppercase letter</string>
+    <string name="numeral">number</string>
+    <string name="characters_6">passwords do not match</string>
+    <string name="number_forma_err">The number is written in the international format + xxxxxxxxx without additional characters.</string>
+    <string name="unconfirmed">Unconfirmed</string>
+    <string name="messages">Notifications</string>
+    <string name="settings">Settings</string>
+    <string name="my_debts">Debts</string>
+    <string name="debts">Debts</string>
+    <string name="autorization_number_text">You are authorized in the program by the number:</string>
+
 
     <string-array name="language_array">
         <item>ru</item>

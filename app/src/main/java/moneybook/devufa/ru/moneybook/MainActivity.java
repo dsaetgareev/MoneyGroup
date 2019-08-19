@@ -315,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
     public void toWelcomeClass() {
         Class welcomeClass = Welcome.class;
         Intent intent = new Intent(MainActivity.this, welcomeClass);
+        intent.putExtra("settings", "main");
         startActivity(intent);
     }
 

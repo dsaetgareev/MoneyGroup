@@ -17,11 +17,13 @@ public class Welcome extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private WelcomeAdapter adapter;
+    private String settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        settings = getIntent().getStringExtra("settings");
         initLanguages();
         recyclerView = findViewById(R.id.rv_for_language_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -32,6 +34,7 @@ public class Welcome extends AppCompatActivity {
     public void adapterInit() {
         adapter = new WelcomeAdapter();
         adapter.setActivity(Welcome.this);
+        adapter.setSettings(settings);
         adapter.setLanguages(languages);
     }
 

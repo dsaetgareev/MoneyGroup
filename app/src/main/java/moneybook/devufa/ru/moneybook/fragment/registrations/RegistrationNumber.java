@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +54,11 @@ public class RegistrationNumber extends Fragment {
     private TextView skip;
     private TextView back;
 
+    private RadioButton radioButton1;
+    private RadioButton radioButton2;
+    private RadioButton radioButton3;
+    private String smsType = "WhatsApp";
+
     private Spinner spinner;
     private Spinner countrySpinner;
     private String spText;
@@ -72,6 +79,7 @@ public class RegistrationNumber extends Fragment {
         initEtCode(view);
         initOkButton(view);
         initSpinner(view);
+        initRadioButton(view);
 
 
         skip = view.findViewById(R.id.tv_next_rg_fr);
@@ -174,7 +182,7 @@ public class RegistrationNumber extends Fragment {
             public void onClick(View v) {
                 number = (spText + etEnterNumber.getText().toString()).replaceAll("[^\\d]", "");
                 String locale = getResources().getConfiguration().locale.toString();
-                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale, spText.replaceAll("[^\\d]", ""));
+                Call<ResponseBody> call = RegistrationService.getApiService().sendNumber(number, locale, spText.replaceAll("[^\\d]", ""), smsType);
                 progressBarMoney.show();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -267,14 +275,14 @@ public class RegistrationNumber extends Fragment {
                 System.out.println(response.body());
                 if (response.isSuccessful()) {
                     List<CountryCode> countryCodes = response.body();
-                    List<String> codes = new ArrayList<>();
+                    final List<String> codes = new ArrayList<>();
                     List<String> countrys = new ArrayList<>();
                     for (int i = 0; i < countryCodes.size(); i++) {
                         codes.add(i, countryCodes.get(i).getCode());
                         countrys.add(i, countryCodes.get(i).getName());
                     }
                     if (getActivity() != null) {
-                        ArrayAdapter<String> codeAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, codes);
+                        final ArrayAdapter<String> codeAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, codes);
                         ArrayAdapter<String> countryAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, countrys);
                         codeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -283,8 +291,7 @@ public class RegistrationNumber extends Fragment {
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                String[] choose = getResources().getStringArray(R.array.number_array);
-                                spText = choose[position];
+                                spText = codes.get(position);
                                 countrySpinner.setSelection(position);
                             }
 
@@ -314,6 +321,34 @@ public class RegistrationNumber extends Fragment {
             @Override
             public void onFailure(Call<List<CountryCode>> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void initRadioButton(View view) {
+        radioButton1 = view.findViewById(R.id.radioButton);
+        radioButton2 = view.findViewById(R.id.radioButton2);
+        radioButton2.setChecked(true);
+        radioButton3 = view.findViewById(R.id.radioButton3);
+
+        radioButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                smsType = "jsm";
+            }
+        });
+
+        radioButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                smsType = "WhatsApp";
+            }
+        });
+
+        radioButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                smsType = "telegram";
             }
         });
     }

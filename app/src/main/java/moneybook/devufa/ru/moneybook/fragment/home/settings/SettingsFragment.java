@@ -25,6 +25,8 @@ import android.widget.Toast;
 import moneybook.devufa.ru.moneybook.MainActivity;
 import moneybook.devufa.ru.moneybook.R;
 import moneybook.devufa.ru.moneybook.activity.ForgotActivity;
+import moneybook.devufa.ru.moneybook.activity.HomeActivity;
+import moneybook.devufa.ru.moneybook.activity.Welcome;
 import moneybook.devufa.ru.moneybook.activity.archive.ArchiveActivity;
 import moneybook.devufa.ru.moneybook.fragment.home.dialogs.ExitDialog;
 import moneybook.devufa.ru.moneybook.fragment.home.dialogs.MailDialog;
@@ -51,16 +53,15 @@ public class SettingsFragment extends Fragment {
     private Settings settings;
     private SettingDto settingDto;
     private View view;
-
-    private ImageView avatar;
-    private EditText name;
     private TextView number;
     private Button changePass;
 
-    private Button choiceButton;
-    private Spinner spinner;
+    private Button newEmail;
+    private Button newQuestion;
     private Button archiveSee;
     private Button btExit;
+
+    private Button language;
 
     private CheckBox autoWriteOffCb;
     private CheckBox newDebtCb;
@@ -108,31 +109,6 @@ public class SettingsFragment extends Fragment {
         return view;
     }
 
-    private void initAvatar(View view) {
-        avatar = view.findViewById(R.id.iv_avatar);
-    }
-
-    private void initName(View view) {
-        name = view.findViewById(R.id.et_set_name);
-        name.setText(settings.getName());
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                settings.setName(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-
     private void initNumber(View view) {
         number = view.findViewById(R.id.tv_set_number);
         number.setText(settings.getNumber());
@@ -154,6 +130,28 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    private void initEmail(View view) {
+        newEmail = view.findViewById(R.id.new_email);
+        newEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MailDialog dialog = new MailDialog();
+                dialog.show(getFragmentManager(), "mailDialog");
+            }
+        });
+    }
+
+    private void initQuestion(View view) {
+        newQuestion = view.findViewById(R.id.new_question);
+        newQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                QuestionDialog dialog = new QuestionDialog();
+                dialog.show(getFragmentManager(), "questionDialog");
+            }
+        });
+    }
+
     private void initChangePass(View view) {
         changePass = view.findViewById(R.id.bt_set_change_pass);
         changePass.setOnClickListener(new View.OnClickListener() {
@@ -166,46 +164,7 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void initChoiceButton(View view) {
-        choiceButton = view.findViewById(R.id.bt_set_choice);
-    }
 
-    private void initSpinner(View view) {
-        spinner = (Spinner) view.findViewById(R.id.planets_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.set_email_question, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    choiceButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                                MailDialog dialog = new MailDialog();
-                            dialog.show(getFragmentManager(), "mailDialog");
-                        }
-                    });
-                }
-                if (position == 1) {
-                    choiceButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            QuestionDialog dialog = new QuestionDialog();
-                            dialog.show(getFragmentManager(), "questionDialog");
-                        }
-                    });
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
     private void initArchiveSee(View view) {
         archiveSee = view.findViewById(R.id.bt_set_archive_see);
@@ -222,15 +181,25 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    private void initLanguage(View view) {
+        language = view.findViewById(R.id.bt_set_language);
+        language.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getActivity();
+                Class welcomeClass = Welcome.class;
+                Intent intent = new Intent(context, welcomeClass);
+                intent.putExtra("settings", "settings");
+                startActivity(intent);
+            }
+        });
+    }
+
     private void initExit(View view) {
         btExit = view.findViewById(R.id.bt_set_exit);
         btExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                new CodeService(getActivity()).deleteCode(basicCode);
-//                Class mainActivity = MainActivity.class;
-//                Intent intent = new Intent(getActivity(), mainActivity);
-//                startActivity(intent);
                 ExitDialog exitDialog = new ExitDialog();
                 exitDialog.show(getFragmentManager(), "exitDialog");
             }
@@ -342,14 +311,12 @@ public class SettingsFragment extends Fragment {
                     settings.setAutoWriteOff(settingDto.isAutoCancel());
                     settings.setNewDebt(settingDto.isNewDebtNotification());
                     settings.setChainNotif(settingDto.isNewCycleNotification());
-
-                    initAvatar(view);
-                    initName(view);
+                    initEmail(view);
+                    initQuestion(view);
                     initNumber(view);
                     initChangePass(view);
-                    initChoiceButton(view);
-                    initSpinner(view);
                     initArchiveSee(view);
+                    initLanguage(view);
                     initExit(view);
                     initNewDebtCb(view);
                     initChainCb(view);

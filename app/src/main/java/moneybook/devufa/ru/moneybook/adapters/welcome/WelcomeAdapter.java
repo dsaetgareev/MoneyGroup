@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import moneybook.devufa.ru.moneybook.R;
+import moneybook.devufa.ru.moneybook.activity.HomeActivity;
 import moneybook.devufa.ru.moneybook.activity.Registration;
 import moneybook.devufa.ru.moneybook.model.Language;
 import moneybook.devufa.ru.moneybook.service.LocaleService;
@@ -24,6 +25,7 @@ public class WelcomeAdapter extends RecyclerView.Adapter<WelcomeAdapter.WelcomeV
 
     private List<Language> languages = new ArrayList<>();
     private Activity activity;
+    private String settings;
 
     class WelcomeViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,11 +44,18 @@ public class WelcomeAdapter extends RecyclerView.Adapter<WelcomeAdapter.WelcomeV
                     configuration.locale = locale;
                     getActivity().getResources().updateConfiguration(configuration, null);
                     LocaleService.get(getActivity()).updateLocale(value);
+                    if ("settings".equals(settings)) {
+                        Class home = HomeActivity.class;
+                        Intent intent = new Intent(getActivity(), home);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        getActivity().startActivity(intent);
+                    } else  {
+                        Context context = getActivity();
+                        Class registration = Registration.class;
+                        Intent intent = new Intent(context, registration);
+                        getActivity().startActivity(intent);
+                    }
 
-                    Context context = getActivity();
-                    Class registration = Registration.class;
-                    Intent intent = new Intent(context, registration);
-                    getActivity().startActivity(intent);
                 }
             });
 
@@ -89,5 +98,13 @@ public class WelcomeAdapter extends RecyclerView.Adapter<WelcomeAdapter.WelcomeV
 
     public void setLanguages(List<Language> languages) {
         this.languages = languages;
+    }
+
+    public String getSettings() {
+        return settings;
+    }
+
+    public void setSettings(String settings) {
+        this.settings = settings;
     }
 }

@@ -19,7 +19,8 @@ public interface ApiService {
     @POST("person/anonymous/registerRequest/")
     Call<ResponseBody> sendNumber(@Query("telephoneNumber") String telephoneNumber,
                                   @Query("locale") String locale,
-                                  @Query("countryCode") String countryCode
+                                  @Query("countryCode") String countryCode,
+                                  @Query("smsType") String smsType
     );
 
     @POST("person/anonymous/{code}")

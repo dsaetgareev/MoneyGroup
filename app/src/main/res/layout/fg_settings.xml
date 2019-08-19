@@ -1,235 +1,484 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:scrollbars="none">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
         android:id="@+id/rl_settings"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
         <LinearLayout
-            android:id="@+id/ll_set_header"
+            android:id="@+id/steckSetting"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/text_desigen_for_debt"
-                android:src="@mipmap/logo11" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/steck1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp">
 
-                <EditText
-                    android:id="@+id/et_set_name"
+
+
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/text_fielld_design"
-                    android:hint="@string/name"
-                    android:inputType="text"
-                    android:textAlignment="center" />
+                    android:text="@string/autorization_number_text"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_set_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/text_fielld_design"
-                    android:text="+79171234567" />
-
-                <Button
-                    android:id="@+id/bt_set_exit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_shape_button"
-                    android:textColor="@color/colorBlueForMoneybook"
-                    android:textSize="10sp"
-                    android:layout_margin="5dp"
-                    android:text="@string/exit"
-                    />
+                    android:text="+79171234567"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_set_middle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_set_header"
-            android:orientation="vertical"
-            android:padding="5dp">
+            <TextView
+                android:id="@+id/tv_set_push_title"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#95BDBCBC"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorGreenMoneybook"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/ll_set_reset_pass"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal"
-                >
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
-                <Spinner
-                    android:id="@+id/planets_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:layout_weight="2" />
-
-                <Button
-                    android:id="@+id/bt_set_choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-
-                    android:textSize="11sp"
-                    android:background="@drawable/round_shape_button"
-                    android:textColor="@color/colorBlueForMoneybook"
-                    android:lines="4"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:text="Установить"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-               android:padding="5dp"
-                android:orientation="horizontal">
-
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/arhiv" />
 
                 <Button
                     android:id="@+id/bt_set_archive_see"
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/round_shape_button"
-                    android:textColor="@color/colorBlueForMoneybook"
-                    android:layout_margin="10dp"
-
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:text="@string/view_archive" />
+                    android:background="@drawable/fon_button_setting"
 
-                <Button
-                    android:id="@+id/bt_set_change_pass"
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/round_shape_button"
-                    android:textColor="@color/colorBlueForMoneybook"
-                    android:layout_margin="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:text="@string/change_password"
+                    android:text="@string/view_archive"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
 
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
 
-                    />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CC959595"
+                android:orientation="horizontal">
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/email" />
+
+                <Button
+                    android:id="@+id/new_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/fon_button_setting"
+                    android:text="email "
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CC959595"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/question" />
+
+                <Button
+                    android:id="@+id/new_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/fon_button_setting"
+                    android:text="@string/control_question"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CC959595"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/language" />
+
+                <Button
+                    android:id="@+id/bt_set_language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/fon_button_setting"
+                    android:text="@string/language"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+
+
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CC959595"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/pasword" />
+
+                <Button
+                    android:id="@+id/bt_set_change_pass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/fon_button_setting"
+                    android:text="@string/change_password"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+
+
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CC959595"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/steck_delete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/delete" />
+
+                <Button
+                    android:id="@+id/bt_set_remove"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/fon_button_setting"
+                    android:text="@string/akkaunt_remove"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@mipmap/infostile2" />
+            </LinearLayout>
+
+
+            </LinearLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/steckSetting"
+            android:background="#95BDBCBC" />
+
+        <LinearLayout
+            android:id="@+id/steck_cycle_clik_push1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view1"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@mipmap/newdebt" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/not_new_debt" />
+
+            <CheckBox
+                android:id="@+id/cb_set_new_debt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_set_push_title"
+        <LinearLayout
+            android:id="@+id/line_steck_cycle_clik_push1"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_below="@id/ll_set_middle"
-            android:background="@color/colorGreenMoneybook"
-            android:text="@string/notifications"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:layout_height="0.5dp"
+            android:layout_below="@id/steck_cycle_clik_push1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#CC959595"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/steck_cycle_clik_push2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line_steck_cycle_clik_push1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@mipmap/newcycle" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/not_new_cycle" />
+
+            <CheckBox
+                android:id="@+id/cb_set_chain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineForStack"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/steck_cycle_clik_push2"
+            android:background="#CC959595"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_set_push"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_set_push_title"
-            android:orientation="vertical">
+            android:layout_below="@id/lineForStack"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="15dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/google_1x"
-                android:layout_marginRight="@dimen/google_1x">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal"
+                android:orientation="horizontal">
 
-                <TextView
+                <Button
+                    android:id="@+id/bt_set_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:padding="@dimen/google_1x"
-                    android:text="@string/not_new_debt" />
-
-                <CheckBox
-                    android:id="@+id/cb_set_new_debt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
+                    android:background="@drawable/round_shape_button"
+                    android:text="@string/save"
+                    android:textColor="@color/colorBlueForMoneybook"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/google_1x"
-                android:layout_marginRight="@dimen/google_1x">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
+                <Button
+                    android:id="@+id/bt_set_exit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-
-                    android:padding="@dimen/google_1x"
-                    android:text="@string/not_new_cycle" />
-
-                <CheckBox
-                    android:id="@+id/cb_set_chain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
+                    android:background="@drawable/round_shape_button"
+                    android:text="@string/exit"
+                    android:textColor="@color/colorBlueForMoneybook"
+                    android:textSize="12sp" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/bt_set_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:text="@string/save"
-                android:background="@drawable/round_shape_button"
-                android:textColor="@color/colorBlueForMoneybook"
-                android:textSize="12dp"
-                android:textAlignment="center" />
-
-            <Button
-                android:id="@+id/bt_set_remove"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
-                android:background="@drawable/round_shape_button"
-                android:textColor="@color/colorBlueForMoneybook"
-                android:textSize="12dp"
-                android:text="@string/akkaunt_remove"
-                android:textAlignment="center" />
 
 
         </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>

@@ -80,7 +80,7 @@
     <string name="multi_valute">Multi-currency debt chain</string>
     <string name="descText">The debt chain coincided with %s participants. We can write off from all participants by:</string>
     <string name="descResponse">Writing-off  is confimed by %s participants. After confirmation of all participants, the debt will be written off. Hurry your debtors up and we will quickly close this debt</string>
-    <string name="cycleText">The chain of debt records is collected from %s subscribers. %s USD</string>
+    <string name="cycleText">The chain of debt records is collected from %s subscribers. %s %s</string>
 
 
     <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>

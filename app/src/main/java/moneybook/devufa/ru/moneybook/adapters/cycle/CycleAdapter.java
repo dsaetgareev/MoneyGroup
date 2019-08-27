@@ -47,7 +47,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.CycleViewHol
 
         public void bind(CycleDTO cycleDTO) {
             @SuppressLint("StringFormatMatches")
-            String text = String.format(getActivity().getString(R.string.cycleText), cycleDTO.getCountElement(), cycleDTO.getMinCount());
+            String text = String.format(getActivity().getString(R.string.cycleText), cycleDTO.getCountElement(), cycleDTO.getMinCount(), cycleDTO.getCycleCurrency());
             button.setText(text);
             this.cycleDTO = cycleDTO;
         }

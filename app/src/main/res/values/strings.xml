@@ -94,7 +94,7 @@
     <string name="multi_valute">Разновалютная цепь долгов</string>
     <string name="descText">Цепь долгов совпала из %s участников. Мы можем списать у всех участников по:</string>
     <string name="descResponse">Подтвердили на списание %s участников.  После подтверждения всех участников долг спишется. Поторопите сових должников и мы быстро закроем этот долг.</string>
-    <string name="cycleText">Цепочка из %s участников собрана. %s USD</string>
+    <string name="cycleText">Цепочка из %s участников собрана. %s %s</string>
     <string name="new_debt_notif">Подтвердите долг в размере %s кредитору %s</string>
     <string name="new_loan_norif">Подтвердите долг в размере %s дебитору %s</string>
     <string name="agreement_link"><![CDATA[<a href=\'http://moneybook-app.com/agreement\'> Условиями предоставления услуг Moneybook </a>]]></string>

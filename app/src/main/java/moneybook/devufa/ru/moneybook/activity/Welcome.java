@@ -42,7 +42,7 @@ public class Welcome extends AppCompatActivity {
         languages.add(new Language("English", "en"));
         languages.add(new Language("Русский", "ru"));
         languages.add(new Language("Spanish", "ru"));
-        languages.add(new Language("Deutsch", "en"));
+        languages.add(new Language("Deutsch", "de"));
         languages.add(new Language("French", "ru"));
     }
 

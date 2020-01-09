@@ -77,7 +77,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/arhiv" />
+                    app:srcCompat="@mipmap/arhiv"
+                    tools:srcCompat="@mipmap/arhiv" />
 
                 <Button
                     android:id="@+id/bt_set_archive_see"
@@ -99,7 +100,8 @@
 
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,7 +127,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/email" />
+                    app:srcCompat="@mipmap/email"
+                    tools:srcCompat="@mipmap/email" />
 
                 <Button
                     android:id="@+id/new_email"
@@ -145,7 +148,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
             <LinearLayout
@@ -171,7 +175,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/question" />
+                    app:srcCompat="@mipmap/question"
+                    tools:srcCompat="@mipmap/question" />
 
                 <Button
                     android:id="@+id/new_question"
@@ -191,7 +196,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
                 <LinearLayout
@@ -216,7 +222,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/language" />
+                    app:srcCompat="@mipmap/language"
+                    tools:srcCompat="@mipmap/language" />
 
                 <Button
                     android:id="@+id/bt_set_language"
@@ -237,7 +244,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
             <LinearLayout
@@ -263,7 +271,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/pasword" />
+                    app:srcCompat="@mipmap/pasword"
+                    tools:srcCompat="@mipmap/pasword" />
 
                 <Button
                     android:id="@+id/bt_set_change_pass"
@@ -285,7 +294,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
                 <LinearLayout
@@ -312,7 +322,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/delete" />
+                    app:srcCompat="@mipmap/delete"
+                    tools:srcCompat="@mipmap/delete" />
 
                 <Button
                     android:id="@+id/bt_set_remove"
@@ -332,7 +343,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@mipmap/infostile2" />
+                    app:srcCompat="@mipmap/infostile2"
+                    tools:srcCompat="@mipmap/infostile2" />
             </LinearLayout>
 
 
@@ -362,7 +374,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                app:srcCompat="@mipmap/newdebt" />
+                app:srcCompat="@mipmap/newdebt"
+                tools:srcCompat="@mipmap/newdebt" />
 
             <TextView
                 android:layout_width="0dp"
@@ -407,7 +420,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                app:srcCompat="@mipmap/newcycle" />
+                app:srcCompat="@mipmap/newcycle"
+                tools:srcCompat="@mipmap/newcycle" />
 
             <TextView
                 android:layout_width="0dp"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="moneybook.devufa.ru.moneybook"
-    android:versionCode="22"
-    android:versionName="0.2.12">
+    package="moneybook.devufa.ru.moneybooks"
+    android:versionCode="1"
+    android:versionName="0.1.1">
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,9 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.archive.ArchiveDetail"></activity>
+        <activity android:name="moneybook.devufa.ru.moneybooks.activity.archive.ArchiveDetail"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name="moneybook.devufa.ru.moneybooks.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,48 +32,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ForgotActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.ForgotActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NewPassword"
+            android:name="moneybook.devufa.ru.moneybooks.activity.NewPassword"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.Registration"
+            android:name="moneybook.devufa.ru.moneybooks.activity.Registration"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Welcome"
+            android:name="moneybook.devufa.ru.moneybooks.activity.Welcome"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.unconfirmed.PersonPagerActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.unconfirmed.PersonPagerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.unconfirmed.ContactsActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.unconfirmed.ContactsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.owesme.OwesmePersonActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.owesme.OwesmePersonActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.iowe.IOweActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.iowe.IOweActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChainActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.ChainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.cycle.CycleActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.cycle.CycleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NotificationsActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.NotificationsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.archive.ArchiveActivity"
+            android:name="moneybook.devufa.ru.moneybooks.activity.archive.ArchiveActivity"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".service.firebase.NotificationsService"
+            android:name="moneybook.devufa.ru.moneybooks.service.firebase.NotificationsService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
